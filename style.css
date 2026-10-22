@@ -824,21 +824,17 @@ footer {
         grid-template-columns: 1fr !important;
     }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    background-color: #ffffff;
-    border-bottom: 3px solid #1a365d;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+        text-align: center;
+    }
 
 header nav {
-    margin-left: auto;
     display: flex;
     align-items: center;
-
+    margin-left: auto;
 }
 
     header nav a {
@@ -896,4 +892,27 @@ header nav {
         max-width: 100%;
         margin: 15px;
     }
+}
+
+/* ==========================================================
+   CORRECCIÓN PARA PANEL ESTUDIANTE Y DRESPLIEGUE LATERAL
+   ========================================================== */
+.panel-body, body.panel-estudiante {
+    display: flex !important;
+    flex-direction: row !important;
+    min-height: 100vh !important;
+    background-color: #f4f6f9;
+}
+
+.sidebar {
+    width: 260px !important;
+    flex-shrink: 0 !important;
+    min-height: 100vh !important;
+}
+
+.main-wrapper {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
 }
