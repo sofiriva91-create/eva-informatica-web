@@ -28,7 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // ==========================================
                 // REDIRECCIÓN INTELIGENTE SEGÚN EL ROL
                 // ==========================================
-                if ($datos_usuario['rol'] === 'docente') {
+                // Limpiamos el rol y lo pasamos a minúsculas para evitar errores
+                $rol_usuario = strtolower(trim($datos_usuario['rol']));
+
+                if ($rol_usuario === 'docente' || $rol_usuario === 'admin' || $rol_usuario === 'administrador') {
                     header("Location: panel_admin.php");
                     exit();
                 } else {
