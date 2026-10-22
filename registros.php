@@ -13,11 +13,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Consulta para guardar en la base de datos
     $sql = "INSERT INTO usuarios (cedula, nombre, correo, clave, rol, sección) VALUES ('$cedula', '$nombre', '$correo', '$clave', '$rol', '$seccion')";
     
-    if ($conexion->query($sql) === TRUE) 
-        
+    if ($conexion->query($sql) === TRUE) {
+        // Redirección automática al login tras registrarse exitosamente
         header("Location: login.php");
         exit();
-
+    } else {
+        $error = "Ocurrió un error al registrar los datos.";
+    }
+    
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -25,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - EVA Informática</title>
-    <link rel="stylesheet" href="style.css?v=4.3">
+    <link rel="stylesheet" href="style.css?v=4.4">
 </head>
 <body class="auth-body">
 
@@ -59,12 +62,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-group">
                 <label>Tipo de Usuario:</label>
                 <select name="rol" required>
+                    <option value="" disabled selected>Seleccione un rol</option>
                     <option value="estudiante">Estudiante</option>
                     <option value="docente">Docente</option>
                 </select>
             </div>
             <div class="form-group">
-                <label>Sección(Solo para Estudiantes):</label>
+                <label>Sección:</label>
                 <select name="seccion" required>
                     <option value="" disabled selected>Seleccione una sección</option>
                     <option value="Sección A">Sección A</option>
