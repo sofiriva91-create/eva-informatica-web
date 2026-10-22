@@ -1,6 +1,4 @@
-/* ==========================================================
-   1. RESET Y CONFIGURACIÓN GLOBAL
-   ========================================================== */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -16,9 +14,7 @@ body {
 }
 
 
-/* ==========================================================
-   2. BARRA LATERAL (SIDEBAR)
-   ========================================================== */
+
 .sidebar {
   width: 260px;
   background-color: #0d1b2a;
@@ -77,9 +73,7 @@ body {
 }
 
 
-/* ==========================================================
-   3. CONTENEDOR PRINCIPAL Y HEADER
-   ========================================================== */
+
 .main-wrapper {
   flex: 1;
   display: flex;
@@ -127,9 +121,7 @@ body {
 }
 
 
-/* ==========================================================
-   4. CONTENIDO, TARJETAS Y GRILLAS
-   ========================================================== */
+
 .content {
   padding: 30px;
   flex: 1;
@@ -192,9 +184,7 @@ body {
 }
 
 
-/* ==========================================================
-   5. RECURSOS, FORMULARIOS Y TABLAS
-   ========================================================== */
+
 .resource-item {
   display: flex;
   gap: 15px;
@@ -318,9 +308,7 @@ table th {
 }
 
 
-/* ==========================================================
-   6. DASHBOARD INTERACTIVO Y TARJETAS MÉTRICAS
-   ========================================================== */
+
 .stats-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -328,7 +316,7 @@ table th {
   margin-bottom: 25px;
 }
 
-/* Tarjeta base de estadísticas */
+
 .stat-card {
   background: #ffffff;
   padding: 20px;
@@ -340,7 +328,7 @@ table th {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
 }
 
-/* Efecto hover con elevación EXCLUSIVO para las tarjetas interactivas */
+
 .stat-card.hover-effect {
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   cursor: pointer;
@@ -434,11 +422,7 @@ table th {
   font-weight: bold;
 }
 
-/* ==========================================================
-   ESTILOS DE PORTADA (LANDING PAGE), LOGIN Y REGISTRO
-   ========================================================== */
 
-/* CONTENEDOR DE PÁGINAS PÚBLICAS */
 .public-body {
     background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 50%, #415a77 100%);
     min-height: 100vh;
@@ -450,7 +434,7 @@ table th {
     margin: 0;
 }
 
-/* NAVBAR DE PORTADA */
+
 .public-nav {
     display: flex;
     justify-content: space-between;
@@ -505,7 +489,6 @@ table th {
     transform: translateY(-2px);
 }
 
-/* HERO SECTION (SECCIÓN PRINCIPAL DE PORTADA) */
 .hero-container {
     display: flex;
     align-items: center;
@@ -542,7 +525,7 @@ table th {
     gap: 15px;
 }
 
-/* TARJETA VISUAL DE BIENVENIDA */
+
 .hero-card-preview {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -572,7 +555,7 @@ table th {
     font-size: 1.5rem;
 }
 
-/* CONTENEDOR DE FORMULARIOS (LOGIN Y REGISTRO) */
+
 .auth-wrapper {
     display: flex;
     justify-content: center;
@@ -670,7 +653,6 @@ table th {
     text-decoration: underline;
 }
 
-/* FOOTER PÚBLICO */
 .public-footer {
     text-align: center;
     padding: 20px;
@@ -678,4 +660,201 @@ table th {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     font-size: 0.85rem;
     color: #778da9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #ffffff;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.logo-seccion {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-seccion img {
+    height: 50px;
+}
+
+.logo-seccion span {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1a365d;
+}
+
+nav a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.btn-login {
+    background-color: #1a365d;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 5px;
+}
+
+.btn-registro {
+    background-color: #2b6cb0;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 5px;
+}
+
+.portada {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200') center/cover;
+    color: #ffffff;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.portada h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.portada h2 {
+    font-size: 22px;
+    font-weight: normal;
+    margin-bottom: 25px;
+}
+
+.botones-portada a {
+    display: inline-block;
+    margin: 5px;
+    padding: 12px 24px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.contenedor {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.titulo-seccion {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #1a365d;
+}
+
+.tarjetas-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.tarjeta {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    flex: 1;
+    min-width: 250px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.tarjeta h3 {
+    margin-bottom: 10px;
+    color: #1a365d;
+}
+
+.banner-curso {
+    background-color: #1a365d;
+    color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    margin-top: 40px;
+}
+
+.form-contenedor {
+    max-width: 400px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.form-contenedor h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1a365d;
+}
+
+.campo {
+    margin-bottom: 15px;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.campo input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-enviar {
+    width: 100%;
+    padding: 10px;
+    background-color: #1a365d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.mensaje-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.mensaje-exito {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #1a365d;
+    color: white;
+    margin-top: 50px;
 }
