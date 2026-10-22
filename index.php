@@ -27,10 +27,10 @@
         <div class="portada-contenido">
             <h1>Entorno Virtual de Aprendizaje</h1>
             <h2>Universidad Politécnica Territorial del Alto Apure "Pedro Camejo"</h2>
-            <div class="botones-portada">
-                <a href="login.php" class="btn-login btn-grande" title="Inicie sesión aquí para entrar al sistema">Iniciar Sesión</a>
-                <a href="registros.php" class="btn-registros btn-grande" title="Cree su cuenta de usuario aquí">Registrarse aquí</a>
-            </div>
+           <div class="botones-portada">
+    <a href="login.php" class="btn-login btn-grande">Iniciar Sesión</a>
+    <a href="register.php" class="btn-registro btn-grande">Registrarse aquí</a>
+</div>
         </div>
     </section>
 
