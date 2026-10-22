@@ -824,17 +824,21 @@ footer {
         grid-template-columns: 1fr !important;
     }
 
-    header {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
-        text-align: center;
-    }
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #ffffff;
+    border-bottom: 3px solid #1a365d;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
 
 header nav {
+    margin-left: auto;
     display: flex;
     align-items: center;
-    margin-left: auto;
+
 }
 
     header nav a {
