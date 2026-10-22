@@ -831,12 +831,11 @@ footer {
         text-align: center;
     }
 
-    header nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px;
-    }
+header nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
 
     header nav a {
         margin-left: 0 !important;
