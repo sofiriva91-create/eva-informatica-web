@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - EVA Informática</title>
-    <link rel="stylesheet" href="style.css?v=3.0">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <nav>
             <a href="index.php">Inicio</a>
-            <a href="registro.php" class="btn-registro">Registrarte Aquí</a>
+            <a href="registros.php" class="btn-registros">Registrarte Aquí</a>
         </nav>
     </header>
 
