@@ -4,7 +4,6 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 include('conexion.php');
 
-// Verificación estricta y limpia de sesión
 if (!isset($_SESSION['nombre']) || !isset($_SESSION['rol']) || strtolower($_SESSION['rol']) !== 'docente') {
     header("Location: login.php");
     exit();
@@ -16,14 +15,12 @@ $vista = isset($_GET['vista']) ? $_GET['vista'] : 'dashboard';
 $tipo_solicitado = isset($_GET['tipo']) ? $_GET['tipo'] : '';
 $mensaje = "";
 
-// Crear tabla de configuración de materias si no existe
 $conexion->query("CREATE TABLE IF NOT EXISTS config_materias (
     id INT AUTO_INCREMENT PRIMARY KEY,
     materia VARCHAR(100) UNIQUE,
     docente_asignado VARCHAR(150)
 )");
 
-// Guardar el nombre del docente para esta materia
 if (isset($_POST['guardar_docente_materia'])) {
     $docente_input = $conexion->real_escape_string($_POST['nombre_docente_materia']);
     $mat_target = $conexion->real_escape_string($_POST['materia_target']);
@@ -42,15 +39,15 @@ function obtenerYouTubeID($url) {
     return isset($match[1]) ? $match[1] : false;
 }
 
-// 0. ELIMINAR RECURSO (Guía o Video)
+
 if (isset($_GET['eliminar_recurso'])) {
     $id_recurso = intval($_GET['eliminar_recurso']);
     
-    // Opcional: Buscar el archivo físico para borrarlo del servidor si es un PDF
+    
     $res_file = $conexion->query("SELECT enlace, tipo FROM archivos WHERE id = $id_recurso LIMIT 1");
     if ($res_file && $res_file->num_rows > 0) {
         $dat_file = $res_file->fetch_assoc();
-        // Si no es video de YouTube y la ruta empieza por uploads/, borramos el archivo físico
+        
         if ($dat_file['tipo'] !== 'Video Tutorial' && file_exists($dat_file['enlace'])) {
             @unlink($dat_file['enlace']);
         }
@@ -176,9 +173,9 @@ if ($vista === 'estudiantes_general') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel del Docente - Aula Virtual PIU</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=5.0">
 </head>
-<body>
+<body class="admin-body">
 
     <!-- BARRA LATERAL (SIDEBAR) -->
     <div class="sidebar">
