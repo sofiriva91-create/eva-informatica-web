@@ -20,7 +20,7 @@
             <a href="#universidad" title="Conoce más sobre nuestra institución">Universidad</a>
             <a href="#curso" title="Información del curso de informática">Curso</a>
             <a href="login.php" class="btn-login" title="Inicie sesión aquí para acceder al aula virtual">Iniciar Sesión</a>
-            <a href="registros.php" class="btn-registro" title="Cree una nueva cuenta de estudiante aquí">Registrarse aquí</a>
+            <a href="registros.php" class="btn-registros" title="Cree una nueva cuenta de estudiante aquí">Registrarse aquí</a>
         </nav>
     </header>
 
