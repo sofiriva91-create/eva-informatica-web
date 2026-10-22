@@ -1,15 +1,14 @@
 <?php
 session_start();
-include("conexion.php"); // Asegúrate de que este archivo conecta con tu base de datos
-
+include("conexion.php"); // Asegúrate de que conecta con tu base de datos
 $error = "";
 
-// Esto se ejecuta cuando presionas el botón de enviar
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $cedula = trim($_POST['cedula']);
-    $clave = trim($_POST['clave']);
+    $cedula = isset($_POST['cedula']) ? trim($_POST['cedula']) : '';
+    $clave = isset($_POST['clave']) ? trim($_POST['clave']) : '';
 
     if (!empty($cedula) && !empty($clave)) {
+        // Consultar el usuario en la base de datos por su cédula
         $consulta = $conexion->prepare("SELECT * FROM usuarios WHERE cedula = ?");
         $consulta->bind_param("s", $cedula);
         $consulta->execute();
@@ -17,11 +16,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if ($resultado->num_rows === 1) {
             $datos_usuario = $resultado->fetch_assoc();
+            
+            // Verificar la contraseña cifrada
             if (password_verify($clave, $datos_usuario['clave'])) {
-                $_SESSION['usuario'] = $datos_usuario['cedula'];
-                // Redirección automática al panel del estudiante
-                header("Location: panel_estudiante.php"); 
-                exit();
+                // Guardar los datos esenciales en la sesión
+                $_SESSION['cedula'] = $datos_usuario['cedula'];
+                $_SESSION['nombre'] = $datos_usuario['nombre'];
+                $_SESSION['rol'] = $datos_usuario['rol'];
+                $_SESSION['seccion'] = $datos_usuario['seccion'];
+
+                // ==========================================
+                // REDIRECCIÓN INTELIGENTE SEGÚN EL ROL
+                // ==========================================
+                if ($datos_usuario['rol'] === 'docente') {
+                    header("Location: panel_docente.php");
+                    exit();
+                } else {
+                    header("Location: panel_estudiante.php");
+                    exit();
+                }
+
             } else {
                 $error = "Contraseña incorrecta.";
             }
@@ -39,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - EVA Informática</title>
-    <link rel="stylesheet" href="style.css?v=4.2">
+    <link rel="stylesheet" href="style.css?v=4.8">
 </head>
 <body class="auth-body">
 
@@ -47,14 +61,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2>¡Bienvenid@ de nuevo!</h2>
         <p>Ingresa tu cédula y contraseña para acceder</p>
         
-        <!-- Aquí mostramos el mensaje de error de PHP si las credenciales fallan -->
         <?php if (!empty($error)): ?>
-            <div style="color: #e53e3e; background: #fff5f5; padding: 10px; border-radius: 5px; margin-bottom: 15px; font-size: 14px;">
+            <div style="color: #e53e3e; background: #fff5f5; padding: 10px; border-radius: 5px; margin-bottom: 15px; font-size: 14px; border: 1px solid #feb2b2;">
                 <?php echo $error; ?>
             </div>
         <?php endif; ?>
 
-        <!-- EL FORMULARIO HTML -->
         <form action="login.php" method="POST">
             <div class="form-group">
                 <label>Cédula:</label>
