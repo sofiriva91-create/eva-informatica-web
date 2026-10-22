@@ -1,6 +1,4 @@
-/* ==========================================================
-   1. RESET Y CONFIGURACIÓN GLOBAL
-   ========================================================== */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,7 +6,6 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Configuración limpia del body (Protege index.php, login y registro) */
 body {
   background-color: #f4f6f9;
   min-height: 100vh;
@@ -16,17 +13,12 @@ body {
   margin: 0;
 }
 
-/* Layout exclusivo con flex para los paneles */
 .admin-body, .panel-body, .dashboard-body {
   display: flex;
   min-height: 100vh;
   background-color: #f4f6f9;
 }
 
-
-/* ==========================================================
-   2. BARRA LATERAL (SIDEBAR)
-   ========================================================== */
 .sidebar {
   width: 260px;
   background-color: #0d1b2a;
@@ -85,9 +77,6 @@ body {
 }
 
 
-/* ==========================================================
-   3. CONTENEDOR PRINCIPAL Y HEADER
-   ========================================================== */
 .main-wrapper {
   flex: 1;
   display: flex;
@@ -134,10 +123,6 @@ body {
   font-size: 0.85rem;
 }
 
-
-/* ==========================================================
-   4. CONTENIDO, TARJETAS Y GRILLAS
-   ========================================================== */
 .content {
   padding: 30px;
   flex: 1;
@@ -199,10 +184,6 @@ body {
   padding-bottom: 8px;
 }
 
-
-/* ==========================================================
-   5. RECURSOS, FORMULARIOS Y TABLAS
-   ========================================================== */
 .resource-item {
   display: flex;
   gap: 15px;
@@ -325,10 +306,6 @@ table th {
   border: 1px solid #c3e6cb;
 }
 
-
-/* ==========================================================
-   6. DASHBOARD INTERACTIVO Y TARJETAS MÉTRICAS
-   ========================================================== */
 .stats-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -429,10 +406,6 @@ table th {
   font-weight: bold;
 }
 
-
-/* ==========================================================
-   7. ESTILOS EXCLUSIVOS DE LA PORTADA (INDEX)
-   ========================================================== */
 .landing-body {
   background-color: #f4f6f9;
   color: #333;
