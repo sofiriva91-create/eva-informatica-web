@@ -173,7 +173,7 @@ if ($vista === 'estudiantes_general') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel del Docente - Aula Virtual PIU</title>
-    <link rel="stylesheet" href="style.css?v=5.0">
+    <link rel="stylesheet" href="style.css?v=5.1">
 </head>
 <body class="admin-body">
 
