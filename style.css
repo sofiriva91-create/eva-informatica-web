@@ -1,4 +1,6 @@
-
+/* ==========================================================
+   1. RESET Y CONFIGURACIÓN GLOBAL
+   ========================================================== */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,6 +8,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Configuración limpia del body (Protege index.php, login y registro) */
 body {
   background-color: #f4f6f9;
   min-height: 100vh;
@@ -13,12 +16,12 @@ body {
   margin: 0;
 }
 
+/* Layout exclusivo con flex para los paneles */
 .admin-body, .panel-body, .dashboard-body {
   display: flex;
   min-height: 100vh;
   background-color: #f4f6f9;
 }
-
 .sidebar {
   width: 260px;
   background-color: #0d1b2a;
