@@ -685,9 +685,20 @@ footer {
 }
 
 /* --- NUEVOS ESTILOS AZULES Y PROFESIONALES PARA LA PORTADA --- */
+/* Configuración global limpia para el body (protege index.php y login) */
 body {
-    background-color: #f0f4f8 !important; /* Fondo azulado suave, fuera el blanco tétrico */
-    color: #2D3748;
+    background-color: #f4f6f9;
+    min-height: 100vh;
+    color: #333;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Solo los paneles de administración y docente usarán flex */
+.admin-body, .panel-body {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f4f6f9;
 }
 
 header {
