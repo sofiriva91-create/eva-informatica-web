@@ -19,7 +19,7 @@
             <a href="#universidad">Universidad</a>
             <a href="#curso">Curso</a>
             <a href="login.php" class="btn-login">Iniciar Sesión</a>
-            <a href="registro.php" class="btn-registro">Registrarte Aquí</a>
+            <a href="registros.php" class="btn-registros">Registrarte Aquí</a>
         </nav>
     </header>
 
