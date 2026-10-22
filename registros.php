@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $error = "Ocurrió un error al registrar los datos.";
     }
-    
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
