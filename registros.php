@@ -17,9 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         header("Location: login.php");
         exit();
-    } else {
-        $error = "Ocurrió un error al registrar los datos.";
-    }
 
 ?>
 <!DOCTYPE html>
