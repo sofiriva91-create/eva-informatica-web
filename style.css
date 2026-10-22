@@ -651,7 +651,8 @@ footer {
    ========================================================== */
 
 @media (max-width: 768px) {
-    /* 1. Ajustar la barra de navegación superior en celulares */
+    
+}
     header {
         flex-direction: column;
         gap: 15px;
