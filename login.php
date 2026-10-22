@@ -56,8 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EVA Informática - UPTAAPC</title>
-    <!-- Usa la barra al inicio para forzar la ruta absoluta -->
-    <link rel="stylesheet" href="/style.css?v=5.3">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body class="auth-body">
 
