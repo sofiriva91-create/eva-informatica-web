@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EVA Informática - UPTAAPC</title>
-    <link rel="stylesheet" href="style.css?v=3.0">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -20,7 +20,7 @@
             <a href="#universidad">Universidad</a>
             <a href="#curso">Curso</a>
             <a href="login.php" class="btn-login">Iniciar Sesión</a>
-            <a href="registro.php" class="btn-registro">Registrarse aquí</a>
+            <a href="registros.php" class="btn-registros">Registrarse aquí</a>
         </nav>
     </header>
 
@@ -30,7 +30,7 @@
         <h2>Universidad Politécnica Territorial del Alto Apure "Pedro Camejo"</h2>
         <div class="botones-portada">
             <a href="login.php" class="btn-login">Iniciar Sesión</a>
-            <a href="registro.php" class="btn-registro">Registrarse aquí</a>
+            <a href="registros.php" class="btn-registros">Registrarse aquí</a>
         </div>
     </section>
 
