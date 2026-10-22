@@ -1,36 +1,32 @@
 <?php
-include('conexion.php');
+require_once 'conexion.php';
 
-$error = "";
+$error = '';
 
-if (isset($_POST['ingresar'])) {
-    $correo = $conexion->real_escape_string($_POST['correo']);
-    $clave  = $_POST['clave'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $usuario = trim($_POST['usuario']);
+    $clave = trim($_POST['clave']);
 
-    $sql = "SELECT * FROM usuarios WHERE correo = '$correo' LIMIT 1";
-    $res = $conexion->query($sql);
+    if (!empty($usuario) && !empty($clave)) {
+        $consulta = $conexion->prepare("SELECT * FROM usuarios WHERE usuario = ?");
+        $consulta->bind_param("s", $usuario);
+        $consulta->execute();
+        $resultado = $consulta->get_result();
 
-    if ($res && $res->num_rows > 0) {
-        $usuario = $res->fetch_assoc();
-        if (password_verify($clave, $usuario['clave']) || $clave === $usuario['clave']) {
-            $_SESSION['id']      = $usuario['id'];
-            $_SESSION['nombre']  = $usuario['nombre'];
-            $_SESSION['cedula']  = $usuario['cedula'];
-            $_SESSION['rol']     = strtolower(trim($usuario['rol']));
-            $_SESSION['seccion'] = $usuario['seccion'];
-
-            if ($_SESSION['rol'] === 'docente') {
-                header("Location: panel_admin.php");
-                exit();
-            } else {
+        if ($resultado->num_rows === 1) {
+            $datos_usuario = $resultado->fetch_assoc();
+            if (password_verify($clave, $datos_usuario['clave']) || $clave === $datos_usuario['clave']) {
+                $_SESSION['usuario'] = $datos_usuario['usuario'];
                 header("Location: panel_estudiante.php");
                 exit();
+            } else {
+                $error = "Contraseña incorrecta.";
             }
         } else {
-            $error = "❌ Contraseña incorrecta. Inténtalo de nuevo.";
+            $error = "El usuario no existe.";
         }
     } else {
-        $error = "⚠️ El correo electrónico no se encuentra registrado.";
+        $error = "Por favor completa todos los campos.";
     }
 }
 ?>
@@ -40,70 +36,43 @@ if (isset($_POST['ingresar'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - EVA Informática</title>
-    <link rel="stylesheet" href="style.css?v=1.0">
+    <link rel="stylesheet" href="style.css?v=3.0">
 </head>
-<body class="public-body">
+<body>
 
-    <nav class="public-nav">
-        <a href="index.php" class="public-logo" style="text-decoration:none;">
-            🖥️ EVA Informática
-        </a>
-        <div class="nav-links">
-            <a href="registros.php" class="btn-nav btn-nav-solid">Registrarse</a>
+    <header>
+        <div class="logo-seccion">
+            <img src="imagenes/logo-UPTAAPC.png" alt="Logo UPTAAPC" class="logo-img">
+            <span>EVA Informática</span>
         </div>
-    </nav>
+        <nav>
+            <a href="index.php">Inicio</a>
+            <a href="registro.php" class="btn-registro">Registrarte Aquí</a>
+        </nav>
+    </header>
 
-    <div class="auth-wrapper">
-        <div class="auth-card">
-            <div class="auth-header">
-                <h2>¡Bienvenid@ de nuevo! 👋</h2>
-                <p>Ingresa tus datos para acceder al aula virtual</p>
+    <div class="form-contenedor">
+        <h2>Iniciar Sesión</h2>
+
+        <?php if (!empty($error)): ?>
+            <div class="mensaje-error"><?php echo $error; ?></div>
+        <?php endif; ?>
+
+        <form action="login.php" method="POST">
+            <div class="campo">
+                <label>Usuario</label>
+                <input type="text" name="usuario" required>
             </div>
-
-            <?php if (isset($_GET['registro']) && $_GET['registro'] === 'exitoso'): ?>
-                <div style="background: #d4edda; color: #155724; padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem; text-align: center;">
-                    ¡Registro completado con éxito! Ya puedes iniciar sesión.
-                </div>
-            <?php endif; ?>
-
-            <?php if (isset($_GET['reset']) && $_GET['reset'] === 'exitoso'): ?>
-                <div style="background: #d4edda; color: #155724; padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem; text-align: center;">
-                    ¡Contraseña actualizada con éxito! Inicia sesión con tu nueva clave.
-                </div>
-            <?php endif; ?>
-
-            <?php if ($error != ""): ?>
-                <div style="background: #f8d7da; color: #721c24; padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem; text-align: center;">
-                    <?php echo $error; ?>
-                </div>
-            <?php endif; ?>
-
-            <form method="POST" action="login.php">
-                <div class="form-group">
-                    <label>Correo Electrónico:</label>
-                    <input type="email" name="correo" placeholder="ejemplo@correo.com" required>
-                </div>
-
-                <div class="form-group">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <label style="margin-bottom: 0;">Contraseña:</label>
-                        <a href="recuperar.php" style="font-size: 0.82rem; color: #007bff; text-decoration: none;">¿Olvidaste tu contraseña?</a>
-                    </div>
-                    <input type="password" name="clave" placeholder="••••••••" required style="margin-top: 8px;">
-                </div>
-
-                <button type="submit" name="ingresar" class="btn-submit">Ingresar al Sistema</button>
-            </form>
-
-            <div class="auth-footer">
-                ¿Aún no tienes cuenta? <a href="registros.php">Regístrate aquí</a>
+            <div class="campo">
+                <label>Contraseña</label>
+                <input type="password" name="clave" required>
             </div>
-        </div>
+            <button type="submit" class="btn-enviar">Entrar</button>
+        </form>
+        <p style="text-align: center; margin-top: 15px;">
+            <a href="recuperar.php" style="color: #2b6cb0;">¿Olvidaste tu contraseña?</a>
+        </p>
     </div>
-
-    <footer class="public-footer">
-        &copy; <?php echo date('Y'); ?> EVA Informática — Plataforma Educativa
-    </footer>
 
 </body>
 </html>
