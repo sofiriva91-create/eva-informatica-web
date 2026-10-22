@@ -13,10 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Consulta para guardar en la base de datos
     $sql = "INSERT INTO usuarios (cedula, nombre, correo, clave, rol, sección) VALUES ('$cedula', '$nombre', '$correo', '$clave', '$rol', '$seccion')";
     
-    if ($conexion->query($sql) === TRUE) {
-        // ==========================================
-        // AQUÍ ES EXACTAMENTE DONDE LO REDIRIGE AL LOGIN
-        // ==========================================
+    if ($conexion->query($sql) === TRUE) 
+        
         header("Location: login.php");
         exit();
     } else {
