@@ -2,7 +2,7 @@
 include("conexion.php");
 $error = "";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') 
     $cedula = trim($_POST['cedula']);
     $nombre = trim($_POST['nombre']);
     $correo = trim($_POST['correo']);
@@ -20,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $error = "Ocurrió un error al registrar los datos.";
     }
-}
 ?>
 <!DOCTYPE html>
 <html lang="es">
