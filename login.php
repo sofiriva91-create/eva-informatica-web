@@ -1,29 +1,32 @@
 <?php
-require_once 'conexion.php';
+session_start();
+include("conexion.php"); // Asegúrate de que este archivo conecta con tu base de datos
 
-$error = '';
+$error = "";
 
+// Esto se ejecuta cuando presionas el botón de enviar
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $usuario = trim($_POST['usuario']);
+    $cedula = trim($_POST['cedula']);
     $clave = trim($_POST['clave']);
 
-    if (!empty($usuario) && !empty($clave)) {
-        $consulta = $conexion->prepare("SELECT * FROM usuarios WHERE usuario = ?");
-        $consulta->bind_param("s", $usuario);
+    if (!empty($cedula) && !empty($clave)) {
+        $consulta = $conexion->prepare("SELECT * FROM usuarios WHERE cedula = ?");
+        $consulta->bind_param("s", $cedula);
         $consulta->execute();
         $resultado = $consulta->get_result();
-
+        
         if ($resultado->num_rows === 1) {
             $datos_usuario = $resultado->fetch_assoc();
-            if (password_verify($clave, $datos_usuario['clave']) || $clave === $datos_usuario['clave']) {
-                $_SESSION['usuario'] = $datos_usuario['usuario'];
-                header("Location: panel_estudiante.php");
+            if (password_verify($clave, $datos_usuario['clave'])) {
+                $_SESSION['usuario'] = $datos_usuario['cedula'];
+                // Redirección automática al panel del estudiante
+                header("Location: panel_estudiante.php"); 
                 exit();
             } else {
                 $error = "Contraseña incorrecta.";
             }
         } else {
-            $error = "El usuario no existe.";
+            $error = "La cédula no está registrada.";
         }
     } else {
         $error = "Por favor completa todos los campos.";
@@ -36,42 +39,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - EVA Informática</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=4.2">
 </head>
-<body>
+<body class="auth-body">
 
-    <header>
-        <div class="logo-seccion">
-            <img src="imagenes/logo-UPTAAPC.png" alt="Logo UPTAAPC" class="logo-img">
-            <span>EVA Informática</span>
-        </div>
-        <nav>
-            <a href="index.php">Inicio</a>
-            <a href="registros.php" class="btn-registros">Registrarte Aquí</a>
-        </nav>
-    </header>
-
-    <div class="form-contenedor">
-        <h2>Iniciar Sesión</h2>
-
+    <div class="auth-wrapper">
+        <h2>¡Bienvenid@ de nuevo!</h2>
+        <p>Ingresa tu cédula y contraseña para acceder</p>
+        
+        <!-- Aquí mostramos el mensaje de error de PHP si las credenciales fallan -->
         <?php if (!empty($error)): ?>
-            <div class="mensaje-error"><?php echo $error; ?></div>
+            <div style="color: #e53e3e; background: #fff5f5; padding: 10px; border-radius: 5px; margin-bottom: 15px; font-size: 14px;">
+                <?php echo $error; ?>
+            </div>
         <?php endif; ?>
 
+        <!-- EL FORMULARIO HTML -->
         <form action="login.php" method="POST">
-            <div class="campo">
-                <label>Usuario</label>
-                <input type="text" name="usuario" required>
+            <div class="form-group">
+                <label>Cédula:</label>
+                <input type="text" name="cedula" placeholder="Ej: 28123456" required>
             </div>
-            <div class="campo">
-                <label>Contraseña</label>
-                <input type="password" name="clave" required>
+            
+            <div class="form-group">
+                <label>Contraseña:</label>
+                <input type="password" name="clave" placeholder="••••••••" required>
             </div>
-            <button type="submit" class="btn-enviar">Entrar</button>
+            
+            <button type="submit" class="btn-auth">Ingresar al Sistema</button>
         </form>
-        <p style="text-align: center; margin-top: 15px;">
-            <a href="recuperar.php" style="color: #2b6cb0;">¿Olvidaste tu contraseña?</a>
-        </p>
+
+        <div class="auth-footer">
+            <p><a href="recuperar.php">¿Olvidaste tu contraseña?</a></p>
+            <p style="margin-top: 10px;">¿Aún no tienes cuenta? <a href="registros.php">Regístrate aquí</a></p>
+        </div>
     </div>
 
 </body>
