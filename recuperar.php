@@ -1,24 +1,36 @@
 <?php
-include('conexion.php');
-
+include("conexion.php");
 $error = "";
+$exito = "";
 
-if (isset($_POST['recuperar'])) {
-    $cedula      = $conexion->real_escape_string($_POST['cedula']);
-    $correo      = $conexion->real_escape_string($_POST['correo']);
-    $nueva_clave = password_hash($_POST['nueva_clave'], PASSWORD_DEFAULT);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $identificador = trim($_POST['usuario']); // Cédula o correo
+    $nueva_clave = trim($_POST['nueva_clave']);
+    $confirmar_clave = trim($_POST['confirmar_clave']);
 
-    $sql = "SELECT id FROM usuarios WHERE cedula = '$cedula' AND correo = '$correo' LIMIT 1";
-    $res = $conexion->query($sql);
-
-    if ($res && $res->num_rows > 0) {
-        $user = $res->fetch_assoc();
-        $user_id = $user['id'];
-        $conexion->query("UPDATE usuarios SET clave = '$nueva_clave' WHERE id = $user_id");
-        header("Location: login.php?reset=exitoso");
-        exit();
+    if (!empty($identificador) && !empty($nueva_clave) && !empty($confirmar_clave)) {
+        if ($nueva_clave === $confirmar_clave) {
+            $clave_encriptada = password_hash($nueva_clave, PASSWORD_BCRYPT);
+            
+            // Actualizar contraseña en la base de datos
+            $sql = "UPDATE usuarios SET clave = ? WHERE cedula = ? OR correo = ?";
+            $stmt = $conexion->prepare($sql);
+            $stmt->bind_param("sss", $clave_encriptada, $identificador, $identificador);
+            
+            if ($stmt->execute()) {
+                // ======================================================
+                // AQUÍ ES EXACTAMENTE DONDE LO REDIRIGE AL LOGIN TRAS ACTUALIZAR
+                // ======================================================
+                header("Location: login.php");
+                exit();
+            } else {
+                $error = "Error al actualizar la contraseña.";
+            }
+        } else {
+            $error = "Las contraseñas no coinciden.";
+        }
     } else {
-        $error = "⚠️ La cédula y el correo ingresados no coinciden con ninguna cuenta.";
+        $error = "Por favor completa todos los campos.";
     }
 }
 ?>
@@ -28,60 +40,43 @@ if (isset($_POST['recuperar'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar Contraseña - EVA Informática</title>
-    <link rel="stylesheet" href="style.css?v=1.0">
+    <link rel="stylesheet" href="style.css?v=4.3">
 </head>
-<body class="public-body">
-
-    <nav class="public-nav">
-        <a href="index.php" class="public-logo" style="text-decoration:none;">
-            🖥️ EVA Informática
-        </a>
-        <div class="nav-links">
-            <a href="login.php" class="btn-nav btn-nav-outline">Iniciar Sesión</a>
-        </div>
-    </nav>
+<body class="auth-body">
 
     <div class="auth-wrapper">
-        <div class="auth-card">
-            <div class="auth-header">
-                <h2>Recuperar Contraseña 🔑</h2>
-                <p>Verifica tu identidad para asignar una nueva clave</p>
+        <h2>Restablecer Contraseña</h2>
+        <p>Ingresa tus datos y tu nueva clave</p>
+        
+        <?php if (!empty($error)): ?>
+            <div style="color: #e53e3e; background: #fff5f5; padding: 10px; border-radius: 5px; margin-bottom: 15px; font-size: 14px;">
+                <?php echo $error; ?>
+            </div>
+        <?php endif; ?>
+
+        <form action="recuperar.php" method="POST">
+            <div class="form-group">
+                <label>Cédula o Correo:</label>
+                <input type="text" name="usuario" placeholder="Ingresa tu cédula o correo" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Nueva Contraseña:</label>
+                <input type="password" name="nueva_clave" placeholder="••••••••" required>
             </div>
 
-            <?php if ($error != ""): ?>
-                <div style="background: #f8d7da; color: #721c24; padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem; text-align: center;">
-                    <?php echo $error; ?>
-                </div>
-            <?php endif; ?>
-
-            <form method="POST" action="recuperar.php">
-                <div class="form-group">
-                    <label>Cédula de Identidad:</label>
-                    <input type="text" name="cedula" placeholder="Ej: 28123456" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Correo Electrónico:</label>
-                    <input type="email" name="correo" placeholder="ejemplo@correo.com" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Nueva Contraseña:</label>
-                    <input type="password" name="nueva_clave" placeholder="••••••••" required>
-                </div>
-
-                <button type="submit" name="recuperar" class="btn-submit">Actualizar Contraseña</button>
-            </form>
-
-            <div class="auth-footer">
-                <a href="login.php">Volver al inicio de sesión</a>
+            <div class="form-group">
+                <label>Confirmar Nueva Contraseña:</label>
+                <input type="password" name="confirmar_clave" placeholder="••••••••" required>
             </div>
+            
+            <button type="submit" class="btn-auth">Actualizar Contraseña</button>
+        </form>
+
+        <div class="auth-footer">
+            <p><a href="login.php">Volver al Inicio de Sesión</a></p>
         </div>
     </div>
-
-    <footer class="public-footer">
-        &copy; <?php echo date('Y'); ?> EVA Informática — Plataforma Educativa
-    </footer>
 
 </body>
 </html>
