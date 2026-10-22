@@ -44,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro - EVA Informática</title>
-    <link rel="stylesheet" href="style.css?v=4.6">
+    <title>EVA Informática - UPTAAPC</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="auth-body">
 
