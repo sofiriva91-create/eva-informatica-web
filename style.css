@@ -520,3 +520,128 @@ footer {
     font-size: 14px;
     border-top: 3px solid #2b6cb0;
 }
+
+/* ==========================================================
+   ESTILOS INTERACTIVOS PARA LOGIN, REGISTRO Y RECUPERACIÓN
+   ========================================================== */
+
+.auth-body {
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.auth-wrapper {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 440px;
+    text-align: center;
+    border-top: 5px solid #1a365d;
+    animation: fadeInAuth 0.5s ease-in-out;
+}
+
+@keyframes fadeInAuth {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.auth-wrapper h2 {
+    color: #1a365d;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.auth-wrapper p {
+    color: #718096;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #2d3748;
+    font-size: 14px;
+}
+
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background-color: #f7fafc;
+}
+
+.form-group input:focus, 
+.form-group select:focus {
+    border-color: #2b6cb0;
+    outline: none;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.15);
+}
+
+.btn-auth {
+    width: 100%;
+    background-color: #1a365d;
+    color: #ffffff;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(26, 54, 93, 0.3);
+    margin-top: 10px;
+}
+
+.btn-auth:hover {
+    background-color: #2b6cb0;
+    transform: translateY(-3px); /* Efecto de movimiento hacia arriba al pasar el ratón */
+    box-shadow: 0 6px 15px rgba(43, 108, 176, 0.4);
+}
+
+.btn-auth:active {
+    transform: translateY(-1px);
+}
+
+.auth-footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #4a5568;
+}
+
+.auth-footer a {
+    color: #2b6cb0;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.auth-footer a:hover {
+    color: #1a365d;
+    text-decoration: underline;
+}
