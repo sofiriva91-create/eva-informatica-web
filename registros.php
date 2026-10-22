@@ -67,8 +67,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </select>
             </div>
             <div class="form-group">
-                <label>Sección:</label>
-                <input type="text" name="seccion" placeholder="Ej: A-1" required>
+                <label>Sección(Solo para Estudiantes):</label>
+                <select name="seccion" required>
+                    <option value="" disabled selected>Seleccione una sección</option>
+                    <option value="Sección A">Sección A</option>
+                    <option value="Sección B">Sección B</option>
+                </select>
             </div>
             
             <button type="submit" class="btn-auth">Completar Registro</button>
