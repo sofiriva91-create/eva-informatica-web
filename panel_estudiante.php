@@ -4,7 +4,6 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 include('conexion.php');
 
-// Verificación de acceso para estudiantes
 if (!isset($_SESSION['nombre']) || !isset($_SESSION['rol']) || strtolower($_SESSION['rol']) !== 'estudiante') {
     header("Location: login.php");
     exit();
@@ -12,7 +11,7 @@ if (!isset($_SESSION['nombre']) || !isset($_SESSION['rol']) || strtolower($_SESS
 
 $nombre_estudiante = $_SESSION['nombre'];
 
-// Consultar cédula y sección reales del estudiante desde la BD
+
 $res_user = $conexion->query("SELECT * FROM usuarios WHERE nombre = '$nombre_estudiante' AND rol = 'estudiante' LIMIT 1");
 if ($res_user && $res_user->num_rows > 0) {
     $usr_data = $res_user->fetch_assoc();
@@ -31,22 +30,19 @@ function obtenerYouTubeID($url) {
     return isset($match[1]) ? $match[1] : false;
 }
 
-// 1. OBTENER DOCENTE ASIGNADO A ESTA MATERIA
 $res_doc = $conexion->query("SELECT docente_asignado FROM config_materias WHERE materia = '$materia_actual' LIMIT 1");
 $row_doc = ($res_doc && $res_doc->num_rows > 0) ? $res_doc->fetch_assoc() : ['docente_asignado' => 'Por asignar'];
 $docente_asignado = $row_doc['docente_asignado'];
 
-// 2. OBTENER CALIFICACIONES DEL ESTUDIANTE EN ESTA MATERIA
 $res_notas = $conexion->query("SELECT * FROM notas WHERE cedula_estudiante = '$cedula_estudiante' AND materia = '$materia_actual' LIMIT 1");
 $mis_notas = ($res_notas && $res_notas->num_rows > 0) ? $res_notas->fetch_assoc() : ['unidad1' => '0', 'unidad2' => '0', 'unidad3' => '0', 'unidad4' => '0'];
 
-// 3. CONSULTAS SEGÚN LA VISTA SELECCIONADA
 if ($vista === 'plan_evaluacion') {
     $resultado_plan = $conexion->query("SELECT * FROM archivos WHERE tipo = 'Plan_Evaluacion' AND materia = '$materia_actual' AND seccion = '$seccion_estudiante'");
 } elseif ($vista === 'horario') {
     $resultado_horario = $conexion->query("SELECT * FROM archivos WHERE tipo = 'Horario_Institucional' AND seccion = '$seccion_estudiante'");
 } else {
-    // Vista por defecto: Materiales y Tareas
+    
     $resultado_archivos = $conexion->query("SELECT * FROM archivos WHERE seccion = '$seccion_estudiante' AND materia = '$materia_actual' AND tipo != 'Horario_Institucional' AND tipo != 'Plan_Evaluacion'");
 }
 ?>
@@ -59,9 +55,9 @@ if ($vista === 'plan_evaluacion') {
     <title>Panel del Estudiante - Aula Virtual PIU</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="panel-body">
 
-    <!-- BARRA LATERAL (SIDEBAR) -->
+    
     <div class="sidebar">
         <div class="sidebar-brand">
             🖥️ Aula Virtual PIU
@@ -84,9 +80,9 @@ if ($vista === 'plan_evaluacion') {
         </ul>
     </div>
 
-    <!-- CONTENEDOR PRINCIPAL -->
+    
     <div class="main-wrapper">
-        <!-- HEADER SUPERIOR -->
+        
         <div class="header">
             <div class="header-title">
                 <?php echo htmlspecialchars($materia_actual); ?> — Sección <?php echo htmlspecialchars($seccion_estudiante); ?>
@@ -99,7 +95,7 @@ if ($vista === 'plan_evaluacion') {
             </div>
         </div>
 
-        <!-- CONTENIDO DE LA PÁGINA -->
+        
         <div class="content">
 
             <div class="page-header">
@@ -186,7 +182,7 @@ if ($vista === 'plan_evaluacion') {
                 </div>
 
             <?php else: ?>
-                <!-- VISTA MATERIALES Y CLASES -->
+                
                 <div class="card">
                     <div class="card-title">Materiales de Estudio y Clases Publicadas</div>
                     <?php if ($resultado_archivos && $resultado_archivos->num_rows > 0): ?>
