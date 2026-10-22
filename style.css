@@ -726,3 +726,161 @@ footer {
         margin: 15px;
     }
 }
+
+/* ==========================================================
+   ESTILOS MODERNOS PARA EL PANEL DE ADMINISTRACIÓN / DOCENTE
+   ========================================================== */
+
+/* 1. Contenedor General del Panel */
+.admin-body, .panel-body {
+    background-color: #f4f7f6;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* 2. Barra Lateral (Sidebar) Estilo Oscuro Profesional */
+.dashboard-sidebar {
+    width: 260px;
+    background-color: #0f172a;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-brand {
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin-bottom: 10px;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    color: #94a3b8;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 15px;
+}
+
+.sidebar-menu a:hover, 
+.sidebar-menu a.active {
+    background-color: #1e293b;
+    color: #ffffff;
+    transform: translateX(5px); /* Pequeño movimiento lateral sutil */
+}
+
+/* 3. Área Principal de Contenido */
+.dashboard-main {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+    font-size: 24px;
+    color: #1e293b;
+    margin: 0;
+}
+
+.dashboard-header p {
+    color: #64748b;
+    font-size: 14px;
+    margin: 5px 0 0 0;
+}
+
+/* 4. Tarjetas Superiores con Efecto de Movimiento al Pasar el Mouse */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease; /* Transición suave para el movimiento */
+    cursor: pointer;
+    position: relative;
+}
+
+/* Efecto dinámico de elevación cuando pasas el cursor por encima */
+.stat-card:hover {
+    transform: translateY(-6px); /* Se mueve hacia arriba con elegancia */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08); /* Sombra más profunda */
+    border-color: #cbd5e1;
+}
+
+.stat-card h3 {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0 0 8px 0;
+    font-weight: 600;
+}
+
+.stat-card .stat-value {
+    font-size: 22px;
+    font-weight: bold;
+    color: #0f172a;
+    margin: 0;
+}
+
+/* 5. Tarjetas de Secciones y Publicación de Contenido */
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+}
+
+.dashboard-card-box {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    border: 1px solid #e2e8f0;
+}
+
+/* Estilo responsivo para teléfonos */
+@media (max-width: 992px) {
+    .dashboard-body {
+        flex-direction: column;
+    }
+    .dashboard-sidebar {
+        width: 100%;
+    }
+    .content-grid {
+        grid-template-columns: 1px;
+    }
+}
