@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // REDIRECCIÓN INTELIGENTE SEGÚN EL ROL
                 // ==========================================
                 if ($datos_usuario['rol'] === 'docente') {
-                    header("Location: panel_docente.php");
+                    header("Location: panel_admin.php");
                     exit();
                 } else {
                     header("Location: panel_estudiante.php");
