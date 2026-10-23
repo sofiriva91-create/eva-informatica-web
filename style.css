@@ -680,19 +680,25 @@ footer {
     border-top: 3px solid #2b6cb0;
 }
 
-
-/* ==========================================================
-   8. ESTILOS INTERACTIVOS PARA LOGIN, REGISTRO Y RECUPERACIÓN
-   ========================================================== */
 .auth-body {
-    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    
+    background: linear-gradient(rgba(15, 32, 39, 0.85), rgba(32, 58, 67, 0.85)), 
+                url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200') center/cover no-repeat fixed;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.auth-logo {
+    height: 65px;
+    width: auto;
+    margin: 10px auto 15px;
+    display: block;
+    object-fit: contain;
 }
 
 .auth-wrapper {
