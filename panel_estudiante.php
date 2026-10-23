@@ -64,6 +64,7 @@ if ($vista === 'plan_evaluacion') {
         </div>
         <ul class="sidebar-menu">
             <li>
+                <li><a href="panel_estudiante.php?materia=<?php echo urlencode($materia_actual); ?>&vista=inicio" class="<?php echo ($vista === 'inicio') ? 'active' : ''; ?>">Inicio</a></li>
                 <a href="#" onclick="toggleSubmenu(event)">📚 Mis Materias ▾</a>
                 <ul id="submenu-cursos" class="submenu" style="display: block;">
                     <li><a href="panel_estudiante.php?materia=Informática Básica&vista=materiales" class="<?php echo ($materia_actual === 'Informática Básica') ? 'active' : ''; ?>">Informática Básica</a></li>
@@ -72,7 +73,6 @@ if ($vista === 'plan_evaluacion') {
                     <li><a href="panel_estudiante.php?materia=Técnicas de Estudio&vista=materiales" class="<?php echo ($materia_actual === 'Técnicas de Estudio') ? 'active' : ''; ?>">Técnicas de Estudio</a></li>
                 </ul>
             </li>
-            <li><a href="panel_estudiante.php?materia=<?php echo urlencode($materia_actual); ?>&vista=inicio" class="<?php echo ($vista === 'inicio') ? 'active' : ''; ?>">Inicio</a></li>
             <li><a href="panel_estudiante.php?materia=<?php echo urlencode($materia_actual); ?>&vista=materiales" class="<?php echo ($vista === 'materiales') ? 'active' : ''; ?>">📂 Materiales y Clases</a></li>
             <li><a href="panel_estudiante.php?materia=<?php echo urlencode($materia_actual); ?>&vista=plan_evaluacion" class="<?php echo ($vista === 'plan_evaluacion') ? 'active' : ''; ?>">📊 Plan de Evaluación</a></li>
             <li><a href="panel_estudiante.php?materia=<?php echo urlencode($materia_actual); ?>&vista=calificaciones" class="<?php echo ($vista === 'calificaciones') ? 'active' : ''; ?>">📝 Mis Calificaciones</a></li>
