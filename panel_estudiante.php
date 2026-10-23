@@ -72,6 +72,7 @@ if ($vista === 'plan_evaluacion') {
                     <li><a href="panel_estudiante.php?materia=Técnicas de Estudio&vista=materiales" class="<?php echo ($materia_actual === 'Técnicas de Estudio') ? 'active' : ''; ?>">Técnicas de Estudio</a></li>
                 </ul>
             </li>
+            <li><a href="panel_estudiante.php?materia=<?php echo urlencode($materia_actual); ?>&vista=inicio" class="<?php echo ($vista === 'inicio') ? 'active' : ''; ?>">Inicio</a></li>
             <li><a href="panel_estudiante.php?materia=<?php echo urlencode($materia_actual); ?>&vista=materiales" class="<?php echo ($vista === 'materiales') ? 'active' : ''; ?>">📂 Materiales y Clases</a></li>
             <li><a href="panel_estudiante.php?materia=<?php echo urlencode($materia_actual); ?>&vista=plan_evaluacion" class="<?php echo ($vista === 'plan_evaluacion') ? 'active' : ''; ?>">📊 Plan de Evaluación</a></li>
             <li><a href="panel_estudiante.php?materia=<?php echo urlencode($materia_actual); ?>&vista=calificaciones" class="<?php echo ($vista === 'calificaciones') ? 'active' : ''; ?>">📝 Mis Calificaciones</a></li>
