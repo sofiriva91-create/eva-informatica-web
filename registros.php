@@ -97,6 +97,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </select>
             </div>
             
+            
+<div class="form-group" id="grupo-materia">
+    <label for="materia">Materia Asignada:</label>
+    <select name="materia" id="materia" class="form-control" required>
+        <option value="" disabled selected>Selecciona tu materia</option>
+        <option value="Informática Básica">Informática Básica</option>
+        <option value="Programación I">Introducción a la Programación</option>
+        <option value="Bases de Datos">Matemática Inicial</option>
+        <option value="Redes de Computadoras">Redes de Computadoras</option>
+        <option value="Ingeniería de Software">Ingeniería de Software</option>
+        <option value="Sistemas Operativos">Sistemas Operativos</option>
+    </select>
+</div>
             <button type="submit" class="btn-auth">Completar Registro</button>
         </form>
 
