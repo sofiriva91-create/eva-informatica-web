@@ -9,6 +9,18 @@ if (!isset($_SESSION['nombre']) || !isset($_SESSION['rol']) || strtolower($_SESS
     exit();
 }
 
+$materia_docente = '';
+if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'docente') {
+    $cedula_actual = $_SESSION['cedula'] ?? '';
+    $stmt_doc = $conexion->prepare("SELECT materia FROM usuarios WHERE cedula = ?");
+    $stmt_doc->bind_param("s", $cedula_actual);
+    $stmt_doc->execute();
+    $res_doc = $stmt_doc->get_result();
+    if ($row_doc = $res_doc->fetch_assoc()) {
+        $materia_docente = $row_doc['materia'];
+    }
+
+}
 $materia_actual = isset($_GET['materia']) ? $_GET['materia'] : 'Informática Básica';
 $seccion_actual = isset($_GET['seccion']) ? $_GET['seccion'] : 'A';
 $vista = isset($_GET['vista']) ? $_GET['vista'] : 'dashboard';
@@ -183,15 +195,8 @@ if ($vista === 'estudiantes_general') {
             🖥️Entorno Virtual PIU
         </div>
         <ul class="sidebar-menu">
-            <li><a href="panel_admin.php?vista=dashboard" class="<?php echo ($vista==='dashboard')?'active':''; ?>">🏠 Dashboard</a></li>
-            <li>
-                <a href="#" onclick="toggleSubmenu(event)">📚 Mis Cursos ▾</a>
-                <ul id="submenu-cursos" class="submenu">
-                    <li><a href="panel_admin.php?materia=Informática Básica&seccion=<?php echo $seccion_actual; ?>&vista=materiales">Informática Básica</a></li>
-                    <li><a href="panel_admin.php?materia=Matemática Inicial&seccion=<?php echo $seccion_actual; ?>&vista=materiales">Matemática Inicial</a></li>
-                    <li><a href="panel_admin.php?materia=Algorítmica y Programación&seccion=<?php echo $seccion_actual; ?>&vista=materiales">Algorítmica y Programación</a></li>
-                    <li><a href="panel_admin.php?materia=Técnicas de Estudio&seccion=<?php echo $seccion_actual; ?>&vista=materiales">Técnicas de Estudio</a></li>
-                </ul>
+            <li><a href="panel_admin.php?vista=dashboard" class="<?php echo ($vista==='dashboard')?'active':''; ?>">🏠 Inicio</a></li>
+            
             </li>
             <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=estudiantes_general" class="<?php echo ($vista==='estudiantes_general')?'active':''; ?>">👨‍🎓 Estudiantes</a></li>
             <li><a href="panel_admin.php?materia=<?php echo urlencode($materia_actual); ?>&seccion=<?php echo $seccion_actual; ?>&vista=materiales" class="<?php echo ($vista==='materiales')?'active':''; ?>">📂 Materiales y Tareas</a></li>
@@ -398,12 +403,12 @@ if ($vista === 'estudiantes_general') {
                                 </div>
                             </div>
                         <?php else: ?>
-                            <p>No se ha subido el horario en PDF para esta sección todavía.</p>
+                            <p>No se ha subido el horario para esta sección todavía.</p>
                         <?php endif; ?>
                     </div>
 
                     <div class="card">
-                        <div class="card-title">Subir Horario PDF</div>
+                        <div class="card-title">Subir Horario</div>
                         <form method="POST" action="panel_admin.php?materia=<?php echo urlencode($materia_actual); ?>&seccion=<?php echo $seccion_actual; ?>&vista=horario" enctype="multipart/form-data">
                             <input type="hidden" name="seccion_horario" value="<?php echo $seccion_actual; ?>">
                             <label>Seleccionar Documento PDF:</label>
