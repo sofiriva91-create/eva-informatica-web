@@ -10,7 +10,7 @@
     <!-- BARRA DE NAVEGACIÓN SUPERIOR -->
     <header>
         <div class="logo-seccion">
-    <img src="logo-UPTAAPC.png" alt="Logo UPTAAPC" class="logo-img">
+    <img src="logo-uptaapc.png" alt="Logo UPTAAPC" class="logo-img">
     <span class="logo-texto">Informática UPTAAPC</span>
 </div>
         <nav>
