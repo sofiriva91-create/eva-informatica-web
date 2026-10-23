@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EVA Informática - UPTAAPC</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="logo-uptaapc.png">
 </head>
 
     <!-- BARRA DE NAVEGACIÓN SUPERIOR -->
