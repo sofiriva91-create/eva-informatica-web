@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['nombre'] = $datos_usuario['nombre'];
                 $_SESSION['rol'] = $datos_usuario['rol'];
                 $_SESSION['seccion'] = $datos_usuario['seccion'];
-
+                $_SESSION['materia'] = $datos_usuario['materia'];
                 // ==========================================
                 // REDIRECCIÓN INTELIGENTE SEGÚN EL ROL
                 // ==========================================
