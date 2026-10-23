@@ -21,6 +21,10 @@ if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'docente') {
     }
 
 }
+
+if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'docente' && !empty($materia_docente)) {
+    $materia_actual = $materia_docente;
+}
 $materia_actual = isset($_GET['materia']) ? $_GET['materia'] : 'Informática Básica';
 $seccion_actual = isset($_GET['seccion']) ? $_GET['seccion'] : 'A';
 $vista = isset($_GET['vista']) ? $_GET['vista'] : 'dashboard';
@@ -196,7 +200,7 @@ if ($vista === 'estudiantes_general') {
         </div>
         <ul class="sidebar-menu">
             <li><a href="panel_admin.php?vista=dashboard" class="<?php echo ($vista==='dashboard')?'active':''; ?>">🏠 Inicio</a></li>
-            
+
             </li>
             <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=estudiantes_general" class="<?php echo ($vista==='estudiantes_general')?'active':''; ?>">👨‍🎓 Estudiantes</a></li>
             <li><a href="panel_admin.php?materia=<?php echo urlencode($materia_actual); ?>&seccion=<?php echo $seccion_actual; ?>&vista=materiales" class="<?php echo ($vista==='materiales')?'active':''; ?>">📂 Materiales y Tareas</a></li>
