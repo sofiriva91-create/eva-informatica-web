@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $correo = isset($_POST['correo']) ? trim($_POST['correo']) : '';
     $clave_raw = isset($_POST['clave']) ? trim($_POST['clave']) : '';
     $rol = isset($_POST['rol']) ? trim($_POST['rol']) : '';
-    
+    $materia = isset($_POST['materia']) ? trim($_POST['materia']) : '';
     // Si es docente no pide sección, le asignamos "General" o "N/A". Si es estudiante, toma la sección elegida.
     if ($rol === 'docente') {
         $seccion = 'General';
