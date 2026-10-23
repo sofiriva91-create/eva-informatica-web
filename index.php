@@ -10,9 +10,9 @@
     <!-- BARRA DE NAVEGACIÓN SUPERIOR -->
     <header>
         <div class="logo-seccion">
-            <i class="fa-solid fa-laptop-code logo-icono"><span>EVA</span></i>
-            <span class="logo-texto">Informática UPTAAPC</span>
-        </div>
+    <img src="img/logo-UPTAAPC.png" alt="Logo UPTAAPC" class="logo-img">
+    <span class="logo-texto">Informática UPTAAPC</span>
+</div>
         <nav>
             <a href="#servicios" title="Ver servicios educativos disponibles">Servicios</a>
             <a href="#universidad" title="Conoce más sobre nuestra institución">Universidad</a>
