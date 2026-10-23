@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body class="auth-body">
 
     <div class="auth-wrapper">
-        <h2>¡Bienvenid@s Al Entorno Virtual de Aprendizaje de la UPTAAPC!</h2>
+        <h2>¡Bienvenid@s al Entorno Virtual de Aprendizaje de la UPTAAPC!</h2>
         <img src="logo-uptaapc.png" alt="Logo UPTAAPC" class="auth-logo">
         <p>Ingresa tu cédula y contraseña para acceder</p>
         
