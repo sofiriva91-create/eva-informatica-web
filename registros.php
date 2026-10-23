@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             
             
-<div class="form-group" id="grupo-materia">
+<div class="form-group" id="bloque-materia" style="display: none;"> 
     <label for="materia">Materia Asignada:</label>
     <select name="materia" id="materia" class="form-control" required>
         <option value="" disabled selected>Selecciona tu materia</option>
@@ -118,23 +118,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
-    <!-- SCRIPT PARA MOSTRAR/OCULTAR LA SECCIÓN DINÁMICAMENTE -->
+    
     <script>
-    function toggleSeccion() {
-        var rol = document.getElementById('rol-select').value;
-        var seccionGrupo = document.getElementById('seccion-grupo');
-        var seccionSelect = document.getElementById('seccion-select');
+    document.getElementById('rol-select').addEventListener('change', function() {
+        var rol = this.value;
+        var bloqueMateria = document.getElementById('bloque-materia');
+        var selectMateria = document.getElementById('materia');
         
-        if (rol === 'estudiante') {
-            seccionGrupo.style.display = 'block';
-            seccionSelect.required = true;
-        } else {
-            seccionGrupo.style.display = 'none';
-            seccionSelect.required = false;
-            seccionSelect.value = ''; // Limpiar selección si cambia a docente
-        }
-    }
-    </script>
+        
+        var seccionGrupo = document.getElementById('seccion-grupo'); 
+        var seccionSelect = document.getElementById('seccion');
 
+        if (rol === 'docente') {
+            
+            if (bloqueMateria) {
+                bloqueMateria.style.display = 'block';
+                selectMateria.setAttribute('required', 'required');
+            }
+            if (seccionGrupo) {
+                seccionGrupo.style.display = 'none';
+                if (seccionSelect) {
+                    seccionSelect.removeAttribute('required');
+                    seccionSelect.value = '';
+                }
+            }
+        } else if (rol === 'estudiante') {
+            
+            if (bloqueMateria) {
+                bloqueMateria.style.display = 'none';
+                selectMateria.removeAttribute('required');
+                selectMateria.value = '';
+            }
+            if (seccionGrupo) {
+                seccionGrupo.style.display = 'block';
+                if (seccionSelect) {
+                    seccionSelect.setAttribute('required', 'required');
+                }
+            }
+        }
+    });
+
+</script>
 </body>
 </html>
