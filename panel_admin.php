@@ -21,13 +21,14 @@ if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'docente') {
     }
 
 }
-
-if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'docente' && !empty($materia_docente)) {
+if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'docente') {
     $materia_actual = $materia_docente;
+} else {
+    $materia_actual = isset($_GET['materia']) ? $_GET['materia'] : '';
 }
-$materia_actual = isset($_GET['materia']) ? $_GET['materia'] : 'Informática Básica';
-$seccion_actual = isset($_GET['seccion']) ? $_GET['seccion'] : 'A';
-$vista = isset($_GET['vista']) ? $_GET['vista'] : 'dashboard';
+
+$seccion_actual = isset($_GET['seccion']) ? $_GET['seccion'] : '';
+$vista = isset($_GET['vista']) ? $_GET['vista'] : '';
 $tipo_solicitado = isset($_GET['tipo']) ? $_GET['tipo'] : '';
 $mensaje = "";
 
