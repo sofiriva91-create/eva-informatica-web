@@ -62,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="auth-wrapper">
         <h2>¡Bienvenid@ de nuevo!</h2>
+        <img src="logo-uptaapc.png" alt="Logo UPTAAPC" class="auth-logo">
         <p>Ingresa tu cédula y contraseña para acceder</p>
         
         <?php if (!empty($error)): ?>
