@@ -180,7 +180,7 @@ if ($vista === 'estudiantes_general') {
     <!-- BARRA LATERAL (SIDEBAR) -->
     <div class="sidebar">
         <div class="sidebar-brand">
-            🖥️ Aula Virtual PIU
+            🖥️Entorno Virtual PIU
         </div>
         <ul class="sidebar-menu">
             <li><a href="panel_admin.php?vista=dashboard" class="<?php echo ($vista==='dashboard')?'active':''; ?>">🏠 Dashboard</a></li>
