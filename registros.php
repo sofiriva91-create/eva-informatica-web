@@ -52,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="auth-wrapper" style="max-width: 480px;">
         <h2>Registro de Usuario</h2>
         <p>Crea tu cuenta para acceder al sistema</p>
+        <img src="logo-uptaapc.png" alt="Logo UPTAAPC" class="auth-logo">
         
         <?php if (!empty($error)): ?>
             <div style="color: #e53e3e; background: #fff5f5; padding: 10px; border-radius: 5px; margin-bottom: 15px; font-size: 14px; border: 1px solid #feb2b2;">
