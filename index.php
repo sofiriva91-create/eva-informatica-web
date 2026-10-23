@@ -29,7 +29,7 @@
             <h2>Universidad Politécnica Territorial del Alto Apure "Pedro Camejo"</h2>
             <div class="botones-portada">
     <a href="login.php" class="btn-login btn-grande">Iniciar Sesión</a>
-    <a href="register.php" class="btn-registro btn-grande">Registrarse aquí</a>
+    <a href="registros.php" class="btn-registros btn-grande">Registrarse aquí</a>
 </div>
         </div>
     </section>
