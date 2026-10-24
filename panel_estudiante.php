@@ -3,6 +3,17 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 include('conexion.php');
+// Obtener datos del estudiante actual para evitar errores
+$cedula_estudiante = '';
+$seccion_estudiante = 'A';
+$nombre_estudiante = $_SESSION['nombre'] ?? '';
+
+$res_user = $conexion->query("SELECT * FROM usuarios WHERE nombre = '$nombre_estudiante' AND rol = 'estudiante' LIMIT 1");
+if ($res_user && $res_user->num_rows > 0) {
+    $usr_data = $res_user->fetch_assoc();
+    $cedula_estudiante = $usr_data['cedula'] ?? '';
+    $seccion_estudiante = $usr_data['seccion'] ?? 'A';
+}
 // 1. Consultar las materias de la base de datos de forma segura
 $query_materias = "SELECT DISTINCT materia FROM config_materias WHERE materia IS NOT NULL AND materia != ''";
 $res_materias = $conexion->query($query_materias);
