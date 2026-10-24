@@ -553,19 +553,18 @@ if ($vista === 'estudiantes_general') {
                     <?php endif; ?>
                 </div>
 
-            <?php if ($vista === 'soporte'): ?>
-                <div class="card">
-                    <div class="card-title">Soporte Técnico del Sistema</div>
-                    <p>¿Tienes problemas con la plataforma? Contacta con el departamento de administración de sistemas del PIU.</p>
-                </div>
+     <?php if ($vista === 'soporte'): ?>
+<div class="card">
+    <div class="card-title">Soporte Técnico del Sistema</div>
+    <p>¿Tienes problemas con la plataforma? Contacta con el departamento de administración de sistemas del PDI.</p>
+</div>
+<?php endif; ?> <!-- 1. AQUÍ CIERRAS BIEN SOPORTE -->
 
-            <?php else: ?>
-                <!-- VISTA MATERIALES Y TAREAS -->
-                <div class="page-header">
-                    <h2>Materiales y Tareas - <?php echo htmlspecialchars($materia_actual); ?> (Sección <?php echo htmlspecialchars($seccion_actual); ?>)</h2>
-                </div>
-
-                <div class="grid-layout">
+<?php if ($vista === 'materiales'): ?> <!-- 2. AQUÍ ABRES LA VISTA DE MATERIALES CORRECTAMENTE -->
+<!-- VISTA MATERIALES Y TAREAS -->
+<div class="page-header">
+    <h2>Materiales y Tareas - ...</h2>
+</div>
                     <div>
                         <div class="card">
                             <div class="card-title">Asignación de Profesor a esta Materia</div>
