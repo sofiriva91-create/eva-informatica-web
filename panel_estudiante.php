@@ -59,18 +59,22 @@ if ($vista === 'plan_evaluacion') {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta link rel="icon" type="image/png" href="logo-uptaapc.png">a charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel del Estudiante - Entorno Virtual PIU</title>
-
+    <title>Panel del Estudiante - Entorno Virtual</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="style.css">
+    
+    <style>
+        * { outline: 1px solid red; }
+        body { overflow-x: hidden; }
+    </style>
 </head>
 <body class="panel-body">
 
     
     <div class="sidebar">
         <div class="sidebar-brand">
-            🖥️ Aula Virtual PIU
+            🖥️ Entorno Virtual PIU
         </div>
         <ul class="sidebar-menu">
             <li>
