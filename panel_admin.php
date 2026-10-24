@@ -650,7 +650,7 @@ if ($vista === 'estudiantes_general') {
 
         </div>
     </div>
-
+    <?php endif; ?>
     <script>
     function toggleSubmenu(e) {
         e.preventDefault();
@@ -677,6 +677,6 @@ if ($vista === 'estudiantes_general') {
     }
 }
     </script>
-    <?php endif; ?>
+    
 </body>
 </html>
