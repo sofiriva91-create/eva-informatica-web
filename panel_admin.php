@@ -84,7 +84,7 @@ if ($vista === 'estudiantes') {
     <meta charset="UTF-8">
     <title>Aula Virtual - Panel del Docente</title>
   
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
