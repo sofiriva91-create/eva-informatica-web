@@ -314,25 +314,56 @@ if ($vista === 'estudiantes_general') {
             $total_a = $d_a['total'];
             $porcentaje_a = min(round(($total_a / 40) * 100), 100); // Asumiendo 40 cupos máximos
         ?>
+        <div class="card">
+    <div class="card-title">Asignatura Asignada</div>
+    
+    <div class="lista-materias-container">
+        <?php 
+        // Obtenemos la materia asignada al docente actual desde la base de datos
+        $materia_docente = $usr_data['materia'] ?? ($materia_actual ?: 'Informática Básica');
+        
+        // Consultar alumnos para la Sección A de esta materia
+        $q_a = $conexion->query("SELECT COUNT(*) as total FROM usuarios WHERE rol='estudiante' AND materia='$materia_docente' AND seccion='A'");
+        $d_a = $q_a->fetch_assoc();
+        $total_a = $d_a['total'];
+        $porcentaje_a = min(round(($total_a / 40) * 100), 100); // Base de 40 cupos máximos
+
+        // Consultar alumnos para la Sección B de esta materia
+        $q_b = $conexion->query("SELECT COUNT(*) as total FROM usuarios WHERE rol='estudiante' AND materia='$materia_docente' AND seccion='B'");
+        $d_b = $q_b->fetch_assoc();
+        $total_b = $d_b['total'];
+        $porcentaje_b = min(round(($total_b / 40) * 100), 100);
+        ?>
+        
         <div class="materia-item-card">
-            <h4><?php echo htmlspecialchars($mat); ?></h4>
+            <h4><?php echo htmlspecialchars($materia_docente); ?></h4>
             
             <div class="secciones-progreso-wrapper">
                 <!-- Sección A -->
                 <div class="seccion-progreso-box">
-                    <a href="panel_admin.php?materia=<?php echo urlencode($mat); ?>&seccion=A&vista=dashboard" 
-                       class="enlace-seccion <?php echo ($es_materia_activa && $seccion_actual === 'A') ? 'activo' : ''; ?>">
+                    <a href="panel_admin.php?materia=<?php echo urlencode($materia_docente); ?>&seccion=A&vista=dashboard" 
+                       class="enlace-seccion <?php echo ($seccion_actual === 'A') ? 'activo' : ''; ?>">
                        Sec. A
                     </a>
-                    <!-- Círculo de Progreso -->
                     <div class="progress-ring" style="--p: <?php echo $porcentaje_a; ?>;">
                         <span class="progress-value"><?php echo $porcentaje_a; ?>%</span>
                     </div>
                     <span class="info-alumnos"><?php echo $total_a; ?> alumnos</span>
                 </div>
+
+                <!-- Sección B -->
+                <div class="seccion-progreso-box">
+                    <a href="panel_admin.php?materia=<?php echo urlencode($materia_docente); ?>&seccion=B&vista=dashboard" 
+                       class="enlace-seccion <?php echo ($seccion_actual === 'B') ? 'activo' : ''; ?>">
+                       Sec. B
+                    </a>
+                    <div class="progress-ring" style="--p: <?php echo $porcentaje_b; ?>;">
+                        <span class="progress-value"><?php echo $porcentaje_b; ?>%</span>
+                    </div>
+                    <span class="info-alumnos"><?php echo $total_b; ?> alumnos</span>
+                </div>
             </div>
         </div>
-        <?php endforeach; ?>
     </div>
 </div>
 
