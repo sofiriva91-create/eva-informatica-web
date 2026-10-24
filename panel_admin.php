@@ -435,7 +435,7 @@ if ($vista === 'estudiantes_general') {
                         <p>No hay estudiantes registrados en la Sección <?php echo $seccion_actual; ?>.</p>
                     <?php endif; ?>
                 </div>
-
+            <?php endif; ?>
             <?php if ($vista === 'plan_evaluacion'): ?>
                 <div class="page-header">
                     <h2>Plan de Evaluación — <?php echo htmlspecialchars($materia_actual); ?> (Sección <?php echo htmlspecialchars($seccion_actual); ?>)</h2>
@@ -457,7 +457,7 @@ if ($vista === 'estudiantes_general') {
                             <p>No se ha cargado el plan de evaluación para esta materia y sección todavía.</p>
                         <?php endif; ?>
                     </div>
-
+                <?php endif; ?>
                     <div class="card">
                         <div class="card-title">Subir Plan de Evaluación</div>
                         <form method="POST" action="panel_admin.php?materia=<?php echo urlencode($materia_actual); ?>&seccion=<?php echo $seccion_actual; ?>&vista=plan_evaluacion" enctype="multipart/form-data">
@@ -469,7 +469,7 @@ if ($vista === 'estudiantes_general') {
                         </form>
                     </div>
                 </div>
-
+            <?php endif; ?>     
             <?php if ($vista === 'horario'): ?>
                 <div class="page-header">
                     <h2>Horario Institucional Oficial (PDF) — Sección <?php echo htmlspecialchars($seccion_actual); ?></h2>
@@ -502,7 +502,7 @@ if ($vista === 'estudiantes_general') {
                         </form>
                     </div>
                 </div>
-
+            <?php endif; ?>
             <?php if ($vista === 'calificaciones'): ?>
                 <div class="page-header">
                     <h2>Registro de Calificaciones por Unidad — <?php echo htmlspecialchars($materia_actual); ?></h2>
@@ -553,7 +553,7 @@ if ($vista === 'estudiantes_general') {
                     <?php endif; ?>
                 </div>
         <?php endif; ?>
-        
+
      <?php if ($vista === 'soporte'): ?>
 <div class="card">
     <div class="card-title">Soporte Técnico del Sistema</div>
