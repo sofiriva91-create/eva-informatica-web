@@ -612,7 +612,6 @@ if ($vista === 'estudiantes_general') {
                         </div>
                     </div>
                 <?php endif; ?>
-                </div>
             </div>
 
     <script>
