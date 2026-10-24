@@ -1351,3 +1351,33 @@ body, html {
     margin: 0 !important;
     padding: 0 !important;
 }
+
+/* ==========================================
+   SOLUCIÓN DEFINITIVA: DISEÑO LADO A LADO
+   ========================================== */
+.main-wrapper {
+    display: grid !important;
+    grid-template-columns: 260px 1fr !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.sidebar {
+    background-color: #0f172a !important;
+    color: #ffffff !important;
+    min-height: 100vh !important;
+    position: sticky !important;
+    top: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.main-content {
+    background-color: #f8fafc !important;
+    padding: 25px !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
