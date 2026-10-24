@@ -63,9 +63,8 @@ if ($vista === 'plan_evaluacion') {
     <title>Panel del Estudiante - Entorno Virtual</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="style.css">
-    
+
     <style>
-        * { outline: 1px solid red; }
         body { overflow-x: hidden; }
     </style>
 </head>
