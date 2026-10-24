@@ -1329,3 +1329,25 @@ body, html {
     border-radius: 8px;
     margin-bottom: 15px;
 }
+
+/* Asegurar que la clase del panel derecho coincida con tu PHP */
+.main-content {
+    flex: 1 !important;
+    width: calc(100% - 260px) !important;
+    background-color: #f8fafc !important;
+    padding: 25px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    min-width: 0 !important;
+}
+
+/* Contenedor principal que une ambos lados */
+.main-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
