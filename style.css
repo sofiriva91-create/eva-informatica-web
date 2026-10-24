@@ -1029,3 +1029,82 @@ header nav {
     }
 }
 
+/* ==========================================
+   CÍRCULO DE PROGRESO - PANEL DOCENTE
+   ========================================== */
+
+.materia-item-card {
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #f8fafc;
+    margin-bottom: 10px;
+}
+
+.materia-item-card h4 {
+    margin: 0 0 8px 0;
+    font-size: 0.95rem;
+    color: #1e293b;
+}
+
+.secciones-progreso-wrapper {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.seccion-progreso-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.enlace-seccion {
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: #e2e8f0;
+    color: #475569;
+    transition: background 0.2s;
+}
+
+.enlace-seccion.activo {
+    background: #0284c7;
+    color: #ffffff;
+}
+
+/* Estilo del Círculo de Porcentaje (Progress Ring) */
+.progress-ring {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: conic-gradient(#0284c7 calc(var(--p) * 1%), #e2e8f0 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* El círculo interior para crear el efecto "Donut" */
+.progress-ring::before {
+    content: "";
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    background: #ffffff;
+    border-radius: 50%;
+}
+
+.progress-value {
+    position: relative;
+    font-size: 0.65rem;
+    font-weight: bold;
+    color: #334155;
+}
+
+.info-alumnos {
+    font-size: 0.75rem;
+    color: #64748b;
+}
