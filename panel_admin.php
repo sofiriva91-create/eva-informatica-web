@@ -433,6 +433,7 @@ if ($vista === 'estudiantes_general') {
                         </table>
                     <?php else: ?>
                         <p>No hay estudiantes registrados en la Sección <?php echo $seccion_actual; ?>.</p>
+                    <?php endif; ?>
                 </div>
             <?php endif; ?>
 
@@ -472,7 +473,7 @@ if ($vista === 'estudiantes_general') {
 
             <?php if ($vista === 'horario'): ?>
                 <div class="page-header">
-                    <h2>Horario Institucional Oficial (PDF) — Sección <?php echo htmlspecialchars($seccion_actual); ?></h2>
+                    <h2>Horario Institucional Oficial (PDF) – Sección <?php echo htmlspecialchars($seccion_actual); ?></h2>
                 </div>
                 <div class="grid-layout">
                     <div class="card">
@@ -482,7 +483,7 @@ if ($vista === 'estudiantes_general') {
                             <div class="resource-item">
                                 <div class="icon-box">PDF</div>
                                 <div class="resource-details">
-                                    <h4>Horario Oficial Institucional - Sección <?php echo $seccion_actual; ?></h4>
+                                    <h4>Horario Oficial Institucional - Sección <?php echo htmlspecialchars($seccion_actual); ?></h4>
                                     <p>Documento emitido por la coordinación académica.</p>
                                     <a href="<?php echo htmlspecialchars($horario_actual['enlace']); ?>" target="_blank">📥 Abrir Documento PDF</a>
                                 </div>
@@ -491,14 +492,14 @@ if ($vista === 'estudiantes_general') {
                             <p>No se ha subido el horario para esta sección todavía.</p>
                         <?php endif; ?>
                     </div>
-                    <?php endif; ?>
                     <div class="card">
                         <div class="card-title">Subir Horario</div>
                         <form method="POST" action="panel_admin.php?materia=<?php echo urlencode($materia_actual); ?>&seccion=<?php echo $seccion_actual; ?>&vista=horario" enctype="multipart/form-data">
-                            <input type="hidden" name="seccion_horario" value="<?php echo $seccion_actual; ?>">
-                            <label>Seleccionar Documento PDF:</label>
-                            <input type="file" name="pdf_horario" accept=".pdf" required>
-                            <button type="submit" name="subir_horario_pdf" class="btn-action">Cargar Horario PDF</button>
+                            <input type="hidden" name="materia_horario" value="<?php echo htmlspecialchars($materia_actual); ?>">
+                            <input type="hidden" name="seccion_horario" value="<?php echo htmlspecialchars($seccion_actual); ?>">
+                            <label>Seleccionar Archivo PDF:</label>
+                            <input type="file" name="archivo_horario" accept=".pdf" required>
+                            <button type="submit" name="subir_horario" class="btn-action">Guardar y Publicar Horario</button>
                         </form>
                     </div>
                 </div>
@@ -506,114 +507,82 @@ if ($vista === 'estudiantes_general') {
 
             <?php if ($vista === 'calificaciones'): ?>
                 <div class="page-header">
-                    <h2>Registro de Calificaciones por Unidad — <?php echo htmlspecialchars($materia_actual); ?></h2>
+                    <h2>Registro de Calificaciones — <?php echo htmlspecialchars($materia_actual); ?> (Sección <?php echo htmlspecialchars($seccion_actual); ?>)</h2>
+                </div>
+                <div class="grid-layout">
+                    <div class="card">
+                        <div class="card-title">Listado de Notas por Estudiante</div>
+                        <?php if (isset($resultado_calificaciones) && $resultado_calificaciones && $resultado_calificaciones->num_rows > 0): ?>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Cédula</th>
+                                        <th>Nombre del Estudiante</th>
+                                        <th>Calificación</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php while($cal = $resultado_calificaciones->fetch_assoc()): ?>
+                                        <tr>
+                                            <td><?php echo htmlspecialchars($cal['cedula']); ?></td>
+                                            <td><?php echo htmlspecialchars($cal['nombre']); ?></td>
+                                            <td><?php echo htmlspecialchars($cal['nota']); ?></td>
+                                        </tr>
+                                    <?php endwhile; ?>
+                                </tbody>
+                            </table>
+                        <?php else: ?>
+                            <p>No hay calificaciones registradas para esta materia y sección todavía.</p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+<?php if ($vista === 'soporte'): ?>
+                <div class="page-header">
+                    <h2>Soporte y Ayuda – Sección <?php echo htmlspecialchars($seccion_actual); ?></h2>
                 </div>
                 <div class="card">
-                    <div class="card-title"><?php echo htmlspecialchars($materia_actual); ?> (Sección <?php echo $seccion_actual; ?>)</div>
-                    <?php if ($resultado_estudiantes && $resultado_estudiantes->num_rows > 0): ?>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Cédula</th>
-                                    <th>Estudiante</th>
-                                    <th>Unidad 1</th>
-                                    <th>Unidad 2</th>
-                                    <th>Unidad 3</th>
-                                    <th>Unidad 4</th>
-                                    <th>Acción</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php while($est = $resultado_estudiantes->fetch_assoc()): ?>
-                                    <?php
-                                    $ced_est = $est['cedula'];
-                                    $res_n = $conexion->query("SELECT * FROM notas WHERE cedula_estudiante = '$ced_est' AND materia = '$materia_actual' LIMIT 1");
-                                    $row_n = ($res_n && $res_n->num_rows > 0) ? $res_n->fetch_assoc() : ['unidad1'=>'0','unidad2'=>'0','unidad3'=>'0','unidad4'=>'0'];
-                                    ?>
-                                    <tr>
-                                        <form method="POST" action="panel_admin.php?materia=<?php echo urlencode($materia_actual); ?>&seccion=<?php echo $seccion_actual; ?>&vista=calificaciones">
-                                            <td>
-                                                <?php echo htmlspecialchars($est['cedula']); ?>
-                                                <input type="hidden" name="cedula" value="<?php echo $est['cedula']; ?>">
-                                                <input type="hidden" name="materia_nota" value="<?php echo htmlspecialchars($materia_actual); ?>">
-                                                <input type="hidden" name="seccion_nota" value="<?php echo htmlspecialchars($seccion_actual); ?>">
-                                            </td>
-                                            <td><?php echo htmlspecialchars($est['nombre']); ?></td>
-                                            <td><input type="text" name="unidad1" value="<?php echo htmlspecialchars($row_n['unidad1']); ?>" class="input-score"></td>
-                                            <td><input type="text" name="unidad2" value="<?php echo htmlspecialchars($row_n['unidad2']); ?>" class="input-score"></td>
-                                            <td><input type="text" name="unidad3" value="<?php echo htmlspecialchars($row_n['unidad3']); ?>" class="input-score"></td>
-                                            <td><input type="text" name="unidad4" value="<?php echo htmlspecialchars($row_n['unidad4']); ?>" class="input-score"></td>
-                                            <td><button type="submit" name="actualizar_notas" class="btn-action" style="padding: 5px 10px; width: auto;">Guardar</button></td>
-                                        </form>
-                                    </tr>
-                                <?php endwhile; ?>
-                            </tbody>
-                        </table>
-                    <?php else: ?>
-                        <p>No hay estudiantes registrados en la Sección <?php echo $seccion_actual; ?>.</p>
+                    <div class="card-title">Centro de Asistencia Técnica</div>
+                    <p>Si experimentas problemas con la carga de notas, horarios o documentos, comunícate con el soporte técnico o la administración académica.</p>
                 </div>
-        <?php endif; ?>
+            <?php endif; ?>
 
-     <?php if ($vista === 'soporte'): ?>
-<div class="card">
-    <div class="card-title">Soporte Técnico del Sistema</div>
-    <p>¿Tienes problemas con la plataforma? Contacta con el departamento de administración de sistemas del PDI.</p>
-</div>
-<?php endif; ?> <!-- 1. AQUÍ CIERRAS BIEN SOPORTE -->
-
-<?php if ($vista === 'materiales'): ?> <!-- 2. AQUÍ ABRES LA VISTA DE MATERIALES CORRECTAMENTE -->
-<!-- VISTA MATERIALES Y TAREAS -->
-<div class="page-header">
-    <h2>Materiales y Tareas - ...</h2>
-</div>
-                    <div>
-                        <div class="card">
-                            <div class="card-title">Asignación de Profesor a esta Materia</div>
-                            <form method="POST" action="panel_admin.php?materia=<?php echo urlencode($materia_actual); ?>&seccion=<?php echo $seccion_actual; ?>&vista=materiales" style="display: flex; gap: 10px;">
-                                <input type="hidden" name="materia_target" value="<?php echo htmlspecialchars($materia_actual); ?>">
-                                <input type="text" name="nombre_docente_materia" value="<?php echo htmlspecialchars($docente_actual_materia); ?>" required style="margin-bottom:0;">
-                                <button type="submit" name="guardar_docente_materia" class="btn-action" style="width: 180px;">Guardar Nombre</button>
-                            </form>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-title">Material de Clase y Actividades Publicadas</div>
-                            <?php if ($resultado_archivos && $resultado_archivos->num_rows > 0): ?>
-                                <?php while($recurso = $resultado_archivos->fetch_assoc()): ?>
-                                    <?php $yt_id = obtenerYouTubeID($recurso['enlace']); ?>
-                                    <div class="resource-item" style="display: flex; justify-content: space-between; align-items: flex-start;">
-                                        <div style="display: flex; gap: 15px; flex: 1;">
-                                            <div class="icon-box <?php echo ($yt_id)?'video':''; ?>">
-                                                <?php echo ($yt_id)?'▶':'PDF'; ?>
-                                            </div>
-                                            <div class="resource-details" style="flex:1;">
-                                                <h4><?php echo htmlspecialchars($recurso['titulo']); ?></h4>
-                                                <p>Tipo: <?php echo htmlspecialchars($recurso['tipo']); ?></p>
-                                                <?php if ($yt_id): ?>
-                                                    <div style="margin-top:10px;">
-                                                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/<?php echo $yt_id; ?>" frameborder="0" allowfullscreen style="border-radius:6px;"></iframe>
-                                                    </div>
-                                                <?php else: ?>
-                                                    <a href="<?php echo htmlspecialchars($recurso['enlace']); ?>" target="_blank">📥 Ver / Descargar Documento</a>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-                                        <!-- BOTÓN ELIMINAR RECURSO -->
-                                        <div>
-                                            <a href="panel_admin.php?materia=<?php echo urlencode($materia_actual); ?>&seccion=<?php echo $seccion_actual; ?>&vista=materiales&eliminar_recurso=<?php echo $recurso['id']; ?>" 
-                                               onclick="return confirm('¿Estás seguro de que deseas eliminar este recurso?');" 
-                                               style="background: #dc3545; color: white; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 0.85rem; font-weight: bold; display: inline-block;">
-                                               🗑️ Eliminar
-                                            </a>
-                                        </div>
+    <?php if ($vista === 'materiales'): ?>
+                <div class="page-header">
+                    <h2>Materiales de Apoyo — <?php echo htmlspecialchars($materia_actual); ?> (Sección <?php echo htmlspecialchars($seccion_actual); ?>)</h2>
+                </div>
+                <div class="grid-layout">
+                    <div class="card">
+                        <div class="card-title">Materiales Disponibles</div>
+                        <?php if (isset($resultado_materiales) && $resultado_materiales && $resultado_materiales->num_rows > 0): ?>
+                            <?php while($mat = $resultado_materiales->fetch_assoc()): ?>
+                                <div class="resource-item">
+                                    <div class="icon-box">FILE</div>
+                                    <div class="resource-details">
+                                        <h4><?php echo htmlspecialchars($mat['titulo']); ?></h4>
+                                        <p>Documento de apoyo para la materia.</p>
+                                        <a href="<?php echo htmlspecialchars($mat['enlace']); ?>" target="_blank">📥 Descargar Material</a>
                                     </div>
-                                <?php endwhile; ?>
-                            <?php else: ?>
-                                <p>No hay materiales o videos publicados en esta materia para la Sección <?php echo $seccion_actual; ?> todavía.</p>
-                        </div>
+                                </div>
+                            <?php endwhile; ?>
+                        <?php else: ?>
+                            <p>No se han subido materiales para esta materia y sección todavía.</p>
+                        <?php endif; ?>
                     </div>
-                <?php endif; ?>
-
+                    <div class="card">
+                        <div class="card-title">Subir Nuevo Material</div>
+                        <form method="POST" action="panel_admin.php?materia=<?php echo urlencode($materia_actual); ?>&seccion=<?php echo $seccion_actual; ?>&vista=materiales" enctype="multipart/form-data">
+                            <input type="hidden" name="materia_material" value="<?php echo htmlspecialchars($materia_actual); ?>">
+                            <input type="hidden" name="seccion_material" value="<?php echo htmlspecialchars($seccion_actual); ?>">
+                            <label>Título del Material:</label>
+                            <input type="text" name="titulo_material" required style="width:100%; margin-bottom:10px; padding:8px;">
+                            <label>Seleccionar Archivo:</label>
+                            <input type="file" name="archivo_material" required style="margin-bottom:10px;">
+                            <button type="submit" name="subir_material" class="btn-action">Guardar y Publicar Material</button>
+                        </form>
+                    </div>
+                </div>
+            <?php endif; ?>
                     <div>
                         <div class="card">
                             <div class="card-title">Crear Nuevo Contenido</div>
@@ -678,3 +647,4 @@ if ($vista === 'estudiantes_general') {
     </script>
     
 </body>
+</html>
