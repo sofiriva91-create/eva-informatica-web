@@ -406,9 +406,6 @@ if ($vista === 'estudiantes_general') {
     </div>
 </div>
 
-<?php 
-    else if ($vista === 'estudiantes_general'):
-?>
                 <div class="page-header">
                     <h2>Estudiantes Inscritos - Sección <?php echo htmlspecialchars($seccion_actual); ?></h2>
                 </div>
