@@ -3,6 +3,9 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 include('conexion.php');
+// Consulta para traer las materias reales registradas por los profesores
+$query_materias = "SELECT DISTINCT materia FROM usuarios WHERE LOWER(rol) = 'docente' AND materia IS NOT NULL AND materia != ''";
+$res_materias = $conexion->query($query_materias);
 
 if (!isset($_SESSION['nombre']) || !isset($_SESSION['rol']) || strtolower($_SESSION['rol']) !== 'estudiante') {
     header("Location: login.php");
@@ -65,17 +68,26 @@ if ($vista === 'plan_evaluacion') {
             <li>
                 <li><a href="panel_estudiante.php?vista=dashboard" class="<?php echo ($vista==='dashboard')?'active':''; ?>">🏠 Inicio</a></li>
 
-                </li>   
-                <a href="#" onclick="toggleSubmenu(event)">📚 Mis Materias ▾</a>
-                <ul id="submenu-cursos" class="submenu" style="display: block;">
-                    <li><a href="panel_estudiante.php?materia=Informática Básica&vista=materiales" class="<?php echo ($materia_actual === 'Informática Básica') ? 'active' : ''; ?>">Informática Básica</a></li>
-                    <li><a href="panel_estudiante.php?materia=Matemática Inicial&vista=materiales" class="<?php echo ($materia_actual === 'Introducción a la Programación') ? 'active' : ''; ?>">Introducción a la Programación</a></li>
-                    <li><a href="panel_estudiante.php?materia=Algorítmica y Programación&vista=materiales" class="<?php echo ($materia_actual === 'Matemática Inicial') ? 'active' : ''; ?>">Matemática Inicial</a></li>
-                    <li><a href="panel_estudiante.php?materia=Técnicas de Estudio&vista=materiales" class="<?php echo ($materia_actual === 'Redes de Computadoras') ? 'active' : ''; ?>">Redes de Computadoras</a></li>
-                    <li><a href="panel_estudiante.php?materia=Técnicas de Estudio&vista=materiales" class="<?php echo ($materia_actual === 'Ingeniería de Software') ? 'active' : ''; ?>">Ingeniería de Software</a></li>
-                    <li><a href="panel_estudiante.php?materia=Técnicas de Estudio&vista=materiales" class="<?php echo ($materia_actual === 'Sistemas Operativos') ? 'active' : ''; ?>">Sistemas Operativos</a></li>
-                    </ul>
-            </li>
+                <li>
+    <a href="#" onclick="toggleSubmenu(event)">📚 Mis Materias</a>
+    <ul id="submenu-cursos" class="submenu" style="display: block;">
+        <?php if ($res_materias && $res_materias->num_rows > 0): ?>
+            <?php while ($mat = $res_materias->fetch_assoc()): ?>
+                <?php 
+                    $nombre_materia = $mat['materia']; 
+                    $es_activa = ($materia_actual === $nombre_materia) ? 'active' : '';
+                ?>
+                <li>
+                    <a href="panel_estudiante.php?materia=<?php echo urlencode($nombre_materia); ?>&vista=materiales" class="<?php echo $es_activa; ?>">
+                        <?php echo htmlspecialchars($nombre_materia); ?>
+                    </a>
+                </li>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <li><a href="#">No hay materias disponibles</a></li>
+        <?php endif; ?>
+    </ul>
+</li>
             <li><a href="panel_estudiante.php?materia=<?php echo urlencode($materia_actual); ?>&vista=materiales" class="<?php echo ($vista === 'materiales') ? 'active' : ''; ?>">📂 Materiales y Clases</a></li>
             <li><a href="panel_estudiante.php?materia=<?php echo urlencode($materia_actual); ?>&vista=plan_evaluacion" class="<?php echo ($vista === 'plan_evaluacion') ? 'active' : ''; ?>">📊 Plan de Evaluación</a></li>
             <li><a href="panel_estudiante.php?materia=<?php echo urlencode($materia_actual); ?>&vista=calificaciones" class="<?php echo ($vista === 'calificaciones') ? 'active' : ''; ?>">📝 Mis Calificaciones</a></li>
