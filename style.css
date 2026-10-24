@@ -1124,3 +1124,186 @@ header nav {
     border: 1px solid #e2e8f0;
     border-radius: 6px;
 }
+
+/* ==========================================
+   ESTILOS GENERALES DEL PANEL DOCENTE
+   ========================================== */
+body.admin-body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    color: #333333;
+}
+
+.main-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ==========================================
+   MENÚ LATERAL (SIDEBAR) - ESTILO OSCURO
+   ========================================== */
+.sidebar {
+    width: 260px;
+    background-color: #0f172a;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.logo-container {
+    padding: 20px;
+    background-color: #1e293b;
+    border-bottom: 1px solid #334155;
+}
+
+.logo-container h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #ffffff;
+    line-height: 1.4;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-list li a {
+    display: block;
+    padding: 14px 20px;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    border-left: 4px solid transparent;
+}
+
+.menu-list li a:hover,
+.menu-list li a.active {
+    background-color: #1e293b;
+    color: #ffffff;
+    border-left-color: #3b82f6;
+}
+
+/* ==========================================
+   CONTENIDO PRINCIPAL Y CABECERAS
+   ========================================== */
+.content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8fafc;
+    overflow-x: hidden;
+}
+
+.top-bar-docente {
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.curso-header-bar {
+    background: #ffffff;
+    padding: 15px 25px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.curso-tabs {
+    background: #ffffff;
+    padding: 0 25px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    gap: 25px;
+    overflow-x: auto;
+}
+
+.curso-tabs a {
+    padding: 12px 0;
+    text-decoration: none;
+    color: #64748b;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+}
+
+.curso-tabs a:hover,
+.curso-tabs a.active {
+    color: #2563eb;
+    border-bottom-color: #2563eb;
+}
+
+/* ==========================================
+   GRILLA Y TARJETAS (CARDS)
+   ========================================== */
+.grid-layout-docente {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    padding: 25px;
+}
+
+.card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #1e293b;
+    margin-bottom: 15px;
+}
+
+/* ==========================================
+   PANEL LATERAL DERECHO DE ACCIONES
+   ========================================== */
+.right-actions-panel .card a {
+    display: block;
+    padding: 10px 14px;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #334155;
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    transition: all 0.2s;
+}
+
+.right-actions-panel .card a:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+    color: #1e293b;
+}
+
+/* ==========================================
+   RESPONSIVO PARA MÓVILES / TABLETS
+   ========================================== */
+@media (max-width: 900px) {
+    .grid-layout-docente {
+        grid-template-columns: 1fr;
+    }
+    .main-wrapper {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+    }
+}
