@@ -21,9 +21,8 @@ if ($res_user && $res_user->num_rows > 0) {
     $cedula_estudiante = $_SESSION['cedula'] ?? '';
     $seccion_estudiante = $_SESSION['seccion'] ?? 'A';
 }
-
+$vista = isset($_GET['vista']) ? $_GET['vista'] : 'inicio';
 $materia_actual = isset($_GET['materia']) ? $_GET['materia'] : 'Informática Básica';
-$vista = isset($_GET['vista']) ? $_GET['vista'] : 'materiales';
 
 function obtenerYouTubeID($url) {
     preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match);
