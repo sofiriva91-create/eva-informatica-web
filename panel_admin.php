@@ -436,6 +436,7 @@ if ($vista === 'estudiantes_general') {
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
+
             <?php if ($vista === 'plan_evaluacion'): ?>
                 <div class="page-header">
                     <h2>Plan de Evaluación — <?php echo htmlspecialchars($materia_actual); ?> (Sección <?php echo htmlspecialchars($seccion_actual); ?>)</h2>
@@ -453,11 +454,9 @@ if ($vista === 'estudiantes_general') {
                                     <a href="<?php echo htmlspecialchars($plan_actual['enlace']); ?>" target="_blank">📥 Ver / Descargar Plan de Evaluación</a>
                                 </div>
                             </div>
-                        <?php else: ?>
+                        
                             <p>No se ha cargado el plan de evaluación para esta materia y sección todavía.</p>
-                        <?php endif; ?>
                     </div>
-                <?php endif; ?>
                     <div class="card">
                         <div class="card-title">Subir Plan de Evaluación</div>
                         <form method="POST" action="panel_admin.php?materia=<?php echo urlencode($materia_actual); ?>&seccion=<?php echo $seccion_actual; ?>&vista=plan_evaluacion" enctype="multipart/form-data">
@@ -469,7 +468,8 @@ if ($vista === 'estudiantes_general') {
                         </form>
                     </div>
                 </div>
-            <?php endif; ?>     
+            <?php endif; ?>
+            
             <?php if ($vista === 'horario'): ?>
                 <div class="page-header">
                     <h2>Horario Institucional Oficial (PDF) — Sección <?php echo htmlspecialchars($seccion_actual); ?></h2>
