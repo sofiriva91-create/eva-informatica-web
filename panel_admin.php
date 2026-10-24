@@ -216,6 +216,8 @@ if ($vista === 'estudiantes_general') {
     <div class="main-wrapper">
         <!-- HEADER SUPERIOR -->
         <div class="header">
+            <!-- Botón de menú desplegable para celulares -->
+<button class="menu-toggle" onclick="toggleMenu()">☰ Menú</button>
             <div class="header-title" style="display: flex; align-items: center; gap: 15px;">
                 <span><?php echo htmlspecialchars($materia_actual); ?></span>
                 <div class="section-badges">
@@ -588,6 +590,14 @@ if ($vista === 'estudiantes_general') {
             document.getElementById('campoArchivo').style.display = 'block';
         }
     }
+    function toggleMenu() {
+    var sidebar = document.querySelector('.sidebar');
+    if (sidebar.style.display === 'block') {
+        sidebar.style.display = 'none';
+    } else {
+        sidebar.style.display = 'block';
+    }
+}
     </script>
 </body>
 </html>
