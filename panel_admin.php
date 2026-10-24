@@ -301,17 +301,16 @@ if ($vista === 'estudiantes_general') {
     <div class="card-title">Asignaturas y Secciones (PIU)</div>
     
     <div class="lista-materias-container">
-        <?php 
-        $materias_piu = ['Informática Básica', 'Matemática Inicial', 'Algorítmica y Programación', 'Técnicas de Estudio'];
-        foreach ($materias_piu as $mat):
-            $es_materia_activa = ($materia_actual === $mat);
-            
-            
-            $q_a = $conexion->query("SELECT COUNT(*) as total FROM usuarios WHERE rol='estudiante' AND seccion='A'");
-            $d_a = $q_a->fetch_assoc();
-            $total_a = $d_a['total'];
-            $porcentaje_a = min(round(($total_a / 40) * 100), 100); 
-        ?>
+        <?php
+$materias_piu = ['Informática Básica', 'Matemática Inicial', 'Algorítmica y Programación', 'Técnicas de Estudio'];
+foreach ($materias_piu as $mat) {
+    $es_materia_activa = ($materia_actual === $mat);
+    $q_a = $conexion->query("SELECT COUNT(*) as total FROM usuarios WHERE rol='estudiante' AND seccion='A'");
+    $d_a = $q_a->fetch_assoc();
+    $total_a = $d_a['total'];
+    $porcentaje_a = min(round(($total_a / 40) * 100), 100);
+}
+?>
         <div class="card">
     <div class="card-title">Asignatura Asignada</div>
     
@@ -640,6 +639,5 @@ if ($vista === 'estudiantes_general') {
     }
 }
     </script>
-    
 </body>
 </html>
