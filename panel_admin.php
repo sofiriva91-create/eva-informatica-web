@@ -436,7 +436,7 @@ if ($vista === 'estudiantes_general') {
                     <?php endif; ?>
                 </div>
 
-            <<?php if ($vista === 'plan_evaluacion'): ?>
+            <?php if ($vista === 'plan_evaluacion'): ?>
                 <div class="page-header">
                     <h2>Plan de Evaluación — <?php echo htmlspecialchars($materia_actual); ?> (Sección <?php echo htmlspecialchars($seccion_actual); ?>)</h2>
                 </div>
@@ -470,7 +470,7 @@ if ($vista === 'estudiantes_general') {
                     </div>
                 </div>
 
-            <?php elseif ($vista === 'horario'): ?>
+            <?php if ($vista === 'horario'): ?>
                 <div class="page-header">
                     <h2>Horario Institucional Oficial (PDF) — Sección <?php echo htmlspecialchars($seccion_actual); ?></h2>
                 </div>
@@ -503,7 +503,7 @@ if ($vista === 'estudiantes_general') {
                     </div>
                 </div>
 
-            <?php elseif ($vista === 'calificaciones'): ?>
+            <?php if ($vista === 'calificaciones'): ?>
                 <div class="page-header">
                     <h2>Registro de Calificaciones por Unidad — <?php echo htmlspecialchars($materia_actual); ?></h2>
                 </div>
@@ -553,7 +553,7 @@ if ($vista === 'estudiantes_general') {
                     <?php endif; ?>
                 </div>
 
-            <?php elseif ($vista === 'soporte'): ?>
+            <?php if ($vista === 'soporte'): ?>
                 <div class="card">
                     <div class="card-title">Soporte Técnico del Sistema</div>
                     <p>¿Tienes problemas con la plataforma? Contacta con el departamento de administración de sistemas del PIU.</p>
