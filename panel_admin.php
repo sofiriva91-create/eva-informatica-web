@@ -79,7 +79,7 @@ if (isset($_GET['msg']) && $_GET['msg'] === 'eliminado') {
     $mensaje = "¡Recurso eliminado correctamente!";
 }
 
-// 1. Guardar o Actualizar Notas
+
 if (isset($_POST['actualizar_notas'])) {
     $cedula_est = $conexion->real_escape_string($_POST['cedula']);
     $mat = $conexion->real_escape_string($_POST['materia_nota']);
@@ -102,7 +102,7 @@ if (isset($_POST['actualizar_notas'])) {
     }
 }
 
-// 2. Publicar recursos (Guías o YouTube)
+
 if (isset($_POST['publicar'])) {
     $titulo = $conexion->real_escape_string($_POST['titulo']);
     $tipo = $conexion->real_escape_string($_POST['tipo']);
@@ -129,7 +129,7 @@ if (isset($_POST['publicar'])) {
     }
 }
 
-// 3. Subir Plan de Evaluación PDF/Word
+
 if (isset($_POST['subir_plan_evaluacion'])) {
     $mat_plan = $conexion->real_escape_string($_POST['materia_plan']);
     $sec_plan = $conexion->real_escape_string($_POST['seccion_plan']);
@@ -145,7 +145,6 @@ if (isset($_POST['subir_plan_evaluacion'])) {
     }
 }
 
-// 4. Subir Horario PDF
 if (isset($_POST['subir_horario_pdf'])) {
     $sec_horario = $conexion->real_escape_string($_POST['seccion_horario']);
     if (isset($_FILES['pdf_horario']) && $_FILES['pdf_horario']['error'] == 0) {
@@ -160,17 +159,17 @@ if (isset($_POST['subir_horario_pdf'])) {
     }
 }
 
-// Conteo para estadísticas dinámicas
+
 $total_estudiantes = $conexion->query("SELECT COUNT(*) as total FROM usuarios WHERE rol = 'estudiante' AND seccion = '$seccion_actual'")->fetch_assoc()['total'] ?? 0;
 $total_guias = $conexion->query("SELECT COUNT(*) as total FROM archivos WHERE tipo != 'Video Tutorial' AND tipo != 'Horario_Institucional' AND tipo != 'Plan_Evaluacion'")->fetch_assoc()['total'] ?? 0;
 $total_videos = $conexion->query("SELECT COUNT(*) as total FROM archivos WHERE tipo = 'Video Tutorial'")->fetch_assoc()['total'] ?? 0;
 
-// Consultar docente asignado
+
 $res_doc = $conexion->query("SELECT docente_asignado FROM config_materias WHERE materia = '$materia_actual' LIMIT 1");
 $row_doc = ($res_doc && $res_doc->num_rows > 0) ? $res_doc->fetch_assoc() : ['docente_asignado' => 'No asignado'];
 $docente_actual_materia = $row_doc['docente_asignado'];
 
-// Consultas según la vista
+
 if ($vista === 'estudiantes_general') {
     $resultado_estudiantes_general = $conexion->query("SELECT * FROM usuarios WHERE rol = 'estudiante' AND seccion = '$seccion_actual'");
 } elseif ($vista === 'calificaciones') {
@@ -194,7 +193,7 @@ if ($vista === 'estudiantes_general') {
 </head>
 <body class="admin-body">
 
-    <!-- BARRA LATERAL (SIDEBAR) -->
+    
     <div class="sidebar">
         <div class="sidebar-brand">
             🖥️Entorno Virtual PIU
@@ -212,11 +211,11 @@ if ($vista === 'estudiantes_general') {
         </ul>
     </div>
 
-    <!-- CONTENEDOR PRINCIPAL -->
+    
     <div class="main-wrapper">
-        <!-- HEADER SUPERIOR -->
+        
         <div class="header">
-            <!-- Botón de menú desplegable para celulares -->
+            
 <button class="menu-toggle" onclick="toggleMenu()">☰ Menú</button>
             <div class="header-title" style="display: flex; align-items: center; gap: 15px;">
                 <span><?php echo htmlspecialchars($materia_actual); ?></span>
@@ -233,7 +232,7 @@ if ($vista === 'estudiantes_general') {
             </div>
         </div>
 
-        <!-- AREA DE CONTENIDO -->
+        
         <div class="content">
             
             <?php if ($mensaje != ""): ?>
@@ -246,7 +245,7 @@ if ($vista === 'estudiantes_general') {
                     <p style="color: #6c757d; font-size: 0.9rem;">Panel de control principal del aula virtual — Sección Activa: <strong><?php echo $seccion_actual; ?></strong></p>
                 </div>
 
-                <!-- TARJETAS MÉTRICAS SUPERIORES CON EFECTO HOVER -->
+                
                 <div class="stats-container">
                     <div class="stat-card hover-effect" onclick="window.location.href='panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=estudiantes_general'">
                         <div class="stat-icon blue">🎓</div>
@@ -307,27 +306,27 @@ if ($vista === 'estudiantes_general') {
         foreach ($materias_piu as $mat):
             $es_materia_activa = ($materia_actual === $mat);
             
-            // Ejemplo rápido: Contar cuántos alumnos hay en la Sección A para esta materia
+            
             $q_a = $conexion->query("SELECT COUNT(*) as total FROM usuarios WHERE rol='estudiante' AND seccion='A'");
             $d_a = $q_a->fetch_assoc();
             $total_a = $d_a['total'];
-            $porcentaje_a = min(round(($total_a / 40) * 100), 100); // Asumiendo 40 cupos máximos
+            $porcentaje_a = min(round(($total_a / 40) * 100), 100); 
         ?>
         <div class="card">
     <div class="card-title">Asignatura Asignada</div>
     
     <div class="lista-materias-container">
         <?php 
-        // Obtenemos la materia asignada al docente actual desde la base de datos
+        
         $materia_docente = $usr_data['materia'] ?? ($materia_actual ?: 'Informática Básica');
         
-        // Consultar alumnos para la Sección A de esta materia
+        
         $q_a = $conexion->query("SELECT COUNT(*) as total FROM usuarios WHERE rol='estudiante' AND materia='$materia_docente' AND seccion='A'");
         $d_a = $q_a->fetch_assoc();
         $total_a = $d_a['total'];
-        $porcentaje_a = min(round(($total_a / 40) * 100), 100); // Base de 40 cupos máximos
+        $porcentaje_a = min(round(($total_a / 40) * 100), 100); 
 
-        // Consultar alumnos para la Sección B de esta materia
+        
         $q_b = $conexion->query("SELECT COUNT(*) as total FROM usuarios WHERE rol='estudiante' AND materia='$materia_docente' AND seccion='B'");
         $d_b = $q_b->fetch_assoc();
         $total_b = $d_b['total'];
@@ -339,7 +338,7 @@ if ($vista === 'estudiantes_general') {
     
     <div class="lista-materias-container">
         <?php 
-        // Obtenemos la materia del docente de forma segura
+        
         $materia_docente = '';
         if (isset($usr_data['materia'])) {
             $materia_docente = $usr_data['materia'];
@@ -349,7 +348,7 @@ if ($vista === 'estudiantes_general') {
             $materia_docente = 'Informática Básica';
         }
         
-        // Consultar alumnos para la Sección A de esta materia
+        
         $total_a = 0;
         if (isset($conexion)) {
             $q_a = $conexion->query("SELECT COUNT(*) as total FROM usuarios WHERE rol='estudiante' AND materia='$materia_docente' AND seccion='A'");
@@ -360,7 +359,7 @@ if ($vista === 'estudiantes_general') {
         }
         $porcentaje_a = min(round(($total_a / 40) * 100), 100);
 
-        // Consultar alumnos para la Sección B de esta materia
+        
         $total_b = 0;
         if (isset($conexion)) {
             $q_b = $conexion->query("SELECT COUNT(*) as total FROM usuarios WHERE rol='estudiante' AND materia='$materia_docente' AND seccion='B'");
@@ -378,7 +377,7 @@ if ($vista === 'estudiantes_general') {
             <h4><?php echo htmlspecialchars($materia_docente); ?></h4>
             
             <div class="secciones-progreso-wrapper">
-                <!-- Sección A -->
+                
                 <div class="seccion-progreso-box">
                     <a href="panel_admin.php?materia=<?php echo urlencode($materia_docente); ?>&seccion=A&vista=dashboard" 
                        class="enlace-seccion <?php echo ($sec_activa === 'A') ? 'activo' : ''; ?>">
@@ -390,7 +389,7 @@ if ($vista === 'estudiantes_general') {
                     <span class="info-alumnos"><?php echo $total_a; ?> alumnos</span>
                 </div>
 
-                <!-- Sección B -->
+                
                 <div class="seccion-progreso-box">
                     <a href="panel_admin.php?materia=<?php echo urlencode($materia_docente); ?>&seccion=B&vista=dashboard" 
                        class="enlace-seccion <?php echo ($sec_activa === 'B') ? 'activo' : ''; ?>">
@@ -613,12 +612,10 @@ if ($vista === 'estudiantes_general') {
                             </form>
                         </div>
                     </div>
+                <?php endif; ?>
                 </div>
-            <?php endif; ?>
+            </div>
 
-        </div>
-    </div>
-    <?php endif; ?>
     <script>
     function toggleSubmenu(e) {
         e.preventDefault();
