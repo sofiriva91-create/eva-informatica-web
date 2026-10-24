@@ -28,7 +28,7 @@ if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'docente') {
 }
 
 $seccion_actual = isset($_GET['seccion']) ? $_GET['seccion'] : '';
-$vista = isset($_GET['vista']) ? $_GET['vista'] : '';
+$vista = isset($_GET['vista']) ? $_GET['vista'] : 'dashboard';
 $tipo_solicitado = isset($_GET['tipo']) ? $_GET['tipo'] : '';
 $mensaje = "";
 
