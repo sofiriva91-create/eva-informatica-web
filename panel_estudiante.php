@@ -63,7 +63,9 @@ if ($vista === 'plan_evaluacion') {
         </div>
         <ul class="sidebar-menu">
             <li>
-                <li><a href="panel_estudiante.php?materia=<?php echo urlencode($materia_actual); ?>&vista=inicio" class="<?php echo ($vista === 'inicio') ? 'active' : ''; ?>">Inicio</a></li>
+                <li><a href="panel_estudiante.php?vista=dashboard" class="<?php echo ($vista==='dashboard')?'active':''; ?>">🏠 Inicio</a></li>
+                
+                </li>   
                 <a href="#" onclick="toggleSubmenu(event)">📚 Mis Materias ▾</a>
                 <ul id="submenu-cursos" class="submenu" style="display: block;">
                     <li><a href="panel_estudiante.php?materia=Informática Básica&vista=materiales" class="<?php echo ($materia_actual === 'Informática Básica') ? 'active' : ''; ?>">Informática Básica</a></li>
