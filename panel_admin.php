@@ -406,10 +406,7 @@ if ($vista === 'estudiantes_general') {
     </div>
 </div>
 
-<?php 
-} 
-    elseif ($vista === 'estudiantes_general') { 
-?>
+<?php elseif ($vista === 'estudiantes_general'): ?>
                 <div class="page-header">
                     <h2>Estudiantes Inscritos - Sección <?php echo htmlspecialchars($seccion_actual); ?></h2>
                 </div>
@@ -439,10 +436,7 @@ if ($vista === 'estudiantes_general') {
                     <?php endif; ?>
                 </div>
 
-            <?php 
-} 
-    elseif ($vista === 'plan_evaluacion') { 
-?>
+            <<?php elseif ($vista === 'plan_evaluacion'): ?>
                 <div class="page-header">
                     <h2>Plan de Evaluación — <?php echo htmlspecialchars($materia_actual); ?> (Sección <?php echo htmlspecialchars($seccion_actual); ?>)</h2>
                 </div>
