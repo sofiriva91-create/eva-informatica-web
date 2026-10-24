@@ -581,7 +581,6 @@ if ($vista === 'estudiantes_general') {
                         </form>
                     </div>
                 </div>
-            <?php endif; ?>
                     <div>
                         <div class="card">
                             <div class="card-title">Crear Nuevo Contenido</div>
