@@ -69,8 +69,11 @@ if ($vista === 'plan_evaluacion') {
                 <li><a href="panel_estudiante.php?vista=dashboard" class="<?php echo ($vista==='dashboard')?'active':''; ?>">🏠 Inicio</a></li>
 
                 <li>
-    <a href="#" onclick="toggleSubmenu(event)">📚 Mis Materias</a>
-    <ul id="submenu-cursos" class="submenu" style="display: block;">
+    <!-- Botón desplegable original con su función de clic -->
+    <a href="#" onclick="submenu(event)">📚 Mis Materias</a>
+    
+    <!-- Submenú que se despliega con las materias de la base de datos -->
+    <ul id="submenu-cursos" class="submenu" style="display: none;">
         <?php if ($res_materias && $res_materias->num_rows > 0): ?>
             <?php while ($mat = $res_materias->fetch_assoc()): ?>
                 <?php 
