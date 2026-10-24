@@ -85,7 +85,6 @@ if ($vista === 'estudiantes') {
     <title>Entorno Virtual - Panel del Docente</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        * { outline: 1px solid red; }
         body { overflow-x: hidden; }
     </style>
 </head>
