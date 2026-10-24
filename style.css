@@ -1191,4 +1191,32 @@ aside ul li.active a, .sidebar ul li.active a, .menu-item.active a {
     color: #94a3b8;
 }
 
+.app-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+aside, .sidebar, #sidebar {
+    width: 260px;          /* Ancho fijo para el menú */
+    min-width: 260px;      /* Evita que se encoja */
+    background-color: #0b132b;
+    height: 100vh;         /* Ocupa toda la altura de la pantalla */
+    position: sticky;      /* Se mantiene fijo mientras haces scroll */
+    top: 0;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+main, .main-content, .contenido-principal {
+    flex: 1;               /* Ocupa exactamente el espacio restante a la derecha */
+    padding: 20px 30px;    /* Espacio interno para que el texto no pegue de los bordes */
+    background-color: #f8fafc; /* Color de fondo claro del panel */
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
 
