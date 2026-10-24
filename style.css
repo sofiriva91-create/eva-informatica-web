@@ -1074,4 +1074,74 @@ body {
     background-color: #f8fafc !important;
 }
 
+/* ==========================================================
+   Estilos Profesionales para el Menú Lateral - Panel Admin
+   ================================================---------- */
+
+/* Contenedor principal de la barra lateral */
+aside, .sidebar, #sidebar {
+    background-color: #0b132b !important;
+    padding: 20px 12px !important;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+/* Lista de elementos del menú */
+aside ul, .sidebar ul, .menu-lateral {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 20px 0 0 0 !important;
+    display: flex;
+    flex-direction: column;
+    gap: 10px !important; /* Espacio vertical exacto entre cada cajita */
+}
+
+/* Cada opción del menú convertida en una "cajita" independiente */
+aside ul li, .sidebar ul li, .menu-item {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease-in-out !important;
+    overflow: hidden;
+}
+
+/* Efecto al pasar el cursor sobre cada cajita */
+aside ul li:hover, .sidebar ul li:hover, .menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    transform: translateX(4px); /* Sutil movimiento hacia la derecha */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Enlaces dentro de las cajitas del menú */
+aside ul li a, .sidebar ul li a, .menu-item a {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important; /* Espacio limpio entre el icono y el texto */
+    padding: 10px 14px !important;
+    color: #cbd5e1 !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Color del texto al hacer hover */
+aside ul li a:hover, .sidebar ul li a:hover, .menu-item a:hover {
+    color: #ffffff !important;
+}
+
+/* Estilo opcional para la opción activa/seleccionada actual */
+aside ul li.active, .sidebar ul li.active, .menu-item.active {
+    background-color: #1d3557 !important;
+    border-color: #457b9d !important;
+}
+
+aside ul li.active a, .sidebar ul li.active a, .menu-item.active a {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
 
