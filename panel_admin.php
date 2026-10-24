@@ -82,10 +82,14 @@ if ($vista === 'estudiantes') {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Aula Virtual - Panel del Docente</title>
-  
+    <title>Entorno Virtual - Panel del Docente</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        * { outline: 1px solid red; }
+        body { overflow-x: hidden; }
+    </style>
 </head>
+
 <body>
     <div class="main-wrapper" style="display: flex; width: 100%; min-height: 100vh;">
     </div>
@@ -103,7 +107,7 @@ if ($vista === 'estudiantes') {
         </ul>
     </div>
 
-    <div class="main-content">
+    <div class="main-content" style="flex: 1; padding: 20px;">>
         
         <div class="header-top">
             <h1>Introducción a la Informática (Sección <?php echo $seccion_actual; ?>)</h1>
