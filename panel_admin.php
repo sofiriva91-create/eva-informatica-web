@@ -552,7 +552,8 @@ if ($vista === 'estudiantes_general') {
                         <p>No hay estudiantes registrados en la Sección <?php echo $seccion_actual; ?>.</p>
                     <?php endif; ?>
                 </div>
-
+        <?php endif; ?>
+        
      <?php if ($vista === 'soporte'): ?>
 <div class="card">
     <div class="card-title">Soporte Técnico del Sistema</div>
