@@ -3,37 +3,20 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 include('conexion.php');
-// Consulta para traer las materias reales registradas por los profesores
-$query_materias = "SELECT DISTINCT materia FROM usuarios WHERE LOWER(rol) = 'docente' AND materia IS NOT NULL AND materia != ''";
+// 1. Consultar las materias de la base de datos de forma segura
+$query_materias = "SELECT DISTINCT materia FROM config_materias WHERE materia IS NOT NULL AND materia != ''";
 $res_materias = $conexion->query($query_materias);
 
-if (!isset($_SESSION['nombre']) || !isset($_SESSION['rol']) || strtolower($_SESSION['rol']) !== 'estudiante') {
-    header("Location: login.php");
-    exit();
-}
-
-$nombre_estudiante = $_SESSION['nombre'];
-
-
-$res_user = $conexion->query("SELECT * FROM usuarios WHERE nombre = '$nombre_estudiante' AND rol = 'estudiante' LIMIT 1");
-if ($res_user && $res_user->num_rows > 0) {
-    $usr_data = $res_user->fetch_assoc();
-    $cedula_estudiante = $usr_data['cedula'];
-    $seccion_estudiante = $usr_data['seccion'];
-} else {
-    $cedula_estudiante = $_SESSION['cedula'] ?? '';
-    $seccion_estudiante = $_SESSION['seccion'] ?? 'A';
-}
 $vista = isset($_GET['vista']) ? $_GET['vista'] : 'inicio';
 
-// Capturamos la materia, y si viene vacía, buscamos la primera disponible automáticamente
+// 2. Capturar la materia actual de la URL
 $materia_actual = isset($_GET['materia']) ? trim($_GET['materia']) : '';
 
-if (empty($materia_actual)) {
-    $query_def = "SELECT materia FROM usuarios WHERE LOWER(rol) = 'docente' AND materia IS NOT NULL AND materia != '' LIMIT 1";
-    $res_def = $conexion->query($query_def);
-    if ($res_def && $res_def->num_rows > 0) {
-        $row_def = $res_def->fetch_assoc();
+// Si no hay materia en la URL y no estamos en inicio, tomamos la primera disponible
+if (empty($materia_actual) && $vista !== 'inicio' && $vista !== 'soporte') {
+    if ($res_materias && $res_materias->num_rows > 0) {
+        $res_materias->data_seek(0); // Reiniciar puntero
+        $row_def = $res_materias->fetch_assoc();
         $materia_actual = $row_def['materia'];
     } else {
         $materia_actual = 'Informática Básica';
@@ -81,12 +64,12 @@ if ($vista === 'plan_evaluacion') {
                 <li><a href="panel_estudiante.php?vista=dashboard" class="<?php echo ($vista==='dashboard')?'active':''; ?>">🏠 Inicio</a></li>
 
                 <li>
-    <!-- Botón desplegable original con su función de clic -->
-    <a href="#" onclick="submenu(event)">📚 Mis Materias</a>
-    
-    <!-- Submenú que se despliega con las materias de la base de datos -->
-    <ul id="submenu-cursos" class="submenu" style="display: none;">
+    <a href="#" onclick="toggleSubmenu(event)">
+        📚 Mis Materias <span class="arrow" style="font-size: 11px; margin-left: 5px;">▾</span>
+    </a>
+    <ul id="submenu-cursos" class="submenu" style="display: block;">
         <?php if ($res_materias && $res_materias->num_rows > 0): ?>
+            <?php $res_materias->data_seek(0); ?>
             <?php while ($mat = $res_materias->fetch_assoc()): ?>
                 <?php 
                     $nombre_materia = $mat['materia']; 
@@ -102,8 +85,8 @@ if ($vista === 'plan_evaluacion') {
             <li><a href="#">No hay materias disponibles</a></li>
         <?php endif; ?>
     </ul>
-</li>
-            <li><a href="panel_estudiante.php?materia=<?php echo urlencode($materia_actual); ?>&vista=inicio" class="<?php echo ($vista === 'inicio') ? 'active' : ''; ?>">Inicio</a></li>
+</li> 
+        
             <li><a href="panel_estudiante.php?materia=<?php echo urlencode($materia_actual); ?>&vista=materiales" class="<?php echo ($vista === 'materiales') ? 'active' : ''; ?>">📂 Materiales y Clases</a></li>
             <li><a href="panel_estudiante.php?materia=<?php echo urlencode($materia_actual); ?>&vista=plan_evaluacion" class="<?php echo ($vista === 'plan_evaluacion') ? 'active' : ''; ?>">📊 Plan de Evaluación</a></li>
             <li><a href="panel_estudiante.php?materia=<?php echo urlencode($materia_actual); ?>&vista=calificaciones" class="<?php echo ($vista === 'calificaciones') ? 'active' : ''; ?>">📝 Mis Calificaciones</a></li>
@@ -260,6 +243,15 @@ if ($vista === 'plan_evaluacion') {
         sidebar.style.display = 'none';
     } else {
         sidebar.style.display = 'block';
+    }
+}
+function toggleSubmenu(e) {
+    e.preventDefault();
+    var submenu = document.getElementById('submenu-cursos');
+    if (submenu.style.display === 'none' || submenu.style.display === '') {
+        submenu.style.display = 'block';
+    } else {
+        submenu.style.display = 'none';
     }
 }
     </script>
