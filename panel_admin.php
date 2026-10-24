@@ -433,7 +433,6 @@ if ($vista === 'estudiantes_general') {
                         </table>
                     <?php else: ?>
                         <p>No hay estudiantes registrados en la Sección <?php echo $seccion_actual; ?>.</p>
-                    <?php endif; ?>
                 </div>
             <?php endif; ?>
 
@@ -492,7 +491,7 @@ if ($vista === 'estudiantes_general') {
                             <p>No se ha subido el horario para esta sección todavía.</p>
                         <?php endif; ?>
                     </div>
-
+                    <?php endif; ?>
                     <div class="card">
                         <div class="card-title">Subir Horario</div>
                         <form method="POST" action="panel_admin.php?materia=<?php echo urlencode($materia_actual); ?>&seccion=<?php echo $seccion_actual; ?>&vista=horario" enctype="multipart/form-data">
