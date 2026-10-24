@@ -52,7 +52,7 @@ if ($vista === 'plan_evaluacion') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel del Estudiante - Aula Virtual PIU</title>
+    <title>Panel del Estudiante - Entorno Virtual PIU</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="panel-body">
@@ -85,6 +85,8 @@ if ($vista === 'plan_evaluacion') {
     <div class="main-wrapper">
         
         <div class="header">
+            <!-- Botón de menú desplegable para celulares -->
+<button class="menu-toggle" onclick="toggleMenu()">☰ Menú</button>
             <div class="header-title">
                 <?php echo htmlspecialchars($materia_actual); ?> — Sección <?php echo htmlspecialchars($seccion_estudiante); ?>
             </div>
@@ -221,6 +223,14 @@ if ($vista === 'plan_evaluacion') {
         var sub = document.getElementById('submenu-cursos');
         sub.style.display = (sub.style.display === 'block') ? 'none' : 'block';
     }
+    function toggleMenu() {
+    var sidebar = document.querySelector('.sidebar');
+    if (sidebar.style.display === 'block') {
+        sidebar.style.display = 'none';
+    } else {
+        sidebar.style.display = 'block';
+    }
+}
     </script>
 </body>
 </html>
