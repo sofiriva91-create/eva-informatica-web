@@ -25,8 +25,20 @@ if ($res_user && $res_user->num_rows > 0) {
     $seccion_estudiante = $_SESSION['seccion'] ?? 'A';
 }
 $vista = isset($_GET['vista']) ? $_GET['vista'] : 'inicio';
-$materia_actual = isset($_GET['materia']) ? $_GET['materia'] : '';
 
+// Capturamos la materia, y si viene vacía, buscamos la primera disponible automáticamente
+$materia_actual = isset($_GET['materia']) ? trim($_GET['materia']) : '';
+
+if (empty($materia_actual)) {
+    $query_def = "SELECT materia FROM usuarios WHERE LOWER(rol) = 'docente' AND materia IS NOT NULL AND materia != '' LIMIT 1";
+    $res_def = $conexion->query($query_def);
+    if ($res_def && $res_def->num_rows > 0) {
+        $row_def = $res_def->fetch_assoc();
+        $materia_actual = $row_def['materia'];
+    } else {
+        $materia_actual = 'Informática Básica';
+    }
+}
 function obtenerYouTubeID($url) {
     preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match);
     return isset($match[1]) ? $match[1] : false;
