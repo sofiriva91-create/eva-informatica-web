@@ -933,3 +933,46 @@ header nav {
     flex-direction: column !important;
     min-width: 0 !important;
 }
+
+/* Estilos responsivos para teléfonos móviles */
+@media (max-width: 768px) {
+    /* El cuerpo y contenedores principales ocupan todo el ancho y se apilan */
+    body, .admin-body {
+        flex-direction: column;
+    }
+
+    /* La barra lateral o menú se adapta al ancho de la pantalla */
+    .sidebar, .admin-sidebar {
+        width: 100% !important;
+        height: auto !important;
+        position: relative !important;
+    }
+
+    /* El contenido principal se ajusta sin márgenes forzados */
+    .main-wrapper, .content, .auth-wrapper {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 10px !important;
+        box-sizing: border-box;
+    }
+
+    /* Las tarjetas o estadísticas se colocan en una sola columna vertical */
+    .grid-layout, .card-grid, .stats-container {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+
+    .card, .stat-card {
+        width: 100% !important;
+        margin-bottom: 15px !important;
+    }
+
+    /* Tablas adaptadas con desplazamiento horizontal limpio si son muy anchas */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 100%;
+    }
+}
