@@ -335,6 +335,46 @@ if ($vista === 'estudiantes_general') {
         $porcentaje_b = min(round(($total_b / 40) * 100), 100);
         ?>
         
+        <div class="card">
+    <div class="card-title">Asignatura Asignada</div>
+    
+    <div class="lista-materias-container">
+        <?php 
+        // Obtenemos la materia del docente de forma segura
+        $materia_docente = '';
+        if (isset($usr_data['materia'])) {
+            $materia_docente = $usr_data['materia'];
+        } elseif (isset($_SESSION['materia'])) {
+            $materia_docente = $_SESSION['materia'];
+        } else {
+            $materia_docente = 'Informática Básica';
+        }
+        
+        // Consultar alumnos para la Sección A de esta materia
+        $total_a = 0;
+        if (isset($conexion)) {
+            $q_a = $conexion->query("SELECT COUNT(*) as total FROM usuarios WHERE rol='estudiante' AND materia='$materia_docente' AND seccion='A'");
+            if ($q_a) {
+                $d_a = $q_a->fetch_assoc();
+                $total_a = $d_a['total'] ?? 0;
+            }
+        }
+        $porcentaje_a = min(round(($total_a / 40) * 100), 100);
+
+        // Consultar alumnos para la Sección B de esta materia
+        $total_b = 0;
+        if (isset($conexion)) {
+            $q_b = $conexion->query("SELECT COUNT(*) as total FROM usuarios WHERE rol='estudiante' AND materia='$materia_docente' AND seccion='B'");
+            if ($q_b) {
+                $d_b = $q_b->fetch_assoc();
+                $total_b = $d_b['total'] ?? 0;
+            }
+        }
+        $porcentaje_b = min(round(($total_b / 40) * 100), 100);
+
+        $sec_activa = isset($seccion_actual) ? $seccion_actual : 'A';
+        ?>
+        
         <div class="materia-item-card">
             <h4><?php echo htmlspecialchars($materia_docente); ?></h4>
             
@@ -342,7 +382,7 @@ if ($vista === 'estudiantes_general') {
                 <!-- Sección A -->
                 <div class="seccion-progreso-box">
                     <a href="panel_admin.php?materia=<?php echo urlencode($materia_docente); ?>&seccion=A&vista=dashboard" 
-                       class="enlace-seccion <?php echo ($seccion_actual === 'A') ? 'activo' : ''; ?>">
+                       class="enlace-seccion <?php echo ($sec_activa === 'A') ? 'activo' : ''; ?>">
                        Sec. A
                     </a>
                     <div class="progress-ring" style="--p: <?php echo $porcentaje_a; ?>;">
@@ -354,7 +394,7 @@ if ($vista === 'estudiantes_general') {
                 <!-- Sección B -->
                 <div class="seccion-progreso-box">
                     <a href="panel_admin.php?materia=<?php echo urlencode($materia_docente); ?>&seccion=B&vista=dashboard" 
-                       class="enlace-seccion <?php echo ($seccion_actual === 'B') ? 'activo' : ''; ?>">
+                       class="enlace-seccion <?php echo ($sec_activa === 'B') ? 'activo' : ''; ?>">
                        Sec. B
                     </a>
                     <div class="progress-ring" style="--p: <?php echo $porcentaje_b; ?>;">
