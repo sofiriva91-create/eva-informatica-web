@@ -1008,3 +1008,23 @@ header nav {
         padding: 10px;
     }
 }
+
+/* Ocultar el botón de menú por defecto en computadoras y pantallas grandes */
+.menu-toggle {
+    display: none !important;
+}
+
+/* Mostrarlo ÚNICAMENTE en pantallas de teléfonos (menores a 768px) */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: inline-block !important;
+        background: #0f172a;
+        color: white;
+        border: 1px solid #334155;
+        padding: 4px 10px;
+        font-size: 13px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-bottom: 8px;
+    }
+}
