@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $clave = password_hash($clave_raw, PASSWORD_BCRYPT);
 
-            $sql = "INSERT INTO usuarios (cedula, nombre, correo, clave, rol, seccion) VALUES ('$cedula', '$nombre', '$correo', '$clave', '$rol', '$seccion')";
+            $sql = "INSERT INTO usuarios (cedula, nombre, correo, clave, rol, seccion, materia) VALUES ('$cedula', '$nombre', '$correo', '$clave', '$rol', '$seccion', '$materia')";
             
             if ($conexion->query($sql) === TRUE) {
                 // Redirección automática al login tras registrarse con éxito
