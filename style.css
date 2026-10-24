@@ -982,20 +982,20 @@ header nav {
     display: none;
 }
 
-/* Estilos exclusivos para celulares (pantallas menores a 768px) */
 @media (max-width: 768px) {
-    /* Mostrar el botón de menú en el teléfono */
+    /* Botón de menú más pequeño y estilizado */
     .menu-toggle {
         display: inline-block;
         background: #0f172a;
         color: white;
         border: 1px solid #334155;
-        padding: 8px 12px;
-        font-size: 18px;
-        border-radius: 6px;
+        padding: 4px 10px;     /* Reducimos el espacio interno (antes era 8px 12px) */
+        font-size: 13px;       /* Letras más pequeñas (antes era 18px) */
+        border-radius: 4px;    /* Bordes ligeramente más finos */
         cursor: pointer;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
     }
+
 
     /* Ocultar la barra lateral por defecto en los teléfonos */
     .sidebar {
