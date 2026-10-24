@@ -22,7 +22,7 @@ if ($res_user && $res_user->num_rows > 0) {
     $seccion_estudiante = $_SESSION['seccion'] ?? 'A';
 }
 $vista = isset($_GET['vista']) ? $_GET['vista'] : 'inicio';
-$materia_actual = isset($_GET['materia']) ? $_GET['materia'] : 'Informática Básica';
+$materia_actual = isset($_GET['materia']) ? $_GET['materia'] : '';
 
 function obtenerYouTubeID($url) {
     preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match);
@@ -64,15 +64,17 @@ if ($vista === 'plan_evaluacion') {
         <ul class="sidebar-menu">
             <li>
                 <li><a href="panel_estudiante.php?vista=dashboard" class="<?php echo ($vista==='dashboard')?'active':''; ?>">🏠 Inicio</a></li>
-                
+
                 </li>   
                 <a href="#" onclick="toggleSubmenu(event)">📚 Mis Materias ▾</a>
                 <ul id="submenu-cursos" class="submenu" style="display: block;">
                     <li><a href="panel_estudiante.php?materia=Informática Básica&vista=materiales" class="<?php echo ($materia_actual === 'Informática Básica') ? 'active' : ''; ?>">Informática Básica</a></li>
-                    <li><a href="panel_estudiante.php?materia=Matemática Inicial&vista=materiales" class="<?php echo ($materia_actual === 'Matemática Inicial') ? 'active' : ''; ?>">Matemática Inicial</a></li>
-                    <li><a href="panel_estudiante.php?materia=Algorítmica y Programación&vista=materiales" class="<?php echo ($materia_actual === 'Algorítmica y Programación') ? 'active' : ''; ?>">Algorítmica y Programación</a></li>
-                    <li><a href="panel_estudiante.php?materia=Técnicas de Estudio&vista=materiales" class="<?php echo ($materia_actual === 'Técnicas de Estudio') ? 'active' : ''; ?>">Técnicas de Estudio</a></li>
-                </ul>
+                    <li><a href="panel_estudiante.php?materia=Matemática Inicial&vista=materiales" class="<?php echo ($materia_actual === 'Introducción a la Programación') ? 'active' : ''; ?>">Introducción a la Programación</a></li>
+                    <li><a href="panel_estudiante.php?materia=Algorítmica y Programación&vista=materiales" class="<?php echo ($materia_actual === 'Matemática Inicial') ? 'active' : ''; ?>">Matemática Inicial</a></li>
+                    <li><a href="panel_estudiante.php?materia=Técnicas de Estudio&vista=materiales" class="<?php echo ($materia_actual === 'Redes de Computadoras') ? 'active' : ''; ?>">Redes de Computadoras</a></li>
+                    <li><a href="panel_estudiante.php?materia=Técnicas de Estudio&vista=materiales" class="<?php echo ($materia_actual === 'Ingeniería de Software') ? 'active' : ''; ?>">Ingeniería de Software</a></li>
+                    <li><a href="panel_estudiante.php?materia=Técnicas de Estudio&vista=materiales" class="<?php echo ($materia_actual === 'Sistemas Operativos') ? 'active' : ''; ?>">Sistemas Operativos</a></li>
+                    </ul>
             </li>
             <li><a href="panel_estudiante.php?materia=<?php echo urlencode($materia_actual); ?>&vista=materiales" class="<?php echo ($vista === 'materiales') ? 'active' : ''; ?>">📂 Materiales y Clases</a></li>
             <li><a href="panel_estudiante.php?materia=<?php echo urlencode($materia_actual); ?>&vista=plan_evaluacion" class="<?php echo ($vista === 'plan_evaluacion') ? 'active' : ''; ?>">📊 Plan de Evaluación</a></li>
