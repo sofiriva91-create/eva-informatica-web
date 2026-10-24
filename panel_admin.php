@@ -189,9 +189,8 @@ if ($vista === 'estudiantes_general') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel del Docente - Entorno Virtual PIU</title>
-    <link rel="icon" type="image/png" href="logo-uptaapc.png">
-    <link rel="stylesheet" href="style.css?v=5.1">
+    <title>Panel del Docente - Entorno Virtual</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="admin-body">
 
