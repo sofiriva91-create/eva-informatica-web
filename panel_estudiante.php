@@ -117,7 +117,7 @@ if ($vista === 'plan_evaluacion') {
             </div>
             <div class="user-info">
                 <div class="user-details">
-                    <strong><?php echo htmlspecialchars($_SESSION['nombre']); ?> (Estudiante)</strong>
+                    <strong><?php echo htmlspecialchars($_SESSION['nombre'] ?? 'Estudiante'); ?> (Estudiante)</strong>
                     <a href="logout.php" class="logout-link">Cerrar Sesión</a>
                 </div>
             </div>
