@@ -1108,3 +1108,19 @@ header nav {
     font-size: 0.75rem;
     color: #64748b;
 }
+.secciones-progreso-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.seccion-progreso-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    padding: 8px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+}
