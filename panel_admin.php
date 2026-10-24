@@ -87,8 +87,9 @@ if ($vista === 'estudiantes') {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-   
+    <div class="main-wrapper" style="display: flex; width: 100%; min-height: 100vh;">
+    </div>
+</body>
     <div class="sidebar">
         <div class="brand">📁 Aula Virtual<br>"Informatica-Edu"</div>
         <ul>
