@@ -58,9 +58,10 @@ if ($vista === 'plan_evaluacion') {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
+    <met<link rel="icon" type="image/png" href="logo-uptaapc.png">a charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel del Estudiante - Entorno Virtual PIU</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="panel-body">
