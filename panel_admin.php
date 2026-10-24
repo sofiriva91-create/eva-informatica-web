@@ -677,5 +677,6 @@ if ($vista === 'estudiantes_general') {
     }
 }
     </script>
+    <?php endif; ?>
 </body>
 </html>
