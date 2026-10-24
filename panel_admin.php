@@ -300,34 +300,41 @@ if ($vista === 'estudiantes_general') {
                     </div>
 
                     <div class="card">
-                        <div class="card-title">Mis Materias (PIU)</div>
-                        
-                        <div style="display: flex; flex-direction: column; gap: 12px;">
-                            <?php 
-                            $materias_piu = ['Informática Básica', 'Matemática Inicial', 'Algorítmica y Programación', 'Técnicas de Estudio'];
-                            foreach ($materias_piu as $mat):
-                                $es_materia_activa = ($materia_actual === $mat);
-                            ?>
-                                <div style="padding: 12px; border: 1px solid #ced4da; border-radius: 8px; background: <?php echo $es_materia_activa ? '#f0f7ff' : '#fff'; ?>;">
-                                    <strong style="display: block; font-size: 0.95rem; margin-bottom: 6px; color: #0d1b2a;"><?php echo $mat; ?></strong>
-                                    <div style="display: flex; gap: 8px;">
-                                        <a href="panel_admin.php?materia=<?php echo urlencode($mat); ?>&seccion=A&vista=dashboard" 
-                                           class="<?php echo ($es_materia_activa && $seccion_actual==='A') ? 'badge-active' : 'badge-select'; ?>" 
-                                           style="text-decoration:none; padding: 4px 10px;">
-                                           Sec. A <?php echo ($es_materia_activa && $seccion_actual==='A') ? '✓' : ''; ?>
-                                        </a>
-
-                                        <a href="panel_admin.php?materia=<?php echo urlencode($mat); ?>&seccion=B&vista=dashboard" 
-                                           class="<?php echo ($es_materia_activa && $seccion_actual==='B') ? 'badge-active' : 'badge-select'; ?>" 
-                                           style="text-decoration:none; padding: 4px 10px;">
-                                           Sec. B <?php echo ($es_materia_activa && $seccion_actual==='B') ? '✓' : ''; ?>
-                                        </a>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
+    <div class="card-title">Asignaturas y Secciones (PIU)</div>
+    
+    <div class="lista-materias-container">
+        <?php 
+        $materias_piu = ['Informática Básica', 'Matemática Inicial', 'Algorítmica y Programación', 'Técnicas de Estudio'];
+        foreach ($materias_piu as $mat):
+            $es_materia_activa = ($materia_actual === $mat);
+            
+            // Ejemplo rápido: Contar cuántos alumnos hay en la Sección A para esta materia
+            $q_a = $conexion->query("SELECT COUNT(*) as total FROM usuarios WHERE rol='estudiante' AND seccion='A'");
+            $d_a = $q_a->fetch_assoc();
+            $total_a = $d_a['total'];
+            $porcentaje_a = min(round(($total_a / 40) * 100), 100); // Asumiendo 40 cupos máximos
+        ?>
+        <div class="materia-item-card">
+            <h4><?php echo htmlspecialchars($mat); ?></h4>
+            
+            <div class="secciones-progreso-wrapper">
+                <!-- Sección A -->
+                <div class="seccion-progreso-box">
+                    <a href="panel_admin.php?materia=<?php echo urlencode($mat); ?>&seccion=A&vista=dashboard" 
+                       class="enlace-seccion <?php echo ($es_materia_activa && $seccion_actual === 'A') ? 'activo' : ''; ?>">
+                       Sec. A
+                    </a>
+                    <!-- Círculo de Progreso -->
+                    <div class="progress-ring" style="--p: <?php echo $porcentaje_a; ?>;">
+                        <span class="progress-value"><?php echo $porcentaje_a; ?>%</span>
                     </div>
+                    <span class="info-alumnos"><?php echo $total_a; ?> alumnos</span>
                 </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+</div>
 
             <?php elseif ($vista === 'estudiantes_general'): ?>
                 <div class="page-header">
