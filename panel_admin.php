@@ -678,4 +678,3 @@ if ($vista === 'estudiantes_general') {
     </script>
     
 </body>
-</html>
