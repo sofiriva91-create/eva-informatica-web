@@ -110,6 +110,12 @@ if ($vista === 'plan_evaluacion') {
     <div class="main-wrapper">
         
         <div class="header">
+            <?php if ($vista === 'inicio'): ?>
+    <div style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <h2>¡Bienvenido/a, <?php echo htmlspecialchars($_SESSION['nombre'] ?? 'Estudiante'); ?>!</h2>
+        <p>Selecciona una materia en el menú lateral para ver tus materiales de estudio y clases.</p>
+    </div>
+<?php endif; ?>
             <!-- Botón de menú desplegable para celulares -->
 <button class="menu-toggle" onclick="toggleMenu()">☰ Menú</button>
             <div class="header-title">
