@@ -454,8 +454,9 @@ if ($vista === 'estudiantes_general') {
                                     <a href="<?php echo htmlspecialchars($plan_actual['enlace']); ?>" target="_blank">📥 Ver / Descargar Plan de Evaluación</a>
                                 </div>
                             </div>
-                        
+                        <?php else: ?>
                             <p>No se ha cargado el plan de evaluación para esta materia y sección todavía.</p>
+                        <?php endif; ?>
                     </div>
                     <div class="card">
                         <div class="card-title">Subir Plan de Evaluación</div>
@@ -469,7 +470,7 @@ if ($vista === 'estudiantes_general') {
                     </div>
                 </div>
             <?php endif; ?>
-            
+
             <?php if ($vista === 'horario'): ?>
                 <div class="page-header">
                     <h2>Horario Institucional Oficial (PDF) — Sección <?php echo htmlspecialchars($seccion_actual); ?></h2>
@@ -503,6 +504,7 @@ if ($vista === 'estudiantes_general') {
                     </div>
                 </div>
             <?php endif; ?>
+
             <?php if ($vista === 'calificaciones'): ?>
                 <div class="page-header">
                     <h2>Registro de Calificaciones por Unidad — <?php echo htmlspecialchars($materia_actual); ?></h2>
@@ -550,7 +552,6 @@ if ($vista === 'estudiantes_general') {
                         </table>
                     <?php else: ?>
                         <p>No hay estudiantes registrados en la Sección <?php echo $seccion_actual; ?>.</p>
-                    <?php endif; ?>
                 </div>
         <?php endif; ?>
 
@@ -610,9 +611,9 @@ if ($vista === 'estudiantes_general') {
                                 <?php endwhile; ?>
                             <?php else: ?>
                                 <p>No hay materiales o videos publicados en esta materia para la Sección <?php echo $seccion_actual; ?> todavía.</p>
-                            <?php endif; ?>
                         </div>
                     </div>
+                <?php endif; ?>
 
                     <div>
                         <div class="card">
@@ -645,7 +646,6 @@ if ($vista === 'estudiantes_general') {
                         </div>
                     </div>
                 </div>
-
             <?php endif; ?>
 
         </div>
