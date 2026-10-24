@@ -189,7 +189,7 @@ if ($vista === 'estudiantes_general') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel del Docente - Aula Virtual PIU</title>
+    <title>Panel del Docente - Entorno Virtual PIU</title>
     <link rel="icon" type="image/png" href="logo-uptaapc.png">
     <link rel="stylesheet" href="style.css?v=5.1">
 </head>
@@ -299,35 +299,49 @@ if ($vista === 'estudiantes_general') {
                         </div>
                     </div>
 
-                    <div class="card">
-                        <div class="card-title">Mis Materias (PIU)</div>
-                        
-                        <div style="display: flex; flex-direction: column; gap: 12px;">
-                            <?php 
-                            $materias_piu = ['Informática Básica', 'Matemática Inicial', 'Algorítmica y Programación', 'Técnicas de Estudio'];
-                            foreach ($materias_piu as $mat):
-                                $es_materia_activa = ($materia_actual === $mat);
-                            ?>
-                                <div style="padding: 12px; border: 1px solid #ced4da; border-radius: 8px; background: <?php echo $es_materia_activa ? '#f0f7ff' : '#fff'; ?>;">
-                                    <strong style="display: block; font-size: 0.95rem; margin-bottom: 6px; color: #0d1b2a;"><?php echo $mat; ?></strong>
-                                    <div style="display: flex; gap: 8px;">
-                                        <a href="panel_admin.php?materia=<?php echo urlencode($mat); ?>&seccion=A&vista=dashboard" 
-                                           class="<?php echo ($es_materia_activa && $seccion_actual==='A') ? 'badge-active' : 'badge-select'; ?>" 
-                                           style="text-decoration:none; padding: 4px 10px;">
-                                           Sec. A <?php echo ($es_materia_activa && $seccion_actual==='A') ? '✓' : ''; ?>
-                                        </a>
+                    <!-- Aquí tienes los botones para subir contenido (PDF, YouTube, Notas) -->
+    <div class="card">
+        <h3>Publicar Contenido Directo — Para: ...</h3>
+        
+    </div>
 
-                                        <a href="panel_admin.php?materia=<?php echo urlencode($mat); ?>&seccion=B&vista=dashboard" 
-                                           class="<?php echo ($es_materia_activa && $seccion_actual==='B') ? 'badge-active' : 'badge-select'; ?>" 
-                                           style="text-decoration:none; padding: 4px 10px;">
-                                           Sec. B <?php echo ($es_materia_activa && $seccion_actual==='B') ? '✓' : ''; ?>
-                                        </a>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
+    <div class="card card-aviso-admin">
+        <div class="aviso-header">
+            <h3>📢 Publicar Aviso Rápido</h3>
+            <p>Este mensaje se mostrará directamente a los estudiantes de <strong><?php echo htmlspecialchars($materia_actual); ?> (Sección <?php echo htmlspecialchars($seccion_activa); ?>)</strong>.</p>
+        </div>
+
+        <form action="guardar_aviso.php" method="POST" class="form-aviso">
+            <input type="hidden" name="materia" value="<?php echo htmlspecialchars($materia_actual); ?>">
+            <input type="hidden" name="seccion" value="<?php echo htmlspecialchars($seccion_activa); ?>">
+            
+            <textarea name="mensaje" class="input-aviso-texto" placeholder="Escribe tu aviso aquí..." required></textarea>
+            
+            <button type="submit" class="btn-publicar-aviso">Publicar Aviso</button>
+        </form>
+
+        <div class="lista-avisos-container">
+            <h4>Avisos Activos:</h4>
+            <?php
+            $query_avisos_admin = $conexion->query("SELECT * FROM avisos WHERE materia = '$materia_actual' AND seccion = '$seccion_activa' ORDER BY id DESC");
+            if ($query_avisos_admin && $query_avisos_admin->num_rows > 0):
+                while ($aviso = $query_avisos_admin->fetch_assoc()):
+            ?>
+                <div class="item-aviso">
+                    <span class="texto-aviso"><?php echo htmlspecialchars($aviso['mensaje']); ?></span>
+                    <a href="eliminar_aviso.php?id=<?php echo $aviso['id']; ?>" class="btn-eliminar-aviso" onclick="return confirm('¿Seguro/a que deseas borrar este aviso?');">🗑️ Eliminar</a>
                 </div>
+            <?php 
+                endwhile;
+            else:
+            ?>
+                <p class="sin-avisos">No hay avisos activos publicados para esta sección.</p>
+            <?php endif; ?>
+        </div>
+    </div>
+    
+
+</div>
 
             <?php elseif ($vista === 'estudiantes_general'): ?>
                 <div class="page-header">
