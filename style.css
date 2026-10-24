@@ -976,3 +976,35 @@ header nav {
         width: 100%;
     }
 }
+
+/* El botón de hamburguesa está oculto en computadoras por defecto */
+.menu-toggle {
+    display: none;
+}
+
+/* Estilos exclusivos para celulares (pantallas menores a 768px) */
+@media (max-width: 768px) {
+    /* Mostrar el botón de menú en el teléfono */
+    .menu-toggle {
+        display: inline-block;
+        background: #0f172a;
+        color: white;
+        border: 1px solid #334155;
+        padding: 8px 12px;
+        font-size: 18px;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+    /* Ocultar la barra lateral por defecto en los teléfonos */
+    .sidebar {
+        display: none;
+        width: 100% !important;
+        position: relative;
+        background-color: #0f172a;
+        margin-bottom: 15px;
+        border-radius: 6px;
+        padding: 10px;
+    }
+}
