@@ -1506,3 +1506,24 @@ main, .main-content, .contenido-principal {
     max-width: 100% !important;
     box-sizing: border-box !important;
 }
+
+/* ==========================================================
+   MATAR LA BARRERA Y LA COLUMNA FANTASMA DE UNA VEZ
+   ========================================================== */
+.main-wrapper {
+    display: block !important;
+    grid-template-columns: none !important;
+    grid-template-areas: none !important;
+    width: calc(100% - 260px) !important; /* Ancho total menos el menú lateral */
+    max-width: 100% !important;
+    margin-left: 260px !important;
+    float: none !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Ocultar cualquier línea divisoria o borde fantasma remanente */
+.main-wrapper::after, 
+.main-wrapper::before {
+    display: none !important;
+}
