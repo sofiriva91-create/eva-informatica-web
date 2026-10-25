@@ -281,30 +281,32 @@ if ($vista === 'estudiantes') {
             </form>
         </div>
 
-    <!-- ======================================================== -->
-    <!-- VISTA 3: ESTUDIANTES Y NOTAS (4 UNIDADES) -->
+<!-- ======================================================== -->
+    <!-- VISTA 3: ESTUDIANTES Y NOTAS (4 UNIDADES Y ESTADO) -->
     <!-- ======================================================== -->
     <?php elseif ($vista === 'estudiantes'): ?>
         <div style="background: #fff; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 25px;">
-            <h2>👥 Control de Estudiantes y Notas (Sección <?php echo $seccion_actual; ?>)</h2>
-            <p style="color: #64748b; font-size: 0.95rem;">Visualiza los estudiantes inscritos en tu sección y asigna las calificaciones de las 4 unidades.</p>
+            <h2>👥 Control de Estudiantes y Calificaciones (Sección <?php echo htmlspecialchars($seccion_actual); ?>)</h2>
+            <p style="color: #64748b; font-size: 0.95rem;">Asigna las notas de las 4 unidades. Las notas de 12 a 20 son Aprobadas, y menores a 12 son Reprobadas.</p>
             
             <div style="overflow-x: auto; margin-top: 20px;">
                 <table style="width: 100%; border-collapse: collapse; text-align: left;">
                     <thead>
                         <tr style="background: #f1f5f9; border-bottom: 2px solid #cbd5e1;">
                             <th style="padding: 12px;">Estudiante</th>
-                            <th style="padding: 12px; text-align: center;">Unidad I</th>
-                            <th style="padding: 12px; text-align: center;">Unidad II</th>
-                            <th style="padding: 12px; text-align: center;">Unidad III</th>
-                            <th style="padding: 12px; text-align: center;">Unidad IV</th>
+                            <th style="padding: 12px; text-align: center;">Unidad 1</th>
+                            <th style="padding: 12px; text-align: center;">Unidad 2</th>
+                            <th style="padding: 12px; text-align: center;">Unidad 3</th>
+                            <th style="padding: 12px; text-align: center;">Unidad 4</th>
+                            <th style="padding: 12px; text-align: center;">Estado</th>
                             <th style="padding: 12px; text-align: center;">Acción</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         $sec_param = $seccion_actual;
-                        $query_est = $conexion->prepare("SELECT id_usuario, nombre FROM usuarios WHERE rol = 'estudiante' AND seccion = ?");
+                        // Corregido: 'id' en lugar de 'id_usuario'
+                        $query_est = $conexion->prepare("SELECT id, nombre FROM usuarios WHERE rol = 'estudiante' AND seccion = ?");
                         if ($query_est) {
                             $query_est->bind_param("s", $sec_param);
                             $query_est->execute();
@@ -312,21 +314,35 @@ if ($vista === 'estudiantes') {
                             
                             if ($res_est->num_rows > 0) {
                                 while ($row_est = $res_est->fetch_assoc()) {
+                                    $id_alumno = $row_est['id'];
+                                    
+                                    // Valores por defecto de notas
+                                    $n1 = 0; $n2 = 0; $n3 = 0; $n4 = 0;
+                                    
+                                    // Lógica para calcular Promedio y Estado (Aprobado / Reprobado)
+                                    $promedio = ($n1 + $n2 + $n3 + $n4) / 4;
+                                    if ($promedio >= 12) {
+                                        $estado_badge = '<span style="background: #dcfce7; color: #15803d; padding: 4px 10px; border-radius: 12px; font-weight: 600; font-size: 0.85rem;">Aprobado</span>';
+                                    } else {
+                                        $estado_badge = '<span style="background: #fee2e2; color: #b91c1c; padding: 4px 10px; border-radius: 12px; font-weight: 600; font-size: 0.85rem;">Reprobado</span>';
+                                    }
+
                                     echo '<tr style="border-bottom: 1px solid #e2e8f0;">';
                                     echo '<td style="padding: 12px; font-weight: 600; color: #1e293b;">' . htmlspecialchars($row_est['nombre']) . '</td>';
                                     echo '<form action="guardar_notas.php" method="POST">';
-                                    echo '<input type="hidden" name="id_estudiante" value="' . $row_est['id_usuario'] . '">';
-                                    echo '<input type="hidden" name="seccion" value="' . $seccion_actual . '">';
+                                    echo '<input type="hidden" name="id_estudiante" value="' . $id_alumno . '">';
+                                    echo '<input type="hidden" name="seccion" value="' . htmlspecialchars($seccion_actual) . '">';
                                     echo '<td style="padding: 12px; text-align: center;"><input type="number" step="0.1" name="nota1" style="width: 60px; text-align: center; padding: 5px; border: 1px solid #cbd5e1; border-radius: 4px;" placeholder="0-20"></td>';
                                     echo '<td style="padding: 12px; text-align: center;"><input type="number" step="0.1" name="nota2" style="width: 60px; text-align: center; padding: 5px; border: 1px solid #cbd5e1; border-radius: 4px;" placeholder="0-20"></td>';
                                     echo '<td style="padding: 12px; text-align: center;"><input type="number" step="0.1" name="nota3" style="width: 60px; text-align: center; padding: 5px; border: 1px solid #cbd5e1; border-radius: 4px;" placeholder="0-20"></td>';
                                     echo '<td style="padding: 12px; text-align: center;"><input type="number" step="0.1" name="nota4" style="width: 60px; text-align: center; padding: 5px; border: 1px solid #cbd5e1; border-radius: 4px;" placeholder="0-20"></td>';
+                                    echo '<td style="padding: 12px; text-align: center;">' . $estado_badge . '</td>';
                                     echo '<td style="padding: 12px; text-align: center;"><button type="submit" style="background: #059669; color: #fff; border: none; padding: 6px 12px; border-radius: 4px; font-weight: 600; cursor: pointer;">Guardar</button></td>';
                                     echo '</form>';
                                     echo '</tr>';
                                 }
                             } else {
-                                echo '<tr><td colspan="6" style="padding: 20px; text-align: center; color: #64748b;">No hay estudiantes registrados en la Sección ' . $sec_param . '.</td></tr>';
+                                echo '<tr><td colspan="7" style="padding: 20px; text-align: center; color: #64748b;">No hay estudiantes registrados en la Sección ' . htmlspecialchars($sec_param) . '.</td></tr>';
                             }
                         }
                         ?>
@@ -334,7 +350,6 @@ if ($vista === 'estudiantes') {
                 </table>
             </div>
         </div>
-
     <!-- ======================================================== -->
     <!-- VISTA 4: HORARIO -->
     <!-- ======================================================== -->
