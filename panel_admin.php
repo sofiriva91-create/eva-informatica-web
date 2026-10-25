@@ -84,34 +84,6 @@ if ($vista === 'estudiantes') {
     <meta charset="UTF-8">
     <title>Entorno Virtual - Panel del Docente</title>
     <link rel="stylesheet" href="style.css">
-   <style>
-    /* HACK DE GRID: Dos columnas reales, adiós a los márgenes rotos */
-    body {
-        margin: 0 !important;
-        padding: 0 !important;
-        display: grid !important;
-        grid-template-columns: 250px 1fr !important;
-        background-color: #f8f9fa !important;
-        overflow-x: hidden !important;
-    }
-
-    /* Columna 1: El menú se queda quieto y ordenado a la izquierda */
-    .sidebar {
-        grid-column: 1 !important;
-        width: 250px !important;
-        height: 100vh !important;
-        position: sticky !important;
-        top: 0 !important;
-    }
-
-    /* Columna 2: El contenido toma automáticamente todo el espacio restante a la derecha */
-    .main-content {
-        grid-column: 2 !important;
-        width: 100% !important;
-        padding: 30px !important;
-        box-sizing: border-box !important;
-    }
-</style>
 </head>
 
 <body>
@@ -128,8 +100,10 @@ if ($vista === 'estudiantes') {
             <li><a href="#">📅 Horario</a></li>
             <li><a href="#">❓ Soporte</a></li>
         </ul>
+        </div>
     </div>
 
+<div class="main-content">
         <div class="header-top">
             <h1>Introducción a la Informática (Sección <?php echo $seccion_actual; ?>)</h1>
             <div class="user-info">
