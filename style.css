@@ -925,10 +925,9 @@ header nav {
 }
 
 .main-wrapper {
-    flex: 1 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    min-width: 0 !important;
+    margin-left: 230px !important; /* Prueba bajando a 220px o 230px para pegarlo más al menú */
+    width: calc(100% - 230px) !important;
+    padding: 15px !important; /* Reduce esto si hay espacio arriba muy grande */
 }
 
 /* Estilos responsivos para teléfonos móviles */
