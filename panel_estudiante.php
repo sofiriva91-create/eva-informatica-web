@@ -197,10 +197,8 @@ if ($vista === 'plan_evaluacion') {
             </div>
         </div>
 
-        
-        <div class="content">
-
             <?php if ($vista !== 'inicio') { ?>
+            <div class="content">
     <div class="page-header">
         <h2><?php echo htmlspecialchars($materia_actual); ?></h2>
         <p>Docente a cargo: <strong><?php echo htmlspecialchars($docente_asignado); ?></strong></p>
