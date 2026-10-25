@@ -187,63 +187,7 @@ if ($vista === 'plan_evaluacion') {
         <?php endif; ?>
     </div>
 
-<?php } ?>v> <!-- <--- 1. Cierra el header aquí mismo con un div -->
-
-    <!-- AQUÍ EMPIEZA EL INICIO -->
-    <?php if ($vista === 'inicio') { ?>
-
-        <!-- 1. Banner de Bienvenida -->
-        <div class="welcome-banner">
-            <div class="welcome-content">
-                <h2>¡Hola, <?php echo htmlspecialchars($nombre_estudiante); ?>! 👋</h2>
-                <p>Qué bueno tenerte de vuelta en el Entorno Virtual. Revisa tus materias y mantén el ritmo este semestre.</p>
-            </div>
-            <div class="welcome-icon">🎓</div>
-        </div>
-
-        <!-- 2. Botones de Acceso Rápido -->
-        <div class="quick-access-container">
-            <a href="panel_estudiante.php?vista=horario" class="quick-card">
-                <div class="quick-icon">📅</div>
-                <div class="quick-info">
-                    <h3>Horario de Clases</h3>
-                    <p>Consulta tus días y horas</p>
-                </div>
-            </a>
-
-            <a href="panel_estudiante.php?vista=plan_evaluacion" class="quick-card">
-                <div class="quick-icon">📋</div>
-                <div class="quick-info">
-                    <h3>Plan de Evaluación</h3>
-                    <p>Fechas y ponderaciones</p>
-                </div>
-            </a>
-
-            <a href="panel_estudiante.php?vista=calificaciones" class="quick-card">
-                <div class="quick-icon">📊</div>
-                <div class="quick-info">
-                    <h3>Mis Calificaciones</h3>
-                    <p>Revisa tus notas actuales</p>
-                </div>
-            </a>
-        </div>
-
-        <!-- 3. Frase de Motivación del Día -->
-        <div class="daily-quote-card">
-            <div class="quote-header">
-                <h4>💡 Reflexión del Día</h4>
-            </div>
-            <blockquote>
-                "<?php echo htmlspecialchars($frase_del_dia ?? 'La educación es el arma más poderosa que puedes usar para cambiar el mundo.'); ?>"
-            </blockquote>
-            <?php if (!empty($autor_frase)): ?>
-                <cite>— <?php echo htmlspecialchars($autor_frase); ?></cite>
-            <?php endif; ?>
-        </div>
-
-    <?php } ?> 
-    <!-- AQUÍ TERMINA EL INICIO Y NO SE FILTRARÁ EN OTRAS VISTAS -->
-
+        <?php } ?>
 
     <!-- De aquí en adelante sigue todo tu código de materias, calificaciones y horario que ya tenías -->
             <!-- Botón de menú desplegable para celulares -->
@@ -262,10 +206,12 @@ if ($vista === 'plan_evaluacion') {
         
         <div class="content">
 
-            <div class="page-header">
-                <h2><?php echo htmlspecialchars($materia_actual); ?></h2>
-                <p>Docente a cargo: <strong><?php echo htmlspecialchars($docente_asignado); ?></strong></p>
-            </div>
+            <?php if ($vista !== 'inicio') { ?>
+    <div class="page-header">
+        <h2><?php echo htmlspecialchars($materia_actual); ?></h2>
+        <p>Docente a cargo: <strong><?php echo htmlspecialchars($docente_asignado); ?></strong></p>
+    </div>
+<?php } ?>
 
             <?php if ($vista === 'plan_evaluacion'): ?>
                 <div class="card">
