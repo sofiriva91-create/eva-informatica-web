@@ -1777,3 +1777,95 @@ header, section, footer {
         transform: translateY(-5px);
         box-shadow: 0 6px 20px rgba(0,0,0,0.15);
     }
+
+    /* ==========================================
+   ESTILOS PARA EL PANEL DE DOCENTE (ADMIN)
+   ========================================== */
+
+/* Barra Superior del Docente */
+.admin-top-bar {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    background: #ffffff !important;
+    padding: 18px 25px !important;
+    border-radius: 12px !important;
+    margin-bottom: 20px !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+}
+
+.admin-title-area h1 {
+    font-size: 1.3rem !important;
+    color: #1e293b !important;
+    margin: 0 0 8px 0 !important;
+}
+
+/* Botones de Selector de Sección (Estilo Pestañas al lado) */
+.section-pills {
+    display: flex !important;
+    gap: 10px !important;
+    align-items: center !important;
+}
+
+.section-pill {
+    padding: 6px 16px !important;
+    border-radius: 6px !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    border: 1px solid #cbd5e1 !important;
+    background: #f1f5f9 !important;
+    color: #475569 !important;
+    transition: all 0.2s ease !important;
+}
+
+.section-pill.active {
+    background: #2563eb !important;
+    color: #ffffff !important;
+    border-color: #2563eb !important;
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2) !important;
+}
+
+.section-pill:hover {
+    background: #e2e8f0 !important;
+    color: #1e293b !important;
+}
+
+/* Tarjetas de Acción Grande (Inicio del Docente) */
+.admin-action-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+    gap: 20px !important;
+    margin-bottom: 25px !important;
+}
+
+.admin-action-card {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    padding: 25px 20px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    color: #1e293b !important;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+}
+
+.admin-action-card:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.1) !important;
+    border-color: #2563eb !important;
+    color: #2563eb !important;
+}
+
+.admin-action-card .card-icon {
+    font-size: 2rem !important;
+    margin-bottom: 12px !important;
+    display: block !important;
+}
+
+.admin-action-card span {
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+}
