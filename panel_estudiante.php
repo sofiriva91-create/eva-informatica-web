@@ -125,13 +125,11 @@ if ($vista === 'plan_evaluacion') {
         <!-- ================= VISTA INICIO ================= -->
         
         <!-- 1. Usuario y Cerrar Sesión en la esquina superior derecha -->
-        <div class="info-usuario">
-    <span>
-        <?php echo htmlspecialchars($nombre_estudiante); ?> 
-        (Sección <?php echo htmlspecialchars($seccion_estudiante); ?> - Estudiante)
-    </span>
-    <a href="logout.php">Cerrar Sesión</a>
-    </div>
+        <div class="user-top-bar">
+            <div class="user-info-text">
+                <span><?php echo htmlspecialchars($nombre_estudiante ?? 'Estudiante'); ?> (Estudiante)</span><br>
+                <a href="logout.php" class="logout-link">Cerrar Sesión</a>
+            </div>
         </div>
 
         <!-- 2. Banner de Bienvenida Amplio -->
