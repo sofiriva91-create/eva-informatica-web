@@ -949,12 +949,13 @@ header nav {
     }
 
     /* El contenido principal se ajusta sin márgenes forzados */
-    .main-wrapper, .content, .auth-wrapper {
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 10px !important;
-        box-sizing: border-box;
-    }
+    .main-wrapper, .content {
+    margin-left: 260px; /* Ajusta este valor según el ancho exacto de tu menú lateral */
+    width: calc(100% - 260px);
+    max-width: 100% !important;
+    box-sizing: border-box;
+    padding: 20px;
+}
 
     /* Las tarjetas o estadísticas se colocan en una sola columna vertical */
     .grid-layout, .card-grid, .stats-container {
