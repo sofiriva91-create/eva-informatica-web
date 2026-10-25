@@ -85,15 +85,12 @@ if ($vista === 'estudiantes') {
     <title>Entorno Virtual - Panel del Docente</title>
     <link rel="stylesheet" href="style.css">
     <style>
-    /* AISLAMIENTO EXCLUSIVO PARA PANEL DE ADMINISTRACIÓN */
     body {
         margin: 0 !important;
         padding: 0 !important;
         overflow-x: hidden !important;
         background-color: #f8f9fa !important;
     }
-
-    /* Asegurar que la barra lateral se quede fija a la izquierda */
     .sidebar {
         position: fixed !important;
         left: 0 !important;
@@ -102,16 +99,11 @@ if ($vista === 'estudiantes') {
         height: 100vh !important;
         z-index: 1000 !important;
     }
-
-    /* Traer el contenido principal de vuelta a la pantalla, justo al lado del menú */
-    .main-wrapper, .panel-contenido, main, .contenido-principal {
+    .main-content {
         margin-left: 250px !important;
-        width: calc(100% - 250px) !important;
-        max-width: 100% !important;
+        width: auto !important;
+        padding: 30px !important;
         box-sizing: border-box !important;
-        position: relative !important;
-        left: auto !important;
-        padding: 20px !important;
     }
 </style>
 </head>
