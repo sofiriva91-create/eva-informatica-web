@@ -1457,3 +1457,22 @@ main, .main-content, .contenido-principal {
     font-weight: 500;
     text-align: right;
 }
+
+/* Hack definitivo para eliminar el espacio vacío en el Inicio */
+.main-wrapper.inicio-completo {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-column: 1 / -1 !important;
+    margin-left: 0 !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+}
+
+/* Asegurar que las tarjetas de inicio se expandan bien */
+.inicio-completo .welcome-banner-wide,
+.inicio-completo .quick-access-grid-3,
+.inicio-completo .daily-quote-card-wide {
+    width: 100% !important;
+    max-width: 100% !important;
+}
