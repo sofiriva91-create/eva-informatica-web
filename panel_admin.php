@@ -82,6 +82,7 @@ if ($vista === 'estudiantes') {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entorno Virtual - Panel del Docente</title>
     <link rel="stylesheet" href="style.css">
     <style>
@@ -358,7 +359,7 @@ if ($vista === 'estudiantes') {
             <h2>📅 Gestión de Horario de Clases (Sección <?php echo $seccion_actual; ?>)</h2>
             <p style="color: #64748b; font-size: 0.95rem;">Sube el archivo oficial con los días y horas de clase para esta sección.</p>
             
-            <form method="POST" action="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=horario" enctype="multipart/form-data">
+            <form method="POST" action="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=horario" enctype="multipart/form-data" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 0; width: 100%;">
                 <input type="hidden" name="seccion" value="<?php echo $seccion_actual; ?>">
                 
                 <div style="margin-bottom: 15px;">
