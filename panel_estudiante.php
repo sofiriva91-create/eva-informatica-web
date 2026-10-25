@@ -119,7 +119,7 @@ if ($vista === 'plan_evaluacion') {
     <div class="main-wrapper">
         
         <div class="header">
-            <?php if ($vista === 'inicio'): ?>
+            <?php if ($vista === 'inicio') { ?>
     <!-- PEGA TU BLOQUE AQUÍ -->
     
     <!-- Banner de Bienvenida -->
@@ -163,14 +163,15 @@ if ($vista === 'plan_evaluacion') {
         <div class="quote-header">
             <h4>💡 Reflexión del Día</h4>
         </div>
-        <blockquote>
+<blockquote>
             "<?php echo htmlspecialchars($frase_del_dia ?? 'La educación es el arma más poderosa que puedes usar para cambiar el mundo.'); ?>"
         </blockquote>
         <?php if (!empty($autor_frase)): ?>
             <cite>— <?php echo htmlspecialchars($autor_frase); ?></cite>
         <?php endif; ?>
     </div>
-<?php endif; ?>
+
+<?php } ?>
             <!-- Botón de menú desplegable para celulares -->
 <button class="menu-toggle" onclick="toggleMenu()">☰ Menú</button>
             <div class="header-title">
