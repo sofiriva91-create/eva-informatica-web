@@ -358,7 +358,7 @@ if ($vista === 'estudiantes') {
             <h2>📅 Gestión de Horario de Clases (Sección <?php echo $seccion_actual; ?>)</h2>
             <p style="color: #64748b; font-size: 0.95rem;">Sube el archivo oficial con los días y horas de clase para esta sección.</p>
             
-            <form action="subir_horario.php" method="POST" enctype="multipart/form-data" style="margin-top: 20px;">
+            <form method="POST" action="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=horario" enctype="multipart/form-data">
                 <input type="hidden" name="seccion" value="<?php echo $seccion_actual; ?>">
                 
                 <div style="margin-bottom: 15px;">
