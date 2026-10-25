@@ -1678,3 +1678,102 @@ header, section, footer {
     text-decoration: underline !important;
 }
 
+/* Estilos limpios para la cabecera y banner idéntico al de estudiantes */
+    .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 25px;
+        gap: 15px;
+    }
+    .admin-header h1 {
+        margin: 0;
+        font-size: 24px;
+        color: #333;
+    }
+    .user-section {
+        text-align: right;
+    }
+    .user-name {
+        font-weight: bold;
+        color: #333;
+        font-size: 15px;
+    }
+    .logout-link {
+        color: #d9534f;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        margin-left: 5px;
+    }
+    .logout-link:hover {
+        text-decoration: underline;
+    }
+    
+    /* Banner estilo estudiante */
+    .welcome-banner {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .welcome-banner h2 {
+        margin: 0 0 10px 0;
+        font-size: 26px;
+    }
+    .welcome-banner p {
+        margin: 0;
+        opacity: 0.9;
+        font-size: 14px;
+        max-width: 600px;
+        line-height: 1.5;
+    }
+
+    /* Estilo para el selector de sección superior */
+    .section-selector-top {
+        margin-top: 5px;
+        font-size: 13px;
+        color: #555;
+    }
+    .section-selector-top select {
+        padding: 4px 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        background: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .action-buttons-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+    .btn-accion {
+        background: white;
+        padding: 18px;
+        border-radius: 10px;
+        text-align: center;
+        text-decoration: none;
+        color: #333;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        font-weight: bold;
+        display: block;
+        cursor: pointer;
+    }
+    .btn-pdf { border-left: 4px solid #2a5298; }
+    .btn-youtube { border-left: 4px solid #ff0000; }
+    .btn-estudiantes { border-left: 4px solid #28a745; }
+
+    .btn-accion:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
