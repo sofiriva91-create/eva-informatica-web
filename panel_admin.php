@@ -108,9 +108,74 @@ if ($vista === 'estudiantes') {
         top: 0 !important;
         width: auto !important;
         margin: 0 !important;
-        /* Aumentamos el espacio de arriba para que el título baje y respire */
         padding: 40px 30px 30px 30px !important; 
         box-sizing: border-box !important; 
+    }
+
+    /* Estilos limpios para la cabecera y banner */
+    .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+        gap: 15px;
+    }
+    .admin-header h1 {
+        margin: 0;
+        font-size: 24px;
+        color: #333;
+    }
+    .user-badge {
+        background: white;
+        padding: 8px 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .welcome-banner {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        color: white;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .welcome-banner h2 {
+        margin: 0 0 8px 0;
+        font-size: 22px;
+    }
+    .welcome-banner p {
+        margin: 0;
+        opacity: 0.9;
+        font-size: 14px;
+    }
+
+    /* Botones de acceso rápido con efecto elevación */
+    .action-buttons-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+    .btn-accion {
+        background: white;
+        padding: 18px;
+        border-radius: 10px;
+        text-align: center;
+        text-decoration: none;
+        color: #333;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        font-weight: bold;
+        display: block;
+    }
+    .btn-pdf { border-left: 4px solid #2a5298; }
+    .btn-youtube { border-left: 4px solid #ff0000; }
+    .btn-estudiantes { border-left: 4px solid #28a745; }
+
+    .btn-accion:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
     }
 </style>
 </head>
@@ -131,13 +196,36 @@ if ($vista === 'estudiantes') {
     </div>
 
 <div class="main-content">
-        <div class="header-top">
+    
+    <!-- Cabecera limpia: Título y Datos del Docente a la derecha -->
+    <div class="admin-header">
+        <div>
             <h1>Introducción a la Informática (Sección <?php echo $seccion_actual; ?>)</h1>
-            <div class="user-info">
-                <span>👤 <?php echo htmlspecialchars($_SESSION['nombre']); ?> (Docente)</span>
-                <a href="logout.php">Cerrar Sesión</a>
-            </div>
         </div>
+        <div class="user-badge">
+            <span>👤 <?php echo $_SESSION['nombre']; ?> (Docente)</span> | 
+            <a href="logout.php" style="color: #d9534f; text-decoration: none; font-weight: bold;">Cerrar Sesión</a>
+        </div>
+    </div>
+
+    <!-- Banner de Bienvenida Azul -->
+    <div class="welcome-banner">
+        <h2>¡Bienvenido/a, <?php echo $_SESSION['nombre']; ?>!</h2>
+        <p>Panel de control docente - Administra de forma rápida los recursos, guías y notas de tus estudiantes.</p>
+    </div>
+
+    <!-- Botones de Acción Rápida con Efecto Elevación -->
+    <div class="action-buttons-grid">
+        <a href="#crear-contenido" class="btn-accion btn-pdf">
+            📄 Subir PDF / Guía
+        </a>
+        <a href="#crear-contenido" class="btn-accion btn-youtube">
+            ▶️ Pegar Enlace YouTube
+        </a>
+        <a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=estudiantes" class="btn-accion btn-estudiantes">
+            👥 Ver Estudiantes y Notas
+        </a>
+    </div>
 
         <div class="admin-banner">
             <h2>Administración de Curso: Introducción a la Informática</h2>
