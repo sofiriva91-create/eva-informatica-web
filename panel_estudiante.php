@@ -115,7 +115,7 @@ if ($vista === 'plan_evaluacion') {
         </ul>
     </div>
 
-<div class="main-wrapper">
+<div class="main-wrapper <?php echo ($vista === 'inicio') ? 'inicio-completo' : ''; ?>">
 
     <!-- Header vacío de soporte -->
     <div class="header"></div>
