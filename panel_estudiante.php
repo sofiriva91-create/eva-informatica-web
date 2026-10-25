@@ -120,9 +120,55 @@ if ($vista === 'plan_evaluacion') {
         
         <div class="header">
             <?php if ($vista === 'inicio'): ?>
-    <div style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        <h1>¡Bienvenido/a, <?php echo htmlspecialchars($nombre_estudiante); ?>!</h1>
-        <p>Selecciona una materia en el menú lateral para ver tus materiales de estudio y clases.</p>
+    <!-- PEGA TU BLOQUE AQUÍ -->
+    
+    <!-- Banner de Bienvenida -->
+    <div class="welcome-banner">
+        <div class="welcome-content">
+            <h2>¡Hola, <?php echo htmlspecialchars($nombre_estudiante); ?>! 👋</h2>
+            <p>Qué bueno tenerte de vuelta en el Entorno Virtual. Revisa tus materias y mantén el ritmo este semestre.</p>
+        </div>
+        <div class="welcome-icon">🎓</div>
+    </div>
+
+    <!-- Botones de Acceso Rápido -->
+    <div class="quick-access-container">
+        <a href="panel_estudiante.php?vista=horario" class="quick-card">
+            <div class="quick-icon">📅</div>
+            <div class="quick-info">
+                <h3>Horario de Clases</h3>
+                <p>Consulta tus días y horas</p>
+            </div>
+        </a>
+
+        <a href="panel_estudiante.php?vista=plan_evaluacion" class="quick-card">
+            <div class="quick-icon">📋</div>
+            <div class="quick-info">
+                <h3>Plan de Evaluación</h3>
+                <p>Fechas y ponderaciones</p>
+            </div>
+        </a>
+
+        <a href="panel_estudiante.php?vista=calificaciones" class="quick-card">
+            <div class="quick-icon">📊</div>
+            <div class="quick-info">
+                <h3>Mis Calificaciones</h3>
+                <p>Revisa tus notas actuales</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- Frase de Motivación del Día -->
+    <div class="daily-quote-card">
+        <div class="quote-header">
+            <h4>💡 Reflexión del Día</h4>
+        </div>
+        <blockquote>
+            "<?php echo htmlspecialchars($frase_del_dia ?? 'La educación es el arma más poderosa que puedes usar para cambiar el mundo.'); ?>"
+        </blockquote>
+        <?php if (!empty($autor_frase)): ?>
+            <cite>— <?php echo htmlspecialchars($autor_frase); ?></cite>
+        <?php endif; ?>
     </div>
 <?php endif; ?>
             <!-- Botón de menú desplegable para celulares -->
