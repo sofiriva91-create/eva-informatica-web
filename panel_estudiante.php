@@ -75,7 +75,7 @@ if ($vista === 'plan_evaluacion') {
         <div class="sidebar-brand">
             🖥️ Entorno Virtual PIU
         </div>
-        <a href="panel_estudiante.php?vista=inicio" class="<?php echo ($vista == 'incio') ? 'active' : ''; ?>">
+        <a href="panel_estudiante.php?vista=dashboard" class="<?php echo ($vista == 'incio') ? 'active' : ''; ?>">
     <i class="fas fa-home"></i> Inicio
         </a>
         <ul class="sidebar-menu">
