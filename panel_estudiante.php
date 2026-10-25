@@ -115,13 +115,22 @@ if ($vista === 'plan_evaluacion') {
         </ul>
     </div>
 
-   <div class="main-wrapper">
+<div class="main-wrapper">
 
+    <!-- Header limpio y vacío -->
     <div class="header">
-        <!-- Tu header (vacío por ahora) -->
-    </di<?php if ($vista === 'inicio') { ?>
+    </div>
 
-    <!-- Header / Barra Superior con Usuario y Cerrar Sesión a la esquina -->
+    <!-- AQUÍ ABRES LA VISTA DE INICIO LIMPIAMENTE -->
+    <?php if ($vista === 'inicio') { ?>
+
+        <!-- Tu barra de usuario en la esquina -->
+        <div class="user-top-bar">
+            <div class="user-info-text">
+                <span><?php echo htmlspecialchars($nombre_estudiante ?? 'Estudiante'); ?> (Estudiante)</span><br>
+                <a href="logout.php" class="logout-link">Cerrar Sesión</a>
+            </div>
+        </div>
     <div class="user-top-bar">
         <div class="user-info-text">
             <span><?php echo htmlspecialchars($nombre_estudiante ?? 'Estudiante'); ?> (Estudiante)</span><br>
