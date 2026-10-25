@@ -67,8 +67,30 @@ if ($vista === 'plan_evaluacion') {
     <link rel="stylesheet" href="style.css">
 
     <style>
-        body { overflow-x: hidden; }
-    </style>
+    /* --- HACK DE EMERGENCIA Y ACOMODO DE USUARIO --- */
+    * {
+        box-sizing: border-box !important;
+    }
+    body {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background-color: #f8f9fa !important;
+        overflow-x: hidden !important;
+    }
+    header, section, main, article, footer, div {
+        max-width: 100%;
+    }
+
+    /* Hack para subir y fijar la barra superior del usuario a la esquina derecha */
+    .user-top-bar, .info-usuario { /* Cambia .user-top-bar por la clase o ID real que uses en tu HTML para este bloque */
+        position: absolute;
+        top: 15px;
+        right: 30px;
+        z-index: 1000;
+        text-align: right;
+    }
+</style>
 </head>
 <body class="panel-body">
 
