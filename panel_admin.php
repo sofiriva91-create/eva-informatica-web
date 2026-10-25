@@ -87,9 +87,12 @@ if ($vista === 'estudiantes') {
     <style>
     body { 
         margin: 0 !important; 
+        padding: 0 !important;
         overflow-x: hidden !important; 
         background-color: #f8f9fa !important; 
     }
+    
+    /* El menú se queda fijo y quieto a la izquierda */
     .sidebar { 
         position: fixed !important; 
         left: 0 !important; 
@@ -98,12 +101,17 @@ if ($vista === 'estudiantes') {
         height: 100vh !important; 
         z-index: 9999 !important; 
     }
+    
+    /* El contenido ocupa exactamente desde los 250px hasta el final de la pantalla */
     .main-content { 
-        margin-left: 250px !important; 
-        width: calc(100% - 250px) !important; 
+        position: absolute !important;
+        left: 250px !important;
+        right: 0 !important;
+        top: 0 !important;
+        width: auto !important;
+        margin: 0 !important;
         padding: 30px !important; 
         box-sizing: border-box !important; 
-        position: relative !important; 
     }
 </style>
 </head>
