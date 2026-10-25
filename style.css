@@ -1615,3 +1615,49 @@ header, section, footer, .portada, .servicios-educativos, .nuestra-universidad {
     box-sizing: border-box !important;
     float: none !important;
 }
+
+/* ==========================================================
+   SOLUCIÓN DEFINITIVA Y SEGURA PARA TODO EL SITIO
+   ========================================================== */
+
+/* 1. La página de inicio (index) ocupa todo el ancho y se centra sin afectar nada más */
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+/* 2. Las secciones principales del inicio ocupan todo el ancho */
+header, section, footer {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* 3. Las cajas internas del inicio se centran ordenadamente */
+.contenedor, .portada-contenido {
+    max-width: 1200px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+
+/* 4. PROTECCIÓN PARA LOS PANELES (Para que la barra lateral y el contenido coexistan) */
+.sidebar {
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 250px !important;
+    height: 100vh !important;
+    z-index: 100;
+}
+
+.main-wrapper, .panel-contenido {
+    margin-left: 250px !important;
+    width: calc(100% - 250px) !important;
+    box-sizing: border-box !important;
+}
