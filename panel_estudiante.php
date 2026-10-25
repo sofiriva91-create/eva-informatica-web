@@ -119,7 +119,66 @@ if ($vista === 'plan_evaluacion') {
 
     <div class="header">
         <!-- Tu header (vacío por ahora) -->
-    </div> <!-- <--- 1. Cierra el header aquí mismo con un div -->
+    </di<?php if ($vista === 'inicio') { ?>
+
+    <!-- Header / Barra Superior con Usuario y Cerrar Sesión a la esquina -->
+    <div class="user-top-bar">
+        <div class="user-info-text">
+            <span><?php echo htmlspecialchars($nombre_estudiante ?? 'Estudiante'); ?> (Estudiante)</span><br>
+            <a href="logout.php" class="logout-link">Cerrar Sesión</a>
+        </div>
+    </div>
+
+    <!-- 1. Banner de Bienvenida Amplio -->
+    <div class="welcome-banner-wide">
+        <div class="welcome-content">
+            <h2>¡Hola, <?php echo htmlspecialchars($nombre_estudiante); ?>! 👋</h2>
+            <p>Qué bueno tenerte de vuelta en el Entorno Virtual de la UPTAAPC. Revisa tus materias, mantén el ritmo este semestre y alcanza todas tus metas académicas.</p>
+        </div>
+        <div class="welcome-icon">🎓</div>
+    </div>
+
+    <!-- 2. Botones de Acceso Rápido en Fila de 3 -->
+    <div class="quick-access-grid-3">
+        <a href="panel_estudiante.php?vista=horario" class="quick-card">
+            <div class="quick-icon">📅</div>
+            <div class="quick-info">
+                <h3>Horario de Clases</h3>
+                <p>Consulta tus días y horas</p>
+            </div>
+        </a>
+
+        <a href="panel_estudiante.php?vista=plan_evaluacion" class="quick-card">
+            <div class="quick-icon">📋</div>
+            <div class="quick-info">
+                <h3>Plan de Evaluación</h3>
+                <p>Fechas y ponderaciones</p>
+            </div>
+        </a>
+
+        <a href="panel_estudiante.php?vista=calificaciones" class="quick-card">
+            <div class="quick-icon">📊</div>
+            <div class="quick-info">
+                <h3>Mis Calificaciones</h3>
+                <p>Revisa tus notas actuales</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- 3. Frase de Motivación Amplia -->
+    <div class="daily-quote-card-wide">
+        <div class="quote-header">
+            <h4>💡 Reflexión del Día</h4>
+        </div>
+        <blockquote>
+            "<?php echo htmlspecialchars($frase_del_dia ?? 'La educación es el arma más poderosa que puedes usar para cambiar el mundo.'); ?>"
+        </blockquote>
+        <?php if (!empty($autor_frase)): ?>
+            <cite>— <?php echo htmlspecialchars($autor_frase); ?></cite>
+        <?php endif; ?>
+    </div>
+
+<?php } ?>v> <!-- <--- 1. Cierra el header aquí mismo con un div -->
 
     <!-- AQUÍ EMPIEZA EL INICIO -->
     <?php if ($vista === 'inicio') { ?>
