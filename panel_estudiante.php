@@ -1,7 +1,9 @@
 <?php
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
 include('conexion.php');
 // Obtener datos del estudiante actual para evitar errores
 $cedula_estudiante = '';
@@ -77,7 +79,7 @@ if ($vista === 'plan_evaluacion') {
         </div>
         <ul class="sidebar-menu">
     <li>
-        <a href="panel_estudiante.php?vista=dashboard" class="<?php echo ($vista == 'dashboard') ? 'active' : ''; ?>">
+        <a href="panel_estudiante.php?vista=inicio" class="<?php echo ($vista == 'inicio') ? 'active' : ''; ?>">
             <i class="fas fa-home"></i> Inicio
         </a>
     </li>
