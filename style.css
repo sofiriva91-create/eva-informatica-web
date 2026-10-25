@@ -1646,18 +1646,34 @@ header, section, footer {
     padding-right: 20px !important;
 }
 
-/* 4. PROTECCIÓN PARA LOS PANELES (Para que la barra lateral y el contenido coexistan) */
-.sidebar {
-    position: fixed !important;
-    left: 0 !important;
-    top: 0 !important;
-    width: 250px !important;
-    height: 100vh !important;
-    z-index: 100;
+.user-top-bar {
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    background: #ffffff !important;
+    padding: 12px 25px !important;
+    border-radius: 8px !important;
+    margin-bottom: 20px !important;
+    border: 1px solid #e2e8f0 !important;
 }
 
-.main-wrapper, .panel-contenido {
-    margin-left: 250px !important;
-    width: calc(100% - 250px) !important;
-    box-sizing: border-box !important;
+.user-info-text {
+    text-align: right !important;
+}
+
+.user-main-text {
+    font-weight: bold !important;
+    color: #0f172a !important;
+    font-size: 0.95rem !important;
+}
+
+.logout-link {
+    color: #dc2626 !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+}
+
+.logout-link:hover {
+    text-decoration: underline !important;
 }
