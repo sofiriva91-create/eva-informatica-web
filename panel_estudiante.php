@@ -117,77 +117,71 @@ if ($vista === 'plan_evaluacion') {
 
 <div class="main-wrapper">
 
-    <!-- Header limpio y vacío -->
-    <div class="header">
-    </div>
+    <!-- Header vacío de soporte -->
+    <div class="header"></div>
 
-    <!-- AQUÍ ABRES LA VISTA DE INICIO LIMPIAMENTE -->
     <?php if ($vista === 'inicio') { ?>
-
-        <!-- Tu barra de usuario en la esquina -->
+        
+        <!-- ================= VISTA INICIO ================= -->
+        
+        <!-- 1. Usuario y Cerrar Sesión en la esquina superior derecha -->
         <div class="user-top-bar">
             <div class="user-info-text">
                 <span><?php echo htmlspecialchars($nombre_estudiante ?? 'Estudiante'); ?> (Estudiante)</span><br>
                 <a href="logout.php" class="logout-link">Cerrar Sesión</a>
             </div>
         </div>
-    <div class="user-top-bar">
-        <div class="user-info-text">
-            <span><?php echo htmlspecialchars($nombre_estudiante ?? 'Estudiante'); ?> (Estudiante)</span><br>
-            <a href="logout.php" class="logout-link">Cerrar Sesión</a>
-        </div>
-    </div>
 
-    <!-- 1. Banner de Bienvenida Amplio -->
-    <div class="welcome-banner-wide">
-        <div class="welcome-content">
-            <h2>¡Hola, <?php echo htmlspecialchars($nombre_estudiante); ?>! 👋</h2>
-            <p>Qué bueno tenerte de vuelta en el Entorno Virtual de la UPTAAPC. Revisa tus materias, mantén el ritmo este semestre y alcanza todas tus metas académicas.</p>
-        </div>
-        <div class="welcome-icon">🎓</div>
-    </div>
-
-    <!-- 2. Botones de Acceso Rápido en Fila de 3 -->
-    <div class="quick-access-grid-3">
-        <a href="panel_estudiante.php?vista=horario" class="quick-card">
-            <div class="quick-icon">📅</div>
-            <div class="quick-info">
-                <h3>Horario de Clases</h3>
-                <p>Consulta tus días y horas</p>
+        <!-- 2. Banner de Bienvenida Amplio -->
+        <div class="welcome-banner-wide">
+            <div class="welcome-content">
+                <h2>¡Hola, <?php echo htmlspecialchars($nombre_estudiante); ?>! 👋</h2>
+                <p>Qué bueno tenerte de vuelta en el Entorno Virtual de la UPTAAPC. Revisa tus materias, mantén el ritmo este semestre y alcanza todas tus metas académicas.</p>
             </div>
-        </a>
-
-        <a href="panel_estudiante.php?vista=plan_evaluacion" class="quick-card">
-            <div class="quick-icon">📋</div>
-            <div class="quick-info">
-                <h3>Plan de Evaluación</h3>
-                <p>Fechas y ponderaciones</p>
-            </div>
-        </a>
-
-        <a href="panel_estudiante.php?vista=calificaciones" class="quick-card">
-            <div class="quick-icon">📊</div>
-            <div class="quick-info">
-                <h3>Mis Calificaciones</h3>
-                <p>Revisa tus notas actuales</p>
-            </div>
-        </a>
-    </div>
-
-    <!-- 3. Frase de Motivación Amplia -->
-    <div class="daily-quote-card-wide">
-        <div class="quote-header">
-            <h4>💡 Reflexión del Día</h4>
+            <div class="welcome-icon">🎓</div>
         </div>
-        <blockquote>
-            "<?php echo htmlspecialchars($frase_del_dia ?? 'La educación es el arma más poderosa que puedes usar para cambiar el mundo.'); ?>"
-        </blockquote>
-        <?php if (!empty($autor_frase)): ?>
-            <cite>— <?php echo htmlspecialchars($autor_frase); ?></cite>
-        <?php endif; ?>
-    </div>
 
-        <?php } ?>
+        <!-- 3. Botones de Acceso Rápido en Fila de 3 -->
+        <div class="quick-access-grid-3">
+            <a href="panel_estudiante.php?vista=horario" class="quick-card">
+                <div class="quick-icon">📅</div>
+                <div class="quick-info">
+                    <h3>Horario de Clases</h3>
+                    <p>Consulta tus días y horas</p>
+                </div>
+            </a>
+
+            <a href="panel_estudiante.php?vista=plan_evaluacion" class="quick-card">
+                <div class="quick-icon">📋</div>
+                <div class="quick-info">
+                    <h3>Plan de Evaluación</h3>
+                    <p>Fechas y ponderaciones</p>
+                </div>
+            </a>
+
+            <a href="panel_estudiante.php?vista=calificaciones" class="quick-card">
+                <div class="quick-icon">📊</div>
+                <div class="quick-info">
+                    <h3>Mis Calificaciones</h3>
+                    <p>Revisa tus notas actuales</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- 4. Frase de Motivación Amplia -->
+        <div class="daily-quote-card-wide">
+            <div class="quote-header">
+                <h4>💡 Reflexión del Día</h4>
+            </div>
+            <blockquote>
+                "<?php echo htmlspecialchars($frase_del_dia ?? 'La educación es el arma más poderosa que puedes usar para cambiar el mundo.'); ?>"
+            </blockquote>
+            <?php if (!empty($autor_frase)): ?>
+                <cite>— <?php echo htmlspecialchars($autor_frase); ?></cite>
+            <?php endif; ?>
+        </div>
+
+    <?php } else ?>
 
     <!-- De aquí en adelante sigue todo tu código de materias, calificaciones y horario que ya tenías -->
             <!-- Botón de menú desplegable para celulares -->
