@@ -196,7 +196,7 @@ if ($vista === 'estudiantes') {
 
 <div class="main-content">
 
-    <!-- 1. CABECERA SUPERIOR (Siempre visible: Materia, Sección A/B, Nombre y Cerrar Sesión) -->
+    <!-- CABECERA SUPERIOR (Siempre visible) -->
     <div class="admin-top-bar">
         <div class="admin-title-area">
             <h1><?php echo htmlspecialchars($materia_docente ?? 'Introducción a la Informática'); ?></h1>
@@ -216,21 +216,18 @@ if ($vista === 'estudiantes') {
     </div>
 
     <?php 
-    // Controlar qué se muestra según el menú lateral
     $vista = isset($_GET['vista']) ? $_GET['vista'] : 'inicio';
     ?>
 
     <!-- ======================================================== -->
-    <!-- VISTA 1: INICIO (SOLO SALUDO Y LOS 3 BOTONES GRANDES) -->
+    <!-- VISTA 1: INICIO (SOLO SALUDO Y BOTONES) -->
     <!-- ======================================================== -->
     <?php if ($vista === 'inicio'): ?>
-        
         <div class="welcome-banner" style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 25px;">
             <h2 style="margin: 0 0 10px 0;">¡Hola, <?php echo htmlspecialchars($_SESSION['nombre'] ?? 'Docente'); ?>! 👋</h2>
-            <p style="margin: 0; opacity: 0.95;">Qué bueno tenerte de vuelta en el Entorno Virtual de la UPTAAPC. Selecciona una opción en el menú lateral para administrar tus contenidos.</p>
+            <p style="margin: 0; opacity: 0.95;">Qué bueno tenerte de vuelta en el Entorno Virtual de la UPTAAPC. Selecciona una opción en el menú lateral o utiliza los accesos rápidos para administrar tus contenidos.</p>
         </div>
 
-        <!-- Botones de Acción Rápidos (Grandes) -->
         <div class="action-buttons-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
             <a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=materiales" class="admin-action-card" style="background: #fff; padding: 25px; border-radius: 12px; text-align: center; text-decoration: none; color: #1e293b; border: 1px solid #e2e8f0; display: block; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
                 <span style="font-size: 2rem; display: block; margin-bottom: 10px;">📄</span>
@@ -247,24 +244,116 @@ if ($vista === 'estudiantes') {
         </div>
 
     <!-- ======================================================== -->
-    <!-- VISTA 2: MATERIALES Y TAREAS -->
+    <!-- VISTA 2: MATERIALES Y TAREAS (SUBIR PDF Y YOUTUBE) -->
     <!-- ======================================================== -->
     <?php elseif ($vista === 'materiales'): ?>
-        <h2>Materiales y Tareas (Sección <?php echo $seccion_actual; ?>)</h2>
-        <p>Aquí puedes subir guías, PDFs y enlaces de YouTube para tus estudiantes.</p>
-        <!-- Deja aquí el formulario de subida que ya tenías -->
+        <div style="background: #fff; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 25px;">
+            <h2>📁 Materiales, Guías y Enlaces de YouTube (Sección <?php echo $seccion_actual; ?>)</h2>
+            <p style="color: #64748b; font-size: 0.95rem;">Sube documentos PDF desde tu computadora o comparte enlaces de clases de YouTube para los estudiantes de esta sección.</p>
+            
+            <form action="subir_material.php" method="POST" enctype="multipart/form-data" style="margin-top: 20px;">
+                <input type="hidden" name="seccion" value="<?php echo $seccion_actual; ?>">
+                
+                <div style="margin-bottom: 15px;">
+                    <label style="font-weight: 600; display: block; margin-bottom: 5px;">Título del Recurso:</label>
+                    <input type="text" name="titulo" required placeholder="Ej: Guía de Ejercicios N° 1" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;">
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label style="font-weight: 600; display: block; margin-bottom: 5px;">Tipo de Publicación:</label>
+                    <select name="tipo" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;">
+                        <option value="pdf">📄 Subir Guía / PDF desde la PC</option>
+                        <option value="youtube">📺 Enlace de Video de YouTube</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label style="font-weight: 600; display: block; margin-bottom: 5px;">Seleccionar Archivo PDF:</label>
+                    <input type="file" name="archivo_pdf" style="padding: 5px;">
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="font-weight: 600; display: block; margin-bottom: 5px;">O Enlace de YouTube:</label>
+                    <input type="url" name="enlace_youtube" placeholder="https://www.youtube.com/watch?v=..." style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;">
+                </div>
+
+                <button type="submit" style="background: #2563eb; color: #fff; padding: 10px 20px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Publicar Contenido</button>
+            </form>
+        </div>
 
     <!-- ======================================================== -->
-    <!-- VISTA 3: ESTUDIANTES Y NOTAS -->
+    <!-- VISTA 3: ESTUDIANTES Y NOTAS (4 UNIDADES) -->
     <!-- ======================================================== -->
     <?php elseif ($vista === 'estudiantes'): ?>
-        <h2>Estudiantes y Calificaciones (Sección <?php echo $seccion_actual; ?>)</h2>
+        <div style="background: #fff; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 25px;">
+            <h2>👥 Control de Estudiantes y Notas (Sección <?php echo $seccion_actual; ?>)</h2>
+            <p style="color: #64748b; font-size: 0.95rem;">Visualiza los estudiantes inscritos en tu sección y asigna las calificaciones de las 4 unidades.</p>
+            
+            <div style="overflow-x: auto; margin-top: 20px;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="background: #f1f5f9; border-bottom: 2px solid #cbd5e1;">
+                            <th style="padding: 12px;">Estudiante</th>
+                            <th style="padding: 12px; text-align: center;">Unidad I</th>
+                            <th style="padding: 12px; text-align: center;">Unidad II</th>
+                            <th style="padding: 12px; text-align: center;">Unidad III</th>
+                            <th style="padding: 12px; text-align: center;">Unidad IV</th>
+                            <th style="padding: 12px; text-align: center;">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $sec_param = $seccion_actual;
+                        $query_est = $conexion->prepare("SELECT id_usuario, nombre FROM usuarios WHERE rol = 'estudiante' AND seccion = ?");
+                        if ($query_est) {
+                            $query_est->bind_param("s", $sec_param);
+                            $query_est->execute();
+                            $res_est = $query_est->get_result();
+                            
+                            if ($res_est->num_rows > 0) {
+                                while ($row_est = $res_est->fetch_assoc()) {
+                                    echo '<tr style="border-bottom: 1px solid #e2e8f0;">';
+                                    echo '<td style="padding: 12px; font-weight: 600; color: #1e293b;">' . htmlspecialchars($row_est['nombre']) . '</td>';
+                                    echo '<form action="guardar_notas.php" method="POST">';
+                                    echo '<input type="hidden" name="id_estudiante" value="' . $row_est['id_usuario'] . '">';
+                                    echo '<input type="hidden" name="seccion" value="' . $seccion_actual . '">';
+                                    echo '<td style="padding: 12px; text-align: center;"><input type="number" step="0.1" name="nota1" style="width: 60px; text-align: center; padding: 5px; border: 1px solid #cbd5e1; border-radius: 4px;" placeholder="0-20"></td>';
+                                    echo '<td style="padding: 12px; text-align: center;"><input type="number" step="0.1" name="nota2" style="width: 60px; text-align: center; padding: 5px; border: 1px solid #cbd5e1; border-radius: 4px;" placeholder="0-20"></td>';
+                                    echo '<td style="padding: 12px; text-align: center;"><input type="number" step="0.1" name="nota3" style="width: 60px; text-align: center; padding: 5px; border: 1px solid #cbd5e1; border-radius: 4px;" placeholder="0-20"></td>';
+                                    echo '<td style="padding: 12px; text-align: center;"><input type="number" step="0.1" name="nota4" style="width: 60px; text-align: center; padding: 5px; border: 1px solid #cbd5e1; border-radius: 4px;" placeholder="0-20"></td>';
+                                    echo '<td style="padding: 12px; text-align: center;"><button type="submit" style="background: #059669; color: #fff; border: none; padding: 6px 12px; border-radius: 4px; font-weight: 600; cursor: pointer;">Guardar</button></td>';
+                                    echo '</form>';
+                                    echo '</tr>';
+                                }
+                            } else {
+                                echo '<tr><td colspan="6" style="padding: 20px; text-align: center; color: #64748b;">No hay estudiantes registrados en la Sección ' . $sec_param . '.</td></tr>';
+                            }
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
     <!-- ======================================================== -->
     <!-- VISTA 4: HORARIO -->
     <!-- ======================================================== -->
     <?php elseif ($vista === 'horario'): ?>
-        <h2>Horario de Clases (Sección <?php echo $seccion_actual; ?>)</h2>
+        <div style="background: #fff; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 25px;">
+            <h2>📅 Gestión de Horario de Clases (Sección <?php echo $seccion_actual; ?>)</h2>
+            <p style="color: #64748b; font-size: 0.95rem;">Sube el archivo oficial con los días y horas de clase para esta sección.</p>
+            
+            <form action="subir_horario.php" method="POST" enctype="multipart/form-data" style="margin-top: 20px;">
+                <input type="hidden" name="seccion" value="<?php echo $seccion_actual; ?>">
+                
+                <div style="margin-bottom: 15px;">
+                    <label style="font-weight: 600; display: block; margin-bottom: 5px;">Archivo de Horario (PDF o Word):</label>
+                    <input type="file" name="archivo_horario" required style="padding: 5px;">
+                </div>
+
+                <button type="submit" style="background: #059669; color: #fff; padding: 10px 20px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Subir Horario</button>
+            </form>
+        </div>
 
     <?php endif; ?>
 
