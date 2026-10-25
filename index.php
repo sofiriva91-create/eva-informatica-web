@@ -4,21 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EVA Informática - UPTAAPC</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=999">
     <link rel="icon" type="image/png" href="logo-uptaapc.png">
     <style>
-    /* Forzar ancho completo y eliminar cualquier margen de panel heredado en el index */
+    /* --- HACK NUCLEAR DE EMERGENCIA --- */
+    * {
+        box-sizing: border-box !important;
+    }
     body {
+        display: block !important;
         margin: 0 !important;
         padding: 0 !important;
-        width: 100% !important;
+        background-color: #f8f9fa !important;
         overflow-x: hidden !important;
     }
-    header, main, section, .main-wrapper {
-        margin-left: 0 !important;
+    /* Forzar que los bloques principales se apilen verticalmente uno debajo del otro */
+    header, section, main, article, footer {
         width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
+        float: none !important;
+        display: block !important;
+        clear: both !important;
     }
 </style>
 </head>
