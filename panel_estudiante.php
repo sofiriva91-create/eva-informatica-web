@@ -121,60 +121,63 @@ if ($vista === 'plan_evaluacion') {
         <!-- Tu header (vacío por ahora) -->
     </div> <!-- <--- 1. Cierra el header aquí mismo con un div -->
 
-    <?php if ($vista === 'inicio') { ?> <!-- <--- 2. Abre la vista aquí afuera -->
-    <!-- PEGA TU BLOQUE AQUÍ -->
-    
-    <!-- Banner de Bienvenida -->
-    <div class="welcome-banner">
-        <div class="welcome-content">
-            <h2>¡Hola, <?php echo htmlspecialchars($nombre_estudiante); ?>! 👋</h2>
-            <p>Qué bueno tenerte de vuelta en el Entorno Virtual. Revisa tus materias y mantén el ritmo este semestre.</p>
+    <!-- AQUÍ EMPIEZA EL INICIO -->
+    <?php if ($vista === 'inicio') { ?>
+
+        <!-- 1. Banner de Bienvenida -->
+        <div class="welcome-banner">
+            <div class="welcome-content">
+                <h2>¡Hola, <?php echo htmlspecialchars($nombre_estudiante); ?>! 👋</h2>
+                <p>Qué bueno tenerte de vuelta en el Entorno Virtual. Revisa tus materias y mantén el ritmo este semestre.</p>
+            </div>
+            <div class="welcome-icon">🎓</div>
         </div>
-        <div class="welcome-icon">🎓</div>
-    </div>
 
-    <!-- Botones de Acceso Rápido -->
-    <div class="quick-access-container">
-        <a href="panel_estudiante.php?vista=horario" class="quick-card">
-            <div class="quick-icon">📅</div>
-            <div class="quick-info">
-                <h3>Horario de Clases</h3>
-                <p>Consulta tus días y horas</p>
-            </div>
-        </a>
+        <!-- 2. Botones de Acceso Rápido -->
+        <div class="quick-access-container">
+            <a href="panel_estudiante.php?vista=horario" class="quick-card">
+                <div class="quick-icon">📅</div>
+                <div class="quick-info">
+                    <h3>Horario de Clases</h3>
+                    <p>Consulta tus días y horas</p>
+                </div>
+            </a>
 
-        <a href="panel_estudiante.php?vista=plan_evaluacion" class="quick-card">
-            <div class="quick-icon">📋</div>
-            <div class="quick-info">
-                <h3>Plan de Evaluación</h3>
-                <p>Fechas y ponderaciones</p>
-            </div>
-        </a>
+            <a href="panel_estudiante.php?vista=plan_evaluacion" class="quick-card">
+                <div class="quick-icon">📋</div>
+                <div class="quick-info">
+                    <h3>Plan de Evaluación</h3>
+                    <p>Fechas y ponderaciones</p>
+                </div>
+            </a>
 
-        <a href="panel_estudiante.php?vista=calificaciones" class="quick-card">
-            <div class="quick-icon">📊</div>
-            <div class="quick-info">
-                <h3>Mis Calificaciones</h3>
-                <p>Revisa tus notas actuales</p>
-            </div>
-        </a>
-    </div>
-
-    <!-- Frase de Motivación del Día -->
-    <div class="daily-quote-card">
-        <div class="quote-header">
-            <h4>💡 Reflexión del Día</h4>
+            <a href="panel_estudiante.php?vista=calificaciones" class="quick-card">
+                <div class="quick-icon">📊</div>
+                <div class="quick-info">
+                    <h3>Mis Calificaciones</h3>
+                    <p>Revisa tus notas actuales</p>
+                </div>
+            </a>
         </div>
-<blockquote>
-            "<?php echo htmlspecialchars($frase_del_dia ?? 'La educación es el arma más poderosa que puedes usar para cambiar el mundo.'); ?>"
-        </blockquote>
-        <?php if (!empty($autor_frase)): ?>
-            <cite>— <?php echo htmlspecialchars($autor_frase); ?></cite>
-        <?php endif; ?>
-    </div>
-    
-<?php } ?>
 
+        <!-- 3. Frase de Motivación del Día -->
+        <div class="daily-quote-card">
+            <div class="quote-header">
+                <h4>💡 Reflexión del Día</h4>
+            </div>
+            <blockquote>
+                "<?php echo htmlspecialchars($frase_del_dia ?? 'La educación es el arma más poderosa que puedes usar para cambiar el mundo.'); ?>"
+            </blockquote>
+            <?php if (!empty($autor_frase)): ?>
+                <cite>— <?php echo htmlspecialchars($autor_frase); ?></cite>
+            <?php endif; ?>
+        </div>
+
+    <?php } ?> 
+    <!-- AQUÍ TERMINA EL INICIO Y NO SE FILTRARÁ EN OTRAS VISTAS -->
+
+
+    <!-- De aquí en adelante sigue todo tu código de materias, calificaciones y horario que ya tenías -->
             <!-- Botón de menú desplegable para celulares -->
 <button class="menu-toggle" onclick="toggleMenu()">☰ Menú</button>
             <div class="header-title">
