@@ -75,13 +75,12 @@ if ($vista === 'plan_evaluacion') {
         <div class="sidebar-brand">
             🖥️ Entorno Virtual PIU
         </div>
-        <a href="panel_estudiante.php?vista=dashboard" class="<?php echo ($vista == 'incio') ? 'active' : ''; ?>">
-    <i class="fas fa-home"></i> Inicio
-        </a>
         <ul class="sidebar-menu">
-            <li>
-                <li><a href="panel_estudiante.php?vista=dashboard" class="<?php echo ($vista==='dashboard')?'active':''; ?>">🏠 Inicio</a></li>
-
+    <li>
+        <a href="panel_estudiante.php?vista=dashboard" class="<?php echo ($vista == 'dashboard') ? 'active' : ''; ?>">
+            <i class="fas fa-home"></i> Inicio
+        </a>
+    </li>
                 <li>
     <a href="#" onclick="toggleSubmenu(event)">
         📚 Mis Materias <span class="arrow" style="font-size: 11px; margin-left: 5px;">▾</span>
