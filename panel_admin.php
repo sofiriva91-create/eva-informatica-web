@@ -121,11 +121,9 @@ if ($vista === 'estudiantes') {
         <div class="brand">📁 Entorno Virtual<br>"Informatica-PIU"</div>
         <div>
         <ul>
-            <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=contenido" class="<?php echo ($vista === 'contenido') ? 'active' : ''; ?>">📊 Dashboard</a></li>
-            <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=contenido">📚 Cursos</a></li>
+            <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=contenido" class="<?php echo ($vista === 'contenido') ? 'active' : ''; ?>">📊 Inicio</a></li>
             <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=estudiantes" class="<?php echo ($vista === 'estudiantes') ? 'active' : ''; ?>">👨‍🎓 Estudiantes & Notas</a></li>
             <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=contenido">📄 Materiales y Tareas</a></li>
-            <li><a href="#">💬 Foros</a></li>
             <li><a href="#">📅 Horario</a></li>
             <li><a href="#">❓ Soporte</a></li>
         </ul>
