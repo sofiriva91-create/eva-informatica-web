@@ -84,6 +84,35 @@ if ($vista === 'estudiantes') {
     <meta charset="UTF-8">
     <title>Entorno Virtual - Panel del Docente</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+    body { 
+        margin: 0 !important; 
+        padding: 0 !important;
+        overflow-x: hidden !important; 
+        background-color: #f8f9fa !important; 
+    }
+    
+    .sidebar { 
+        position: fixed !important; 
+        left: 0 !important; 
+        top: 0 !important; 
+        width: 250px !important; 
+        height: 100vh !important; 
+        z-index: 1000 !important; 
+    }
+    
+    .main-content { 
+        position: absolute !important;
+        left: 250px !important;
+        right: 0 !important;
+        top: 0 !important;
+        width: auto !important;
+        margin: 0 !important;
+        /* Aumentamos el espacio de arriba para que el título baje y respire */
+        padding: 40px 30px 30px 30px !important; 
+        box-sizing: border-box !important; 
+    }
+</style>
 </head>
 
 <body>
