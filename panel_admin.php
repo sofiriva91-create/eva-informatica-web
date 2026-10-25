@@ -197,29 +197,45 @@ if ($vista === 'estudiantes') {
 
 <div class="main-content">
     
-    <!-- Cabecera limpia: Título y Datos del Docente a la derecha -->
+    <!-- Cabecera: Título, Selector de Sección y Datos de Sesión a la derecha -->
     <div class="admin-header">
         <div>
             <h1>Introducción a la Informática (Sección <?php echo $seccion_actual; ?>)</h1>
+            <!-- Selector de sección cómodo arriba -->
+            <div class="section-selector-top">
+                <form method="GET" action="panel_admin.php" style="display:inline;">
+                    <input type="hidden" name="vista" value="<?php echo $vista; ?>">
+                    <label for="seccion">Cambiar Sección:</label>
+                    <select name="seccion" id="seccion" onchange="this.form.submit()">
+                        <option value="A" <?php echo ($seccion_actual === 'A') ? 'selected' : ''; ?>>Sección A</option>
+                        <option value="B" <?php echo ($seccion_actual === 'B') ? 'selected' : ''; ?>>Sección B</option>
+                    </select>
+                </form>
+            </div>
         </div>
-        <div class="user-badge">
-            <span>👤 <?php echo $_SESSION['nombre']; ?> (Docente)</span> | 
-            <a href="logout.php" style="color: #d9534f; text-decoration: none; font-weight: bold;">Cerrar Sesión</a>
+        
+        <div class="user-section">
+            <span class="user-name">"<?php echo $_SESSION['nombre']; ?>" — Sección <?php echo $seccion_actual; ?></span><br>
+            <a href="logout.php" class="logout-link">Cerrar Sesión</a>
         </div>
     </div>
 
-    <!-- Banner de Bienvenida Azul -->
+    <!-- Banner de Bienvenida idéntico al de Estudiantes -->
     <div class="welcome-banner">
-        <h2>¡Bienvenido/a, <?php echo $_SESSION['nombre']; ?>!</h2>
-        <p>Panel de control docente - Administra de forma rápida los recursos, guías y notas de tus estudiantes.</p>
+        <div>
+            <h2>¡Hola, <?php echo $_SESSION['nombre']; ?>! 👋</h2>
+            <p>Qué bueno tenerte de vuelta en el Entorno Virtual de la UPTAAPC. Administra las materias, mantén el ritmo este semestre y alcanza todas las metas académicas.</p>
+        </div>
+        <div style="font-size: 50px; opacity: 0.8;">
+            🎓
+        </div>
     </div>
-
-    <!-- Botones de Acción Rápida con Efecto Elevación -->
+    <!-- Botones de Acción Rápida Interactivos -->
     <div class="action-buttons-grid">
-        <a href="#crear-contenido" class="btn-accion btn-pdf">
+        <a href="#crear-contenido" onclick="seleccionarFormulario('PDF')" class="btn-accion btn-pdf">
             📄 Subir PDF / Guía
         </a>
-        <a href="#crear-contenido" class="btn-accion btn-youtube">
+        <a href="#crear-contenido" onclick="seleccionarFormulario('Video')" class="btn-accion btn-youtube">
             ▶️ Pegar Enlace YouTube
         </a>
         <a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=estudiantes" class="btn-accion btn-estudiantes">
@@ -374,6 +390,21 @@ if ($vista === 'estudiantes') {
             campoArchivo.style.display = 'block';
         }
     }
+
+    function seleccionarFormulario(tipo) {
+        var selectTipo = document.getElementById('tipoSelect'); // Asegúrate que tu selector tenga este id
+        if (selectTipo) {
+            if (tipo === 'PDF') {
+                selectTipo.value = 'Subir Guía / PDF'; // O el valor que tenga tu opción en el select
+            } else if (tipo === 'Video') {
+                selectTipo.value = 'Video Tutorial'; // O el valor que tenga tu opción de video
+            }
+            // Ejecutamos tu función existente para que muestre u oculte los campos correspondientes
+            cambiarTipo(); 
+        }
+    }
+</script>
+    
     </script>
 </body>
 </html>
