@@ -106,7 +106,7 @@ if ($vista === 'estudiantes') {
         </ul>
     </div>
 
-    <div class="main-content" style="flex: 1; padding: 20px;">>
+    <div class="main-content" style="flex: 1; padding: 20px;">
         
         <div class="header-top">
             <h1>Introducción a la Informática (Sección <?php echo $seccion_actual; ?>)</h1>
