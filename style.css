@@ -1869,3 +1869,45 @@ header, section, footer {
     font-weight: 600 !important;
     font-size: 1rem !important;
 }
+
+/* --- ESTILOS AISLADOS: Solo actúan dentro del Panel de Administración/Docente --- */
+
+.main-content {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.main-content > div {
+    background: #ffffff !important;
+    padding: 20px !important;
+    border-radius: 12px !important;
+    border: 1px solid #e2e8f0 !important;
+    margin-bottom: 20px !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+}
+
+/* Tablas y campos restringidos únicamente a este panel */
+.main-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.main-content tr {
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.main-content input[type="number"] {
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+.main-content input[type="number"]:focus {
+    border-color: #2563eb;
+    background: #ffffff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
