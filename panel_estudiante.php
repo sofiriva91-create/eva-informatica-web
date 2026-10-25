@@ -286,7 +286,9 @@ if ($vista === 'plan_evaluacion') {
                 </div>
 
             <?php else: ?>
-                
+
+                <?php if ($vista !== 'inicio'): ?>
+
                 <div class="card">
                     <div class="card-title">Materiales de Estudio y Clases Publicadas</div>
                     <?php if ($resultado_archivos && $resultado_archivos->num_rows > 0): ?>
@@ -318,6 +320,7 @@ if ($vista === 'plan_evaluacion') {
         </div>
     </div>
 
+    <?php endif; ?>
     <script>
     function toggleSubmenu(e) {
         e.preventDefault();
