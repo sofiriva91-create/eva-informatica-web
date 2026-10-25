@@ -115,8 +115,7 @@ if ($vista === 'plan_evaluacion') {
         </ul>
     </div>
 
-<div class="main-wrapper <?php echo ($vista === 'inicio') ? 'inicio-completo' : ''; ?>">
-
+<div class="main-wrapper" style="display: block !important; width: calc(100% - 260px) !important; margin-left: 260px !important; max-width: 100% !important; float: none !important; box-sizing: border-box !important; padding: 20px !important;">
     <!-- Header vacío de soporte -->
     <div class="header"></div>
 
