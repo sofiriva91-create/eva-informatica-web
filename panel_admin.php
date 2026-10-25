@@ -216,28 +216,29 @@ if ($vista === 'estudiantes') {
         <a href="logout.php" class="logout-link">Cerrar Sesión</a>
     </div>
 </div>
-    <!-- Banner de Bienvenida idéntico al de Estudiantes -->
+    <?php if (!isset($_GET['vista']) || $_GET['vista'] === 'inicio'): ?>
+    
     <div class="welcome-banner">
         <div>
             <h2>¡Hola, <?php echo $_SESSION['nombre']; ?>! 👋</h2>
-            <p>Qué bueno tenerte de vuelta en el Entorno Virtual de la UPTAAPC. Administra las materias, mantén el ritmo este semestre y alcanza todas las metas académicas.</p>
+            <p>Qué bueno tenerte de vuelta en el Entorno Virtual de la UPTAAPC. Selecciona una opción en el menú lateral o utiliza los accesos rápidos para administrar tus contenidos.</p>
         </div>
-        <div style="font-size: 50px; opacity: 0.8;">
-            🎓
-        </div>
+        <div style="font-size: 50px; opacity: 0.8;">🎓</div>
     </div>
-    <!-- Botones de Acción Rápida Interactivos -->
+
+    <!-- Botones de Acción Rápida -->
     <div class="action-buttons-grid">
-        <a href="#crear-contenido" onclick="seleccionarFormulario('PDF')" class="btn-accion btn-pdf">
+        <a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=materiales" class="btn-accion btn-pdf">
             📄 Subir PDF / Guía
         </a>
-        <a href="#crear-contenido" onclick="seleccionarFormulario('Video')" class="btn-accion btn-youtube">
+        <a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=materiales" class="btn-accion btn-youtube">
             ▶️ Pegar Enlace YouTube
         </a>
         <a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=estudiantes" class="btn-accion btn-estudiantes">
             👥 Ver Estudiantes y Notas
         </a>
     </div>
+<?php endif; ?>
 
         <div class="admin-banner">
             <h2>Administración de Curso: Introducción a la Informática</h2>
@@ -307,6 +308,7 @@ if ($vista === 'estudiantes') {
 
             <div class="content-grid">
                 <div>
+                    
                     <h3>Material de Clase y Publicaciones (Sección <?php echo $seccion_actual; ?>)</h3><br>
 
                     <?php if ($resultado_archivos && $resultado_archivos->num_rows > 0): ?>
@@ -337,7 +339,7 @@ if ($vista === 'estudiantes') {
                 </div>
 
                 <!-- Formulario Lateral -->
-                <div class="side-panel">
+                <div class="side-panel" id="crear-contenido">
                     <h3>Crear Nuevo Contenido</h3>
                     <form method="POST" action="" enctype="multipart/form-data">
                         <label><strong>Título del recurso:</strong></label>
@@ -345,8 +347,8 @@ if ($vista === 'estudiantes') {
 
                         <label><strong>Tipo de Publicación:</strong></label>
                         <select name="tipo" id="tipoSelect" onchange="cambiarTipo()">
-                            <option value="Guía de Estudio PDF">📄 Subir Guía / PDF</option>
-                            <option value="Video Tutorial">▶️ Enlace de YouTube</option>
+                           <a href="#crear-contenido" class="btn-accion btn-pdf">📄 Subir PDF / Guía</a>
+<a href="#crear-contenido" class="btn-accion btn-youtube">▶️ Pegar Enlace YouTube</a>
                             <option value="Horario">📅 Horario (Subir PDF/Word)</option>
                             <option value="Calificaciones Archivo">📝 Subir Archivo de Calificaciones</option>
                         </select>
