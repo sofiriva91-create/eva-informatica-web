@@ -85,32 +85,31 @@ if ($vista === 'estudiantes') {
     <title>Entorno Virtual - Panel del Docente</title>
     <link rel="stylesheet" href="style.css">
     <style>
-    body {
-        margin: 0 !important;
-        padding: 0 !important;
-        overflow-x: hidden !important;
-        background-color: #f8f9fa !important;
+    body { 
+        margin: 0 !important; 
+        overflow-x: hidden !important; 
+        background-color: #f8f9fa !important; 
     }
-    .sidebar {
-        position: fixed !important;
-        left: 0 !important;
-        top: 0 !important;
-        width: 250px !important;
-        height: 100vh !important;
-        z-index: 1000 !important;
+    .sidebar { 
+        position: fixed !important; 
+        left: 0 !important; 
+        top: 0 !important; 
+        width: 250px !important; 
+        height: 100vh !important; 
+        z-index: 9999 !important; 
     }
-    .main-content {
-        margin-left: 250px !important;
-        width: auto !important;
-        padding: 30px !important;
-        box-sizing: border-box !important;
+    .main-content { 
+        margin-left: 250px !important; 
+        width: calc(100% - 250px) !important; 
+        padding: 30px !important; 
+        box-sizing: border-box !important; 
+        position: relative !important; 
     }
 </style>
 </head>
 
 <body>
-    <div class="main-wrapper" style="display: flex; width: 100%; min-height: 100vh;">
-</div>
+    
     <div class="sidebar">
         <div class="brand">📁 Entorno Virtual<br>"Informatica-PIU"</div>
         <div>
