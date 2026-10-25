@@ -1595,10 +1595,14 @@ body, html {
    BLINDAJE PARA QUE EL INDEX.PHP VUELVA A SU SITIO
    ========================================================== */
 body {
+    display: flex;
+    flex-direction: column; /* <-- Esto es lo que faltaba para ordenarlos verticalmente */
+    min-height: 100vh;
     margin: 0 !important;
     padding: 0 !important;
     width: 100% !important;
     overflow-x: hidden !important;
+    background-color: #f8f9fa !important;
 }
 
 /* Forzamos que las secciones del inicio ocupen todo el ancho y no se corran */
