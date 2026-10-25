@@ -117,29 +117,12 @@ if ($vista === 'estudiantes') {
 </head>
 
 <body>
-    <div class="main-wrapper" style="display: flex; width: 100%; min-height: 100vh; margin: 0; padding: 0; box-sizing: border-box;">
-
-    <!-- 1. La Barra Lateral (Menú) -->
-    <div class="sidebar" style="width: 250px; flex-shrink: 0;">
-        <div class="brand">📁 Aula Virtual<br>"Informatica-PIU"</div>
+    <div class="main-wrapper" style="display: flex; width: 100%; min-height: 100vh;">
+    </div>
+</body>
+    <div class="sidebar">
+        <div class="brand">📁 Entorno Virtual<br>"Informatica-PIU"</div>
         <div>
-            <ul>
-                <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=contenido" class="<?php echo ($vista === 'contenido') ? 'activo' : ''; ?>">Contenido</a></li>
-                <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=estudiantes" class="<?php echo ($vista === 'estudiantes') ? 'activo' : ''; ?>">Cursos</a></li>
-                <!-- Resto de tus enlaces del menú... -->
-            </ul>
-        </div>
-    </div>
-
-    <!-- 2. El Contenido Principal de la Derecha -->
-    <div class="main-content" style="flex: 1; padding: 30px; box-sizing: border-box; background-color: #f8f9fa;">
-        <div class="header-top">
-            <h1>Introducción a la Informática (Sección <?php echo $seccion_actual; ?>)</h1>
-        </div>
-        <!-- Aquí sigue el resto de tu contenido -->
-    </div>
-
-</div>
         <ul>
             <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=contenido" class="<?php echo ($vista === 'contenido') ? 'active' : ''; ?>">📊 Dashboard</a></li>
             <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=contenido">📚 Cursos</a></li>
