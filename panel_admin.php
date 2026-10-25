@@ -84,30 +84,32 @@ if ($vista === 'estudiantes') {
     <meta charset="UTF-8">
     <title>Entorno Virtual - Panel del Docente</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-    body { 
-        margin: 0 !important; 
+   <style>
+    /* HACK DE GRID: Dos columnas reales, adiós a los márgenes rotos */
+    body {
+        margin: 0 !important;
         padding: 0 !important;
-        overflow-x: hidden !important; 
-        background-color: #f8f9fa !important; 
+        display: grid !important;
+        grid-template-columns: 250px 1fr !important;
+        background-color: #f8f9fa !important;
+        overflow-x: hidden !important;
     }
-    
-    .sidebar { 
-        position: fixed !important; 
-        left: 0 !important; 
-        top: 0 !important; 
-        width: 250px !important; 
-        height: 100vh !important; 
-        z-index: 1000 !important; 
+
+    /* Columna 1: El menú se queda quieto y ordenado a la izquierda */
+    .sidebar {
+        grid-column: 1 !important;
+        width: 250px !important;
+        height: 100vh !important;
+        position: sticky !important;
+        top: 0 !important;
     }
-    
-    /* Esto empuja el contenido fuera del menú exactamente 265px y lo encaja en su pantalla */
-    .main-content { 
-        margin-left: 265px !important; 
-        width: calc(100% - 280px) !important; 
-        padding: 30px !important; 
-        box-sizing: border-box !important; 
-        position: relative !important;
+
+    /* Columna 2: El contenido toma automáticamente todo el espacio restante a la derecha */
+    .main-content {
+        grid-column: 2 !important;
+        width: 100% !important;
+        padding: 30px !important;
+        box-sizing: border-box !important;
     }
 </style>
 </head>
