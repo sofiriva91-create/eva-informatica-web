@@ -198,28 +198,24 @@ if ($vista === 'estudiantes') {
 <div class="main-content">
     
     <!-- Cabecera: Título, Selector de Sección y Datos de Sesión a la derecha -->
-    <div class="admin-header">
-        <div>
-            <h1>Introducción a la Informática (Sección <?php echo $seccion_actual; ?>)</h1>
-            <!-- Selector de sección cómodo arriba -->
-            <div class="section-selector-top">
-                <form method="GET" action="panel_admin.php" style="display:inline;">
-                    <input type="hidden" name="vista" value="<?php echo $vista; ?>">
-                    <label for="seccion">Cambiar Sección:</label>
-                    <select name="seccion" id="seccion" onchange="this.form.submit()">
-                        <option value="A" <?php echo ($seccion_actual === 'A') ? 'selected' : ''; ?>>Sección A</option>
-                        <option value="B" <?php echo ($seccion_actual === 'B') ? 'selected' : ''; ?>>Sección B</option>
-                    </select>
-                </form>
-            </div>
-        </div>
-        
-        <div class="user-section">
-            <span class="user-name">"<?php echo $_SESSION['nombre']; ?>" — Sección <?php echo $seccion_actual; ?></span><br>
-            <a href="logout.php" class="logout-link">Cerrar Sesión</a>
+  <!-- Cabecera Superior del Docente -->
+<div class="admin-top-bar">
+    <div class="admin-title-area">
+        <h1><?php echo htmlspecialchars($materia_docente ?? 'Introducción a la Informática'); ?></h1>
+        <div class="section-pills">
+            <span style="font-size: 0.85rem; color: #64748b; font-weight: 500;">Sección:</span>
+            <a href="panel_admin.php?seccion=A&vista=<?php echo $vista; ?>" class="section-pill <?php echo ($seccion_actual === 'A') ? 'active' : ''; ?>">Sección A</a>
+            <a href="panel_admin.php?seccion=B&vista=<?php echo $vista; ?>" class="section-pill <?php echo ($seccion_actual === 'B') ? 'active' : ''; ?>">Sección B</a>
         </div>
     </div>
-
+    
+    <div class="user-info-text" style="text-align: right;">
+        <span style="font-weight: bold; color: #0f172a;">"<?php echo htmlspecialchars($_SESSION['nombre'] ?? 'Docente'); ?>"</span> 
+        <span style="color: #64748b;">— Sección <?php echo htmlspecialchars($seccion_actual); ?></span>
+        <br>
+        <a href="logout.php" class="logout-link">Cerrar Sesión</a>
+    </div>
+</div>
     <!-- Banner de Bienvenida idéntico al de Estudiantes -->
     <div class="welcome-banner">
         <div>
