@@ -118,8 +118,7 @@ if ($vista === 'estudiantes') {
 
 <body>
     <div class="main-wrapper" style="display: flex; width: 100%; min-height: 100vh;">
-    </div>
-</body>
+</div>
     <div class="sidebar">
         <div class="brand">📁 Entorno Virtual<br>"Informatica-PIU"</div>
         <div>
@@ -134,7 +133,7 @@ if ($vista === 'estudiantes') {
         </ul>
     </div>
 
-    <div class="main-content" style="flex: 1; padding: 20px;">
+     <div class="main-content" style="margin-left: 250px !important; padding: 30px !important; box-sizing: border-box !important;">
         
         <div class="header-top">
             <h1>Introducción a la Informática (Sección <?php echo $seccion_actual; ?>)</h1>
