@@ -132,8 +132,6 @@ if ($vista === 'estudiantes') {
         </ul>
     </div>
 
-     <div class="main-content" style="margin-left: 250px !important; padding: 30px !important; box-sizing: border-box !important;">
-        
         <div class="header-top">
             <h1>Introducción a la Informática (Sección <?php echo $seccion_actual; ?>)</h1>
             <div class="user-info">
