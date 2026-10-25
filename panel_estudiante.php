@@ -16,8 +16,8 @@ if ($res_user && $res_user->num_rows > 0) {
     $cedula_estudiante = $usr_data['cedula'] ?? '';
     $seccion_estudiante = $usr_data['seccion'] ?? 'A';
 }
-// 1. Consultar las materias de la base de datos de forma segura
-$query_materias = "SELECT DISTINCT materia FROM config_materias WHERE materia IS NOT NULL AND materia != ''";
+// Consultar las materias que eligieron los profesores al registrarse
+$query_materias = "SELECT DISTINCT materia FROM usuarios WHERE materia IS NOT NULL AND materia != ''";
 $res_materias = $conexion->query($query_materias);
 
 $vista = isset($_GET['vista']) ? $_GET['vista'] : 'inicio';
