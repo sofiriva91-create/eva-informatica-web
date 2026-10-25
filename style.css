@@ -1678,3 +1678,27 @@ header, section, footer {
     text-decoration: underline !important;
 }
 
+body {
+    display: flex;
+    flex-direction: row; /* Coloca el menú y el contenido lado a lado */
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar {
+    width: 260px;
+    min-width: 260px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    background-color: #0b132b; /* Ajusta según tu color oscuro del menú */
+    color: #ffffff;
+}
+
+.main-content {
+    flex: 1; /* Hace que ocupe todo el espacio sobrante de la pantalla */
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f8fafc; /* Color de fondo del panel derecho */
+}
