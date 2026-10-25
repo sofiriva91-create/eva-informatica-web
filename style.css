@@ -180,10 +180,8 @@ header nav {
     color: #fff;
 }
 
-.grid-layout {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 25px;
+.main-wrapper .grid-layout {
+    grid-template-columns: 1fr !important;
 }
 
 .card {
