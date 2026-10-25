@@ -1677,3 +1677,20 @@ header, section, footer {
 .logout-link:hover {
     text-decoration: underline !important;
 }
+
+/* --- HACK SUPREMO ANTIDESCUADRE --- */
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+/* Forzar que cualquier contenedor principal o panel ocupe el espacio correcto sin dejar blancos gigantes */
+.main-wrapper, main, .contenido, .panel-contenido, div[class*="contenedor"] {
+    margin-left: 70px !important; /* Ajusta el espacio exacto para que no pise los iconos de la izquierda */
+    width: calc(100% - 70px) !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    float: none !important;
+}
