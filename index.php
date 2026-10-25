@@ -9,7 +9,7 @@
 </head>
 <body style="margin: 0 !important; padding: 0 !important; width: 100% !important; overflow-x: hidden !important; background-color: #f8f9fa !important;">
     <!-- BARRA DE NAVEGACIÓN SUPERIOR -->
-    <header style="width: 100% !important; box-sizing: border-box !important;">>
+    <header style="width: 100% !important; box-sizing: border-box !important;">
         <div class="logo-seccion">
     <img src="logo-uptaapc.png" alt="Logo UPTAAPC" class="logo-img">
     <span class="logo-texto">Informática UPTAAPC</span>
