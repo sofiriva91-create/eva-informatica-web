@@ -1585,17 +1585,29 @@ body, html {
     background-color: #f8f9fa !important;
 }
 
-/* Si la página de inicio usa un contenedor principal, lo centramos y ponemos a ancho completo */
-.index-container, 
-body:not(.panel-estudiante) .main-wrapper {
-    margin-left: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 0 !important;
-}
-
 /* Alinear la barra de navegación superior de forma limpia de lado a lado */
 .navbar, header {
     width: 100% !important;
     box-sizing: border-box !important;
+}
+
+/* ==========================================================
+   BLINDAJE PARA QUE EL INDEX.PHP VUELVA A SU SITIO
+   ========================================================== */
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+/* Forzamos que las secciones del inicio ocupen todo el ancho y no se corran */
+header, section, footer, .portada, .servicios-educativos, .nuestra-universidad {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    float: none !important;
 }
