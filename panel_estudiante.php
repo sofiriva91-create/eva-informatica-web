@@ -126,11 +126,14 @@ if ($vista === 'plan_evaluacion') {
         
         <!-- 1. Usuario y Cerrar Sesión en la esquina superior derecha -->
         <div class="user-top-bar">
-            <div class="user-info-text">
-                <span><?php echo htmlspecialchars($nombre_estudiante ?? 'Estudiante'); ?> (Estudiante)</span><br>
-                <a href="logout.php" class="logout-link">Cerrar Sesión</a>
-            </div>
-        </div>
+    <div class="top-title">Aula Virtual - Panel del Estudiante</div>
+    <div class="user-info-area">
+        <span class="user-name"><?php echo isset($_SESSION['nombre']) ? htmlspecialchars($_SESSION['nombre']) : 'Estudiante'; ?></span> 
+        <span class="user-details">(Estudiante) - Sección <?php echo isset($seccion_estudiante) ? $seccion_estudiante : 'A'; ?></span> 
+        <span class="separator">|</span> 
+        <a href="logout.php" class="logout-link">Cerrar Sesión</a>
+    </div>
+</div>
 
         <!-- 2. Banner de Bienvenida Amplio -->
         <div class="welcome-banner-wide">
@@ -188,12 +191,6 @@ if ($vista === 'plan_evaluacion') {
 <button class="menu-toggle" onclick="toggleMenu()">☰ Menú</button>
             <div class="header-title">
                 <?php echo htmlspecialchars($materia_actual); ?> — Sección <?php echo htmlspecialchars($seccion_estudiante); ?>
-            </div>
-            <div class="user-info">
-                <div class="user-details">
-                    <strong><?php echo htmlspecialchars($_SESSION['nombre'] ?? 'Estudiante'); ?> (Estudiante)</strong>
-                    <a href="logout.php" class="logout-link">Cerrar Sesión</a>
-                </div>
             </div>
         </div>
 
