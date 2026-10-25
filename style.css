@@ -88,10 +88,9 @@ body {
    3. CONTENEDOR PRINCIPAL Y HEADER (PANEL)
    ========================================================== */
 .main-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
+    margin-left: 230px !important; /* Prueba bajando a 220px o 230px para pegarlo más al menú */
+    width: calc(100% - 230px) !important;
+    padding: 15px !important; /* Reduce esto si hay espacio arriba muy grande */
 }
 
 .header {
