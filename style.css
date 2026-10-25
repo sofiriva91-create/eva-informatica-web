@@ -1540,3 +1540,20 @@ main, .main-content, .contenido-principal {
         box-sizing: border-box !important;
     }
 }
+
+/* ==========================================================
+   SOLUCIÓN RÁPIDA: Evitar desbordamiento horizontal y alinear
+   ========================================================== */
+html, body {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* Forzar que las cajas principales respeten el ancho de la pantalla */
+div, section, header, main {
+    box-sizing: border-box !important;
+}
