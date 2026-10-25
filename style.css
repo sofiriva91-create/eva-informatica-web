@@ -1523,3 +1523,20 @@ main, .main-content, .contenido-principal {
 .main-wrapper::before {
     display: none !important;
 }
+
+/* ==========================================================
+   ANCHO DEL MENÚ Y DEL CONTENIDO EN COMPUTADORAS
+   ========================================================== */
+@media (min-width: 769px) {
+    /* 1. Ampliamos el menú lateral a 280px (o el ancho que prefieras) */
+    .sidebar, .admin-sidebar {
+        width: 280px !important;
+    }
+
+    /* 2. Forzamos a que el contenido principal respete exactamente ese nuevo ancho */
+    .main-wrapper {
+        margin-left: 280px !important;
+        width: calc(100% - 280px) !important;
+        box-sizing: border-box !important;
+    }
+}
