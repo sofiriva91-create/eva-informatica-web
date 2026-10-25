@@ -115,11 +115,13 @@ if ($vista === 'plan_evaluacion') {
         </ul>
     </div>
 
-    
-    <div class="main-wrapper">
-        
-        <div class="header">
-            <?php if ($vista === 'inicio') { ?>
+   <div class="main-wrapper">
+
+    <div class="header">
+        <!-- Tu header (vacío por ahora) -->
+    </div> <!-- <--- 1. Cierra el header aquí mismo con un div -->
+
+    <?php if ($vista === 'inicio') { ?> <!-- <--- 2. Abre la vista aquí afuera -->
     <!-- PEGA TU BLOQUE AQUÍ -->
     
     <!-- Banner de Bienvenida -->
@@ -170,8 +172,9 @@ if ($vista === 'plan_evaluacion') {
             <cite>— <?php echo htmlspecialchars($autor_frase); ?></cite>
         <?php endif; ?>
     </div>
-
+    
 <?php } ?>
+
             <!-- Botón de menú desplegable para celulares -->
 <button class="menu-toggle" onclick="toggleMenu()">☰ Menú</button>
             <div class="header-title">
