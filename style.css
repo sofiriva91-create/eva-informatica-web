@@ -1476,3 +1476,33 @@ main, .main-content, .contenido-principal {
     width: 100% !important;
     max-width: 100% !important;
 }
+
+/* ==========================================================
+   SOLUCIÓN DEFINITIVA: Eliminar barra divisoria y espacio vacío
+   ================================================---------- */
+
+/* Fuerza a que el contenedor principal ocupe todo el ancho de la pantalla */
+.main-wrapper {
+    display: block !important;
+    width: calc(100% - 260px) !important; /* Resta el ancho exacto de tu menú lateral */
+    max-width: 100% !important;
+    margin-left: 260px !important; /* Empuja el contenido a la derecha del menú */
+    float: none !important;
+    grid-template-columns: none !important;
+    box-sizing: border-box !important; 
+}
+
+/* Mata cualquier barra divisoria o borde fantasma sobrante */
+.main-wrapper::after, 
+.main-wrapper::before {
+    display: none !important;
+}
+
+/* Asegura que el banner y las tarjetas de inicio usen todo el ancho disponible */
+.welcome-banner-wide,
+.quick-access-grid-3,
+.daily-quote-card-wide {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
