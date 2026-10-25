@@ -182,32 +182,93 @@ if ($vista === 'estudiantes') {
 
 <body>
     
-    <div class="sidebar">
-        <div class="brand">📁 Entorno Virtual<br>"Informatica-PIU"</div>
-        <div>
-        <ul>
-            <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=contenido" class="<?php echo ($vista === 'contenido') ? 'active' : ''; ?>">📊 Inicio</a></li>
-            <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=estudiantes" class="<?php echo ($vista === 'estudiantes') ? 'active' : ''; ?>">👨‍🎓 Estudiantes & Notas</a></li>
-            <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=contenido">📄 Materiales y Tareas</a></li>
-            <li><a href="#">📅 Horario</a></li>
-            <li><a href="#">❓ Soporte</a></li>
-        </ul>
+   <div class="sidebar">
+    <div class="brand">📁 Entorno Virtual<br>"Informatica-PIU"</div>
+    <ul>
+        <!-- Botón Inicio corregido con vista=inicio -->
+        <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=inicio" class="<?php echo ($vista === 'inicio') ? 'active' : ''; ?>">🏠 Inicio</a></li>
+        <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=estudiantes" class="<?php echo ($vista === 'estudiantes') ? 'active' : ''; ?>">👨‍🎓 Estudiantes & Notas</a></li>
+        <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=materiales" class="<?php echo ($vista === 'materiales') ? 'active' : ''; ?>">📁 Materiales y Tareas</a></li>
+        <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=horario" class="<?php echo ($vista === 'horario') ? 'active' : ''; ?>">📅 Horario</a></li>
+        <li><a href="#" onclick="alert('Soporte Técnico: Contacte al administrador del sistema.');">❓ Soporte</a></li>
+    </ul>
+</div>
+
+<div class="main-content">
+
+    <!-- 1. CABECERA SUPERIOR (Siempre visible: Materia, Sección A/B, Nombre y Cerrar Sesión) -->
+    <div class="admin-top-bar">
+        <div class="admin-title-area">
+            <h1><?php echo htmlspecialchars($materia_docente ?? 'Introducción a la Informática'); ?></h1>
+            <div class="section-pills">
+                <span style="font-size: 0.85rem; color: #64748b; font-weight: 500;">Sección:</span>
+                <a href="panel_admin.php?seccion=A&vista=<?php echo $vista; ?>" class="section-pill <?php echo ($seccion_actual === 'A') ? 'active' : ''; ?>">Sección A</a>
+                <a href="panel_admin.php?seccion=B&vista=<?php echo $vista; ?>" class="section-pill <?php echo ($seccion_actual === 'B') ? 'active' : ''; ?>">Sección B</a>
+            </div>
+        </div>
+        
+        <div class="user-info-text" style="text-align: right;">
+            <span style="font-weight: bold; color: #0f172a;">"<?php echo htmlspecialchars($_SESSION['nombre'] ?? 'Docente'); ?>"</span> 
+            <span style="color: #64748b;">— Sección <?php echo htmlspecialchars($seccion_actual); ?></span>
+            <br>
+            <a href="logout.php" class="logout-link">Cerrar Sesión</a>
         </div>
     </div>
 
-<div class="main-content">
-    
-    <!-- Cabecera: Título, Selector de Sección y Datos de Sesión a la derecha -->
-  <!-- Cabecera Superior del Docente -->
-<div class="admin-top-bar">
-    <div class="admin-title-area">
-        <h1><?php echo htmlspecialchars($materia_docente ?? 'Introducción a la Informática'); ?></h1>
-        <div class="section-pills">
-            <span style="font-size: 0.85rem; color: #64748b; font-weight: 500;">Sección:</span>
-            <a href="panel_admin.php?seccion=A&vista=<?php echo $vista; ?>" class="section-pill <?php echo ($seccion_actual === 'A') ? 'active' : ''; ?>">Sección A</a>
-            <a href="panel_admin.php?seccion=B&vista=<?php echo $vista; ?>" class="section-pill <?php echo ($seccion_actual === 'B') ? 'active' : ''; ?>">Sección B</a>
+    <?php 
+    // Controlar qué se muestra según el menú lateral
+    $vista = isset($_GET['vista']) ? $_GET['vista'] : 'inicio';
+    ?>
+
+    <!-- ======================================================== -->
+    <!-- VISTA 1: INICIO (SOLO SALUDO Y LOS 3 BOTONES GRANDES) -->
+    <!-- ======================================================== -->
+    <?php if ($vista === 'inicio'): ?>
+        
+        <div class="welcome-banner" style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 25px;">
+            <h2 style="margin: 0 0 10px 0;">¡Hola, <?php echo htmlspecialchars($_SESSION['nombre'] ?? 'Docente'); ?>! 👋</h2>
+            <p style="margin: 0; opacity: 0.95;">Qué bueno tenerte de vuelta en el Entorno Virtual de la UPTAAPC. Selecciona una opción en el menú lateral para administrar tus contenidos.</p>
         </div>
-    </div>
+
+        <!-- Botones de Acción Rápidos (Grandes) -->
+        <div class="action-buttons-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
+            <a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=materiales" class="admin-action-card" style="background: #fff; padding: 25px; border-radius: 12px; text-align: center; text-decoration: none; color: #1e293b; border: 1px solid #e2e8f0; display: block; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                <span style="font-size: 2rem; display: block; margin-bottom: 10px;">📄</span>
+                <span style="font-weight: 600;">Subir PDF / Guía</span>
+            </a>
+            <a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=materiales" class="admin-action-card" style="background: #fff; padding: 25px; border-radius: 12px; text-align: center; text-decoration: none; color: #1e293b; border: 1px solid #e2e8f0; display: block; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                <span style="font-size: 2rem; display: block; margin-bottom: 10px;">📺</span>
+                <span style="font-weight: 600;">Pegar Enlace YouTube</span>
+            </a>
+            <a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=estudiantes" class="admin-action-card" style="background: #fff; padding: 25px; border-radius: 12px; text-align: center; text-decoration: none; color: #1e293b; border: 1px solid #e2e8f0; display: block; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                <span style="font-size: 2rem; display: block; margin-bottom: 10px;">👥</span>
+                <span style="font-weight: 600;">Ver Estudiantes y Notas</span>
+            </a>
+        </div>
+
+    <!-- ======================================================== -->
+    <!-- VISTA 2: MATERIALES Y TAREAS -->
+    <!-- ======================================================== -->
+    <?php elseif ($vista === 'materiales'): ?>
+        <h2>Materiales y Tareas (Sección <?php echo $seccion_actual; ?>)</h2>
+        <p>Aquí puedes subir guías, PDFs y enlaces de YouTube para tus estudiantes.</p>
+        <!-- Deja aquí el formulario de subida que ya tenías -->
+
+    <!-- ======================================================== -->
+    <!-- VISTA 3: ESTUDIANTES Y NOTAS -->
+    <!-- ======================================================== -->
+    <?php elseif ($vista === 'estudiantes'): ?>
+        <h2>Estudiantes y Calificaciones (Sección <?php echo $seccion_actual; ?>)</h2>
+
+    <!-- ======================================================== -->
+    <!-- VISTA 4: HORARIO -->
+    <!-- ======================================================== -->
+    <?php elseif ($vista === 'horario'): ?>
+        <h2>Horario de Clases (Sección <?php echo $seccion_actual; ?>)</h2>
+
+    <?php endif; ?>
+
+</div>
     
     <div class="user-info-text" style="text-align: right;">
         <span style="font-weight: bold; color: #0f172a;">"<?php echo htmlspecialchars($_SESSION['nombre'] ?? 'Docente'); ?>"</span> 
