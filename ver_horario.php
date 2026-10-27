@@ -1,6 +1,7 @@
 <?php
 session_start();
-include('conexion.php');
+include'../backend/ver_sesion.php';
+include'../backend/conexion.php';
 
 if (!isset($_SESSION['nombre']) || $_SESSION['rol'] !== 'estudiante') {
     header("Location: login.php");
@@ -9,7 +10,7 @@ if (!isset($_SESSION['nombre']) || $_SESSION['rol'] !== 'estudiante') {
 
 $seccion_estudiante = $_SESSION['seccion'] ?? 'A';
 
-// Buscar el horario correspondiente a la sección del estudiante
+
 $stmt = $conexion->prepare("SELECT * FROM horarios WHERE seccion = ? ORDER BY id_horario DESC LIMIT 1");
 $stmt->bind_param("s", $seccion_estudiante);
 $stmt->execute();
@@ -42,7 +43,7 @@ $horario = ($resultado && $resultado->num_rows > 0) ? $resultado->fetch_assoc() 
         <p>Aquí tienes disponible el horario oficial institucional correspondiente a tu sección:</p>
         <a href="<?php echo htmlspecialchars($horario['ruta_archivo']); ?>" target="_blank" class="btn-descargar">📥 Descargar / Ver Archivo en Grande</a>
         
-        <!-- Visor interno del documento -->
+        
         <iframe src="<?php echo htmlspecialchars($horario['ruta_archivo']); ?>"></iframe>
     <?php else: ?>
         <div class="no-horario">
