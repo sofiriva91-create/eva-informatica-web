@@ -3,9 +3,9 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+include'../backend/ver_sesion.php';
+include'../backend/conexion.php';
 
-include('conexion.php');
-// Obtener datos del estudiante actual para evitar errores
 $cedula_estudiante = '';
 $seccion_estudiante = 'A';
 $nombre_estudiante = $_SESSION['nombre'] ?? '';
@@ -16,16 +16,16 @@ if ($res_user && $res_user->num_rows > 0) {
     $cedula_estudiante = $usr_data['cedula'] ?? '';
     $seccion_estudiante = $usr_data['seccion'] ?? 'A';
 }
-// Consultar las materias que eligieron los profesores al registrarse
+
 $query_materias = "SELECT DISTINCT materia FROM usuarios WHERE materia IS NOT NULL AND materia != ''";
 $res_materias = $conexion->query($query_materias);
 
 $vista = isset($_GET['vista']) ? $_GET['vista'] : 'inicio';
 
-// 2. Capturar la materia actual de la URL
+
 $materia_actual = isset($_GET['materia']) ? trim($_GET['materia']) : '';
 
-// Si no hay materia en la URL y no estamos en inicio, tomamos la primera disponible
+
 if (empty($materia_actual) && $vista !== 'inicio' && $vista !== 'soporte') {
     if ($res_materias && $res_materias->num_rows > 0) {
         $res_materias->data_seek(0); // Reiniciar puntero
@@ -117,14 +117,14 @@ if ($vista === 'plan_evaluacion') {
 
 <div class="main-wrapper">
 
-    <!-- Header vacío de soporte -->
+    
     <div class="header"></div>
 
     <?php if ($vista === 'inicio') { ?>
         
-        <!-- ================= VISTA INICIO ================= -->
         
-        <!-- 1. Usuario y Cerrar Sesión en la esquina superior derecha -->
+        
+        
         <div class="user-top-bar">
     <div class="user-info-text">
         <span class="user-main-text">"<?php echo htmlspecialchars($_SESSION['nombre'] ?? 'Estudiante'); ?>" — Sección <?php echo htmlspecialchars($seccion_estudiante ?? 'A'); ?></span>
@@ -133,7 +133,7 @@ if ($vista === 'plan_evaluacion') {
     </div>
 </div>
 
-        <!-- 2. Banner de Bienvenida Amplio -->
+        
         <div class="welcome-banner-wide">
             <div class="welcome-content">
                 <h2>¡Hola, <?php echo htmlspecialchars($nombre_estudiante); ?>! 👋</h2>
@@ -142,7 +142,7 @@ if ($vista === 'plan_evaluacion') {
             <div class="welcome-icon">🎓</div>
         </div>
 
-        <!-- 3. Botones de Acceso Rápido en Fila de 3 -->
+        
         <div class="quick-access-grid-3">
             <a href="panel_estudiante.php?vista=horario" class="quick-card">
                 <div class="quick-icon">📅</div>
@@ -169,7 +169,7 @@ if ($vista === 'plan_evaluacion') {
             </a>
         </div>
 
-        <!-- 4. Frase de Motivación Amplia -->
+        
         <div class="daily-quote-card-wide">
             <div class="quote-header">
                 <h4>💡 Reflexión del Día</h4>
@@ -184,8 +184,7 @@ if ($vista === 'plan_evaluacion') {
 
     <?php } else ?>
 
-    <!-- De aquí en adelante sigue todo tu código de materias, calificaciones y horario que ya tenías -->
-            <!-- Botón de menú desplegable para celulares -->
+    
 <button class="menu-toggle" onclick="toggleMenu()">☰ Menú</button>
             
 
