@@ -1572,11 +1572,6 @@ footer {
     text-decoration: underline;
 }
 
-/* ==========================================================
-   LIMPIEZA TOTAL PARA LA PÁGINA DE INICIO (INDEX.PHP)
-   ========================================================== */
-
-/* Asegura que la página de bienvenida no tenga espacios forzados a la izquierda */
 body, html {
     margin: 0 !important;
     padding: 0 !important;
@@ -1585,18 +1580,15 @@ body, html {
     background-color: #f8f9fa !important;
 }
 
-/* Alinear la barra de navegación superior de forma limpia de lado a lado */
 .navbar, header {
     width: 100% !important;
     box-sizing: border-box !important;
 }
 
-/* ==========================================================
-   BLINDAJE PARA QUE EL INDEX.PHP VUELVA A SU SITIO
-   ========================================================== */
+
 body {
     display: flex;
-    flex-direction: column; /* <-- Esto es lo que faltaba para ordenarlos verticalmente */
+    flex-direction: column; 
     min-height: 100vh;
     margin: 0 !important;
     padding: 0 !important;
@@ -1605,7 +1597,6 @@ body {
     background-color: #f8f9fa !important;
 }
 
-/* Forzamos que las secciones del inicio ocupen todo el ancho y no se corran */
 header, section, footer, .portada, .servicios-educativos, .nuestra-universidad {
     margin-left: 0 !important;
     margin-right: 0 !important;
@@ -1616,11 +1607,6 @@ header, section, footer, .portada, .servicios-educativos, .nuestra-universidad {
     float: none !important;
 }
 
-/* ==========================================================
-   SOLUCIÓN DEFINITIVA Y SEGURA PARA TODO EL SITIO
-   ========================================================== */
-
-/* 1. La página de inicio (index) ocupa todo el ancho y se centra sin afectar nada más */
 body {
     margin: 0 !important;
     padding: 0 !important;
@@ -1628,7 +1614,6 @@ body {
     overflow-x: hidden !important;
 }
 
-/* 2. Las secciones principales del inicio ocupan todo el ancho */
 header, section, footer {
     width: 100% !important;
     max-width: 100% !important;
@@ -1637,7 +1622,6 @@ header, section, footer {
     box-sizing: border-box !important;
 }
 
-/* 3. Las cajas internas del inicio se centran ordenadamente */
 .contenedor, .portada-contenido {
     max-width: 1200px !important;
     margin-left: auto !important;
@@ -1678,7 +1662,6 @@ header, section, footer {
     text-decoration: underline !important;
 }
 
-/* Estilos limpios para la cabecera y banner idéntico al de estudiantes */
     .admin-header {
         display: flex;
         justify-content: space-between;
@@ -1711,7 +1694,7 @@ header, section, footer {
         text-decoration: underline;
     }
     
-    /* Banner estilo estudiante */
+    
     .welcome-banner {
         background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
         color: white;
@@ -1735,7 +1718,7 @@ header, section, footer {
         line-height: 1.5;
     }
 
-    /* Estilo para el selector de sección superior */
+    
     .section-selector-top {
         margin-top: 5px;
         font-size: 13px;
@@ -1778,11 +1761,6 @@ header, section, footer {
         box-shadow: 0 6px 20px rgba(0,0,0,0.15);
     }
 
-    /* ==========================================
-   ESTILOS PARA EL PANEL DE DOCENTE (ADMIN)
-   ========================================== */
-
-/* Barra Superior del Docente */
 .admin-top-bar {
     display: flex !important;
     justify-content: space-between !important;
@@ -1801,7 +1779,6 @@ header, section, footer {
     margin: 0 0 8px 0 !important;
 }
 
-/* Botones de Selector de Sección (Estilo Pestañas al lado) */
 .section-pills {
     display: flex !important;
     gap: 10px !important;
@@ -1832,7 +1809,6 @@ header, section, footer {
     color: #1e293b !important;
 }
 
-/* Tarjetas de Acción Grande (Inicio del Docente) */
 .admin-action-grid {
     display: grid !important;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
@@ -1870,8 +1846,6 @@ header, section, footer {
     font-size: 1rem !important;
 }
 
-/* --- ESTILOS AISLADOS: Solo actúan dentro del Panel de Administración/Docente --- */
-
 .main-content {
     max-width: 1000px;
     margin: 20px auto;
@@ -1888,7 +1862,6 @@ header, section, footer {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
 }
 
-/* Tablas y campos restringidos únicamente a este panel */
 .main-content table {
     width: 100%;
     border-collapse: collapse;
