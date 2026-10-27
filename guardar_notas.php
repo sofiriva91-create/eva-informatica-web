@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $insert->execute();
     }
 
-    header("Location: panel_admin.php?seccion=$seccion&vista=estudiantes");
+   header("Location: ../Web/panel_admin.php?seccion=$seccion&vista=estudiantes");
     exit();
 }
 ?>
