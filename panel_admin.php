@@ -1,6 +1,7 @@
 <?php
 session_start();
-include('conexion.php');
+include'../backend/ver_sesion.php';
+include'../backend/conexion.php';
 
 
 if (!isset($_SESSION['nombre']) || $_SESSION['rol'] != 'docente') {
@@ -113,7 +114,6 @@ if ($vista === 'estudiantes') {
         box-sizing: border-box !important; 
     }
 
-    /* Estilos limpios para la cabecera y banner */
     .admin-header {
         display: flex;
         justify-content: space-between;
@@ -151,7 +151,6 @@ if ($vista === 'estudiantes') {
         font-size: 14px;
     }
 
-    /* Botones de acceso rápido con efecto elevación */
     .action-buttons-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -186,7 +185,7 @@ if ($vista === 'estudiantes') {
    <div class="sidebar">
     <div class="brand">📁 Entorno Virtual<br>"Informatica-PIU"</div>
     <ul>
-        <!-- Botón Inicio corregido con vista=inicio -->
+        
         <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=inicio" class="<?php echo ($vista === 'inicio') ? 'active' : ''; ?>">🏠 Inicio</a></li>
         <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=estudiantes" class="<?php echo ($vista === 'estudiantes') ? 'active' : ''; ?>">👨‍🎓 Estudiantes & Notas</a></li>
         <li><a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=materiales" class="<?php echo ($vista === 'materiales') ? 'active' : ''; ?>">📁 Materiales y Tareas</a></li>
@@ -197,7 +196,7 @@ if ($vista === 'estudiantes') {
 
 <div class="main-content">
 
-    <!-- CABECERA SUPERIOR (Siempre visible) -->
+    
     <div class="admin-top-bar">
         <div class="admin-title-area">
             <h1><?php echo htmlspecialchars($materia_docente ?? 'Introducción a la Informática'); ?></h1>
@@ -217,12 +216,10 @@ if ($vista === 'estudiantes') {
     </div>
 
     <?php 
-    $vista = isset($_GET['vista']) ? $_GET['vista'] : 'inicio';
+    $vista = !empty($_GET['vista']) ? $_GET['vista'] : 'inicio';
     ?>
 
-    <!-- ======================================================== -->
-    <!-- VISTA 1: INICIO (SOLO SALUDO Y BOTONES) -->
-    <!-- ======================================================== -->
+    
     <?php if ($vista === 'inicio'): ?>
         <div class="welcome-banner" style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 25px;">
             <h2 style="margin: 0 0 10px 0;">¡Hola, <?php echo htmlspecialchars($_SESSION['nombre'] ?? 'Docente'); ?>! 👋</h2>
@@ -244,9 +241,7 @@ if ($vista === 'estudiantes') {
             </a>
         </div>
 
-    <!-- ======================================================== -->
-    <!-- VISTA 2: MATERIALES Y TAREAS (SUBIR PDF Y YOUTUBE) -->
-    <!-- ======================================================== -->
+    
     <?php elseif ($vista === 'materiales'): ?>
         <div style="background: #fff; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 25px;">
             <h2>📁 Materiales, Guías y Enlaces de YouTube (Sección <?php echo $seccion_actual; ?>)</h2>
@@ -282,9 +277,7 @@ if ($vista === 'estudiantes') {
             </form>
         </div>
 
-<!-- ======================================================== -->
-    <!-- VISTA 3: ESTUDIANTES Y NOTAS (4 UNIDADES Y ESTADO) -->
-    <!-- ======================================================== -->
+
     <?php elseif ($vista === 'estudiantes'): ?>
         <div style="background: #fff; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 25px;">
             <h2>👥 Control de Estudiantes y Calificaciones (Sección <?php echo htmlspecialchars($seccion_actual); ?>)</h2>
@@ -295,10 +288,10 @@ if ($vista === 'estudiantes') {
                     <thead>
                         <tr style="background: #f1f5f9; border-bottom: 2px solid #cbd5e1;">
                             <th style="padding: 12px;">Estudiante</th>
-                            <th style="padding: 12px; text-align: center;">Unidad 1</th>
-                            <th style="padding: 12px; text-align: center;">Unidad 2</th>
-                            <th style="padding: 12px; text-align: center;">Unidad 3</th>
-                            <th style="padding: 12px; text-align: center;">Unidad 4</th>
+                            <th style="padding: 12px; text-align: center;">Unidad I</th>
+                            <th style="padding: 12px; text-align: center;">Unidad II</th>
+                            <th style="padding: 12px; text-align: center;">Unidad III</th>
+                            <th style="padding: 12px; text-align: center;">Unidad IV</th>
                             <th style="padding: 12px; text-align: center;">Estado</th>
                             <th style="padding: 12px; text-align: center;">Acción</th>
                         </tr>
@@ -306,7 +299,7 @@ if ($vista === 'estudiantes') {
                     <tbody>
                         <?php
                         $sec_param = $seccion_actual;
-                        // Corregido: 'id' en lugar de 'id_usuario'
+                    
                         $query_est = $conexion->prepare("SELECT id, nombre FROM usuarios WHERE rol = 'estudiante' AND seccion = ?");
                         if ($query_est) {
                             $query_est->bind_param("s", $sec_param);
@@ -317,10 +310,10 @@ if ($vista === 'estudiantes') {
                                 while ($row_est = $res_est->fetch_assoc()) {
                                     $id_alumno = $row_est['id'];
                                     
-                                    // Valores por defecto de notas
+                                    
                                     $n1 = 0; $n2 = 0; $n3 = 0; $n4 = 0;
                                     
-                                    // Lógica para calcular Promedio y Estado (Aprobado / Reprobado)
+                                    
                                     $promedio = ($n1 + $n2 + $n3 + $n4) / 4;
                                     if ($promedio >= 12) {
                                         $estado_badge = '<span style="background: #dcfce7; color: #15803d; padding: 4px 10px; border-radius: 12px; font-weight: 600; font-size: 0.85rem;">Aprobado</span>';
@@ -351,15 +344,13 @@ if ($vista === 'estudiantes') {
                 </table>
             </div>
         </div>
-    <!-- ======================================================== -->
-    <!-- VISTA 4: HORARIO -->
-    <!-- ======================================================== -->
+    
     <?php elseif ($vista === 'horario'): ?>
         <div style="background: #fff; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 25px;">
             <h2>📅 Gestión de Horario de Clases (Sección <?php echo $seccion_actual; ?>)</h2>
             <p style="color: #64748b; font-size: 0.95rem;">Sube el archivo oficial con los días y horas de clase para esta sección.</p>
             
-            <form method="POST" action="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=horario" enctype="multipart/form-data" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 0; width: 100%;">
+            <form action="subir_horario.php" method="POST" enctype="multipart/form-data" style="margin-top: 20px;">
                 <input type="hidden" name="seccion" value="<?php echo $seccion_actual; ?>">
                 
                 <div style="margin-bottom: 15px;">
@@ -392,7 +383,7 @@ if ($vista === 'estudiantes') {
         <div style="font-size: 50px; opacity: 0.8;">🎓</div>
     </div>
 
-    <!-- Botones de Acción Rápida -->
+    
     <div class="action-buttons-grid">
         <a href="panel_admin.php?seccion=<?php echo $seccion_actual; ?>&vista=materiales" class="btn-accion btn-pdf">
             📄 Subir PDF / Guía
@@ -504,7 +495,7 @@ if ($vista === 'estudiantes') {
                     <?php endif; ?>
                 </div>
 
-                <!-- Formulario Lateral -->
+                
                 <div class="side-panel" id="crear-contenido">
                     <h3>Crear Nuevo Contenido</h3>
                     <form method="POST" action="" enctype="multipart/form-data">
@@ -556,14 +547,14 @@ if ($vista === 'estudiantes') {
     }
 
     function seleccionarFormulario(tipo) {
-        var selectTipo = document.getElementById('tipoSelect'); // Asegúrate que tu selector tenga este id
+        var selectTipo = document.getElementById('tipoSelect');
         if (selectTipo) {
             if (tipo === 'PDF') {
-                selectTipo.value = 'Subir Guía / PDF'; // O el valor que tenga tu opción en el select
+                selectTipo.value = 'Subir Guía / PDF'; 
             } else if (tipo === 'Video') {
-                selectTipo.value = 'Video Tutorial'; // O el valor que tenga tu opción de video
+                selectTipo.value = 'Video Tutorial'; 
             }
-            // Ejecutamos tu función existente para que muestre u oculte los campos correspondientes
+            
             cambiarTipo(); 
         }
     }
