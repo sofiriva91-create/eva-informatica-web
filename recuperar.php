@@ -1,10 +1,10 @@
 <?php
-include("conexion.php");
+include'../backend/conexion.php';
 $error = "";
 $exito = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $identificador = trim($_POST['usuario']); // Cédula o correo
+    $identificador = trim($_POST['usuario']); 
     $nueva_clave = trim($_POST['nueva_clave']);
     $confirmar_clave = trim($_POST['confirmar_clave']);
 
@@ -12,16 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($nueva_clave === $confirmar_clave) {
             $clave_encriptada = password_hash($nueva_clave, PASSWORD_BCRYPT);
             
-            // Actualizar contraseña en la base de datos
+            
             $sql = "UPDATE usuarios SET clave = ? WHERE cedula = ? OR correo = ?";
             $stmt = $conexion->prepare($sql);
             $stmt->bind_param("sss", $clave_encriptada, $identificador, $identificador);
             
             if ($stmt->execute()) {
-                // ======================================================
-                // AQUÍ ES EXACTAMENTE DONDE LO REDIRIGE AL LOGIN TRAS ACTUALIZAR
-                // ======================================================
-                header("Location: login.php");
+                
                 exit();
             } else {
                 $error = "Error al actualizar la contraseña.";
