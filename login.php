@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("conexion.php"); // Asegúrate de que conecta con tu base de datos
+include '../backend/conexion.php';
 $error = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $clave = isset($_POST['clave']) ? trim($_POST['clave']) : '';
 
     if (!empty($cedula) && !empty($clave)) {
-        // Consultar el usuario en la base de datos por su cédula
+        
         $consulta = $conexion->prepare("SELECT * FROM usuarios WHERE cedula = ?");
         $consulta->bind_param("s", $cedula);
         $consulta->execute();
@@ -17,18 +17,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($resultado->num_rows === 1) {
             $datos_usuario = $resultado->fetch_assoc();
             
-            // Verificar la contraseña cifrada
+            
             if (password_verify($clave, $datos_usuario['clave'])) {
-                // Guardar los datos esenciales en la sesión
+                
                 $_SESSION['cedula'] = $datos_usuario['cedula'];
                 $_SESSION['nombre'] = $datos_usuario['nombre'];
                 $_SESSION['rol'] = $datos_usuario['rol'];
                 $_SESSION['seccion'] = $datos_usuario['seccion'];
                 $_SESSION['materia'] = $datos_usuario['materia'];
-                // ==========================================
-                // REDIRECCIÓN INTELIGENTE SEGÚN EL ROL
-                // ==========================================
-                // Limpiamos el rol y lo pasamos a minúsculas para evitar errores
+                
                 $rol_usuario = strtolower(trim($datos_usuario['rol']));
 
                 if ($rol_usuario === 'docente' || $rol_usuario === 'admin' || $rol_usuario === 'administrador') {
@@ -56,8 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EVA Informática - UPTAAPC</title>
-    <link rel="icon" type="image/png" href="logo-uptaapc.png">
-    <link rel="stylesheet" href="style.css">
+    <img src="../imagenes/logo-uptaapc.png" alt="Logo UPTAAPC">
+    <link rel="stylesheet" href="../CSS/style.css">
 </head>
 <body class="auth-body">
 
