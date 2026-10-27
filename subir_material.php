@@ -23,8 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bind_param("sssss", $titulo, $tipo, $ruta_archivo, $enlace_youtube, $seccion);
         $stmt->execute();
     }
-
-    header("Location: panel_admin.php?seccion=$seccion&vista=materiales");
+    
+header("Location: ../Web/panel_admin.php?seccion=$seccion&vista=materiales");
     exit();
 }
 ?>
