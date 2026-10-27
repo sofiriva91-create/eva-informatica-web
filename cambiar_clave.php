@@ -1,5 +1,5 @@
 <?php
-include('conexion.php');
+include('../backend/conexion.php');
 session_start();
 
 if (!isset($_SESSION['cedula_recuperacion'])) {
