@@ -1,8 +1,8 @@
 <?php
-include("conexion.php");
+include'../backend/conexion.php';
 $error = "";
 
-// Solo procesar cuando se envía el formulario
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cedula = isset($_POST['cedula']) ? trim($_POST['cedula']) : '';
     $nombre = isset($_POST['nombre']) ? trim($_POST['nombre']) : '';
@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $clave_raw = isset($_POST['clave']) ? trim($_POST['clave']) : '';
     $rol = isset($_POST['rol']) ? trim($_POST['rol']) : '';
     $materia = isset($_POST['materia']) ? trim($_POST['materia']) : '';
-    // Si es docente no pide sección, le asignamos "General" o "N/A". Si es estudiante, toma la sección elegida.
+    
     if ($rol === 'docente') {
         $seccion = 'General';
     } else {
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!empty($cedula) && !empty($nombre) && !empty($correo) && !empty($clave_raw) && !empty($rol)) {
-        // Si es estudiante, verificamos que también haya elegido sección
+        
         if ($rol === 'estudiante' && empty($seccion)) {
             $error = "Por favor seleccione una sección para el estudiante.";
         } else {
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sql = "INSERT INTO usuarios (cedula, nombre, correo, clave, rol, seccion, materia) VALUES ('$cedula', '$nombre', '$correo', '$clave', '$rol', '$seccion', '$materia')";
             
             if ($conexion->query($sql) === TRUE) {
-                // Redirección automática al login tras registrarse con éxito
+                
                 header("Location: login.php");
                 exit();
             } else {
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </select>
             </div>
 
-            <!-- Este campo de sección estará oculto por defecto y solo saldrá si se selecciona Estudiante -->
+            
             <div class="form-group" id="seccion-grupo" style="display: none;">
                 <label>Sección:</label>
                 <select name="seccion" id="seccion-select">
