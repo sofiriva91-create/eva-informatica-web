@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EVA Informática - UPTAAPC</title>
-    <link rel="stylesheet" href="style.css?v=999">
-    <link rel="icon" type="image/png" href="logo-uptaapc.png">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <img src="../imagenes/logo-uptaapc.png" alt="Logo UPTAAPC">
     <style>
-    /* --- HACK NUCLEAR DE EMERGENCIA --- */
+    
     * {
         box-sizing: border-box !important;
     }
@@ -18,7 +18,7 @@
         background-color: #f8f9fa !important;
         overflow-x: hidden !important;
     }
-    /* Forzar que los bloques principales se apilen verticalmente uno debajo del otro */
+    
     header, section, main, article, footer {
         width: 100% !important;
         float: none !important;
@@ -28,7 +28,7 @@
 </style>
 </head>
 <body style="margin: 0 !important; padding: 0 !important; width: 100% !important; overflow-x: hidden !important; background-color: #f8f9fa !important;">
-    <!-- BARRA DE NAVEGACIÓN SUPERIOR -->
+    
     <header style="width: 100% !important; box-sizing: border-box !important;">
         <div class="logo-seccion">
     <img src="logo-uptaapc.png" alt="Logo UPTAAPC" class="logo-img">
@@ -43,7 +43,7 @@
         </nav>
     </header>
 
-    <!-- PORTADA / HERO PRINCIPAL -->
+    
     <section class="portada">
         <div class="portada-contenido">
             <h1>Entorno Virtual de Aprendizaje</h1>
@@ -55,7 +55,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE SERVICIOS EDUCATIVOS -->
+    
     <section class="contenedor" id="servicios">
         <h2 class="titulo-seccion">Servicios Educativos</h2>
         <div class="tarjetas-grid">
@@ -80,7 +80,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN SOBRE LA UNIVERSIDAD -->
+    
     <section class="contenedor" id="universidad">
         <h2 class="titulo-seccion">Nuestra Universidad</h2>
         <div class="caja-universidad">
@@ -90,7 +90,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DEL CURSO DE INFORMÁTICA -->
+    
     <section class="contenedor" id="curso">
         <div class="banner-curso">
             <h3>Curso: Introducción a la Informática</h3>
@@ -99,7 +99,7 @@
         </div>
     </section>
 
-    <!-- PIE DE PÁGINA -->
+    
     <footer>
         <p>&copy; 2026 EVA Informática - Universidad Politécnica Territorial del Alto Apure "Pedro Camejo". Todos los derechos reservados.</p>
     </footer>
